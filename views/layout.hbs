@@ -10,36 +10,42 @@
    </head>
 
    <body>
-      <nav>
-        <div class="nav-sides-container">
-          <img id="menuHamburger" src="/images/hamburger.svg" alt="Menu">
-          <ul class="wrap-menu">
-            <li><a href="#">Nos types de serres</a></li>
-              <ul class="cat-menu">
-                <li><a href="#">Serres en verre trempé</a></li>
-                <li><a href="#">Serres en polycarbonate</a></li>
-                <li><a href="#">Serres adossées</a></li>
-              </ul>
-          </ul>
-          <ul class="wrap-menu">
-            <li><a href="#">Serres en pré-commande</a></li>
-          </ul>
-          <ul class="wrap-menu">
-            <li><a href="#">Accessoires</a></li>
-          </ul>
-          <ul class="wrap-menu">
-            <li><a href="#">Conseils</a></li>
-          </ul>
+      <header>
+        <nav>
+          <div class="nav-sides-container">
+            <img id="menuHamburger" src="/images/hamburger.svg" alt="Menu">
+            <ul class="wrap-menu">
+              <li><a href="#">Nos types de serres</a></li>
+                <ul class="cat-menu">
+                  <li><a href="#">Serres en verre trempé</a></li>
+                  <li><a href="#">Serres en polycarbonate</a></li>
+                  <li><a href="#">Serres adossées</a></li>
+                </ul>
+            </ul>
+            <ul class="wrap-menu">
+              <li><a href="#">Serres en pré-commande</a></li>
+            </ul>
+            <ul class="wrap-menu">
+              <li><a href="#">Accessoires</a></li>
+            </ul>
+            <ul class="wrap-menu">
+              <li><a href="#">Conseils</a></li>
+            </ul>
+            </div>
+          <div id="logo-container">
+            <img id="logo" src="/images/ciel-mon-jardin--logo.jpg" alt="ciel-mon-jardin-logo" />
           </div>
-        <div id="logo-container">
-          <img id="logo" src="/images/ciel-mon-jardin--logo.jpg" alt="ciel-mon-jardin-logo" />
-        </div>
-        <div class="nav-sides-container"></div>
-      </nav>
+          <div class="nav-sides-container"></div>
+        </nav>
 
-      <div id="main">
-        <div id="separator"></div>
-      </div>
+        <div id="header-bottom">
+          <div id="separator"></div>
+          <div id="account-zone">
+            <button id="account">Mon Compte</button> <!-- changement par logout avant changement de class DOM -->
+            <button id="account">Login</button> <!-- changement par {{user_id.firstname}} avec changement de class DOM -->
+          </div>
+        </div>
+      </header>
 
       {{{body}}}
 
