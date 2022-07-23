@@ -6,30 +6,40 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <title>{{appTitle}}</title>
-      <link rel="stylesheet" href="/stylesheets/style.css" />
+      <link rel="stylesheet" href="../stylesheets/style.css" />
    </head>
 
    <body>
       <nav>
-      <ul>
-        <li id="wrap-menu">
-          <ul class="cat-menu">
-            <li><a href="#">Serres en verre trempé</a></li>
-            <li><a href="#">Serres en polycarbonate</a></li>
-            <li><a href="#">Serres adossées</a></li>
+        <div class="nav-sides-container">
+          <img id="menuHamburger" src="/images/hamburger.svg" alt="Menu">
+          <ul class="wrap-menu">
+            <li><a href="#">Nos types de serres</a></li>
+              <ul class="cat-menu">
+                <li><a href="#">Serres en verre trempé</a></li>
+                <li><a href="#">Serres en polycarbonate</a></li>
+                <li><a href="#">Serres adossées</a></li>
+              </ul>
           </ul>
-          <ul>
+          <ul class="wrap-menu">
             <li><a href="#">Serres en pré-commande</a></li>
           </ul>
-          <ul class="cat-menu">
+          <ul class="wrap-menu">
             <li><a href="#">Accessoires</a></li>
           </ul>
-          <ul class="cat-menu">
+          <ul class="wrap-menu">
             <li><a href="#">Conseils</a></li>
           </ul>
-        </li>
-      </ul>
-    </nav>
+          </div>
+        <div id="logo-container">
+          <img id="logo" src="/images/ciel-mon-jardin--logo.jpg" alt="ciel-mon-jardin-logo" />
+        </div>
+        <div class="nav-sides-container"></div>
+      </nav>
+
+      <div id="main">
+        <div id="separator"></div>
+      </div>
 
       {{{body}}}
 
