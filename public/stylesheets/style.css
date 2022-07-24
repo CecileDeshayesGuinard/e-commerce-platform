@@ -28,6 +28,11 @@ nav {
   width: 30%;
 }
 
+#menu-zone {
+  color: rgba(56, 111, 72, 1);
+  font-weight: bold;
+}
+
 #menuHamburger {
   padding-left: 1em;
   background: white;
@@ -35,8 +40,29 @@ nav {
   height: 40%;
 }
 
-.wrap-menu {
+.wrapped-menu {
   display: none;
+}
+
+.unwrapped-menu {
+  position: absolute;
+  width: 80%;
+  margin-top: 15vh;
+  margin-left: 10%;
+  flex-direction: column;
+  background-color: white;
+  border: solid;
+  border-width: .5em;
+  border-color: rgba(56, 111, 72, 1);
+  border-radius: 20px;
+}
+
+.cat-hidden {
+  display: none;
+}
+
+.cat-visible {
+  display: flex;
 }
 
 /*nav > ul {
@@ -45,7 +71,7 @@ nav {
   flex-direction: column;
   text-align: left;
   margin-left: 0;
-}*/
+}
 
 nav ul {
   list-style-type: none;
@@ -141,6 +167,7 @@ li a {
 .cat-menu > li:hover > a {
   color: white;
 }
+*/
 
 #logo-container {
   align-items: center;
@@ -160,7 +187,8 @@ li a {
 }
 
 #separator {
-  width: 60%;
+  width: 80%;
+  margin-left: 10%;
   border-top: solid;
   border-top-width: .2em;
   border-color: rgba(56, 111, 72, 1);

@@ -7,26 +7,43 @@ document.addEventListener(
 );
 
 
-// Gestion du menu déroulant
-const allInvisibleMenu = Array.from(document.querySelectorAll('.wrap-menu'));
+// GESTION GENERALE DU MENU DEROULANT
+const hiddenMenu = document.querySelectorAll('#menu-zone div');
+const dropDownMenu = document.querySelector('#menuHamburger');
+const hiddenCategory = document.querySelectorAll('#menu-zone ul ul');
+const dropDownCategory = document.querySelector('#category-menu');
 
-const dropDownMenu = document.querySelector('#wrapped-menu');
-const invisibleMenu = document.querySelector('.wrap-menu');
-
-
-allInvisibleMenu.forEach(invisibleMenu => {
-  dropDownMenu.onclick = function () {
-  invisibleMenu.classList.remove('wrap-menu')
-  }
-})
-
-/*
-window.onclick = function (e) {
-  if (!e.target.matches(dropDownMenu)) {
-    invisibleMenu.classList.add('wrap-menu')
-  }
+//GESTION DU MENU PRINCIPAL
+dropDownMenu.onclick = function () {
+  hiddenMenu.forEach(function(div) {
+    if (div.matches('.wrapped-menu')) {
+      div.classList.replace('wrapped-menu', 'unwrapped-menu')
+      console.log('menu unwrapped')
+    }
+    else {
+      if (div.matches('.unwrapped-menu')) {
+      div.classList.replace('unwrapped-menu', 'wrapped-menu')
+      console.log('menu wrapped')
+      }
+    }
+  })
 }
-*/
+
+// GESTION DU SOUS MENU CATEGORIES
+dropDownCategory.onclick = function () {
+  hiddenCategory.forEach(function(ul) {
+    if (ul.matches('.cat-hidden')) {
+      ul.classList.replace('.cat-hidden', 'cat-visible')
+      console.log('categories are visible')
+    }
+    else {
+      if (ul.matches('.cat-visible')) {
+      ul.classList.replace('cat-visible', 'cat-hidden')
+      console.log('categories are hidden')
+      }
+    }
+  })
+}
 
 
 
