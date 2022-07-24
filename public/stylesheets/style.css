@@ -29,9 +29,16 @@ nav {
 }
 
 #menu-zone {
-  color: rgba(56, 111, 72, 1);
   font-weight: bold;
-  list-style-type: none
+}
+
+#menu-zone a {
+  text-decoration: none;
+  color: rgba(56, 111, 72, 1);
+}
+
+#menu-zone a:hover {
+  color: rgba(153,122, 26, 1);
 }
 
 #menuHamburger {
@@ -62,6 +69,11 @@ nav {
 .unwrapped-menu ul {
   list-style-type: none;
 }
+
+.unwrapped-menu > ul > li > a {
+  font-size: 1.5em;
+}
+
 
 .cat-hidden {
   display: none;
