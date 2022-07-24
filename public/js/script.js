@@ -33,7 +33,7 @@ dropDownMenu.onclick = function () {
 dropDownCategory.onclick = function () {
   hiddenCategory.forEach(function(ul) {
     if (ul.matches('.cat-hidden')) {
-      ul.classList.replace('.cat-hidden', 'cat-visible')
+      ul.classList.replace('cat-hidden', 'cat-visible')
       console.log('categories are visible')
     }
     else {

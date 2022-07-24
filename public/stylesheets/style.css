@@ -31,6 +31,7 @@ nav {
 #menu-zone {
   color: rgba(56, 111, 72, 1);
   font-weight: bold;
+  list-style-type: none
 }
 
 #menuHamburger {
@@ -47,14 +48,19 @@ nav {
 .unwrapped-menu {
   position: absolute;
   width: 80%;
-  margin-top: 15vh;
+  max-width: 30em;
+  margin-top: 15.5vh;
   margin-left: 10%;
   flex-direction: column;
   background-color: white;
   border: solid;
-  border-width: .5em;
+  border-width: .2em;
   border-color: rgba(56, 111, 72, 1);
   border-radius: 20px;
+}
+
+.unwrapped-menu ul {
+  list-style-type: none;
 }
 
 .cat-hidden {
@@ -63,6 +69,8 @@ nav {
 
 .cat-visible {
   display: flex;
+  flex-direction: column;
+  list-style-type: none;
 }
 
 /*nav > ul {
@@ -189,6 +197,7 @@ li a {
 #separator {
   width: 80%;
   margin-left: 10%;
+  margin-right: 10%;
   border-top: solid;
   border-top-width: .2em;
   border-color: rgba(56, 111, 72, 1);
