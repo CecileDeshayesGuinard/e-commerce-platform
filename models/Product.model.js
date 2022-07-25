@@ -50,17 +50,7 @@ const productSchema = new Schema(
         weight: {
           type: Number,
         }
-      },
-      sizingTypeLetter: {
-        sizeLetter: {
-          type: Number,
-        },
-      },
-      sizingTypeNumber: {
-        sizeNumber: {
-          type: Number,
-        },
-      },
+      }
     },
     packagingSize: {
       lenght: {

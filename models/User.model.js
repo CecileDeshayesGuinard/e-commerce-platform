@@ -3,8 +3,8 @@ const { Schema, model } = require("mongoose");
 // User model Below
 const userSchema = new Schema(
   {
-    id:{
-      type: Number
+    id: {
+      type: String
     },
     firstName: {
       type: String,
@@ -15,10 +15,10 @@ const userSchema = new Schema(
       required: true
     },
     phoneNumber: {
-      type : Number,
+      type : String,
     },
     email: {
-      type : Number,
+      type : String,
       unique: true,
       required: true
     },

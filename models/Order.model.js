@@ -7,11 +7,58 @@ const orderSchema = new Schema(
       type: Number
     },
     user_id: {
-      type: Number,
+      type: String,
       unique: true,
       required: true  
     },
-    product_id: [{type: String, unique: true, required: true}],
+    product: [{
+      product_id: {
+        type: String,
+        unique: true,
+        required: true
+      },
+      quantity: {
+        type: Number,
+        required: true
+      }
+    }],
+    amount: {
+      exVat: {
+        type: Number,
+        required: true
+      },
+      vat: {
+        type: Number,
+        required: true
+      },
+      transportAmount: {
+        exVat: {
+          type: Number,
+          required: true
+        },
+        vat: {
+          type: Number,
+          required: true
+        }
+      }
+    },
+    totalAmount: {
+      currency: {
+        type: String,
+        required: true
+      },
+      value: {
+        type: Number,
+        required: true
+      }
+    },
+    shipmentStatus: {
+      type: String
+    },
+    creationDate: {
+      type: String,
+      required: true
+    }
 },
 
   {
