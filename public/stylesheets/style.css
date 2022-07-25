@@ -1,3 +1,12 @@
+/*
+██╗      █████╗ ██╗   ██╗ ██████╗ ██╗   ██╗████████╗
+██║     ██╔══██╗╚██╗ ██╔╝██╔═══██╗██║   ██║╚══██╔══╝
+██║     ███████║ ╚████╔╝ ██║   ██║██║   ██║   ██║   
+██║     ██╔══██║  ╚██╔╝  ██║   ██║██║   ██║   ██║   
+███████╗██║  ██║   ██║   ╚██████╔╝╚██████╔╝   ██║   
+╚══════╝╚═╝  ╚═╝   ╚═╝    ╚═════╝  ╚═════╝    ╚═╝   
+*/                                                    
+
 body {
   margin: 0px;
   padding: 0px;
@@ -128,6 +137,82 @@ nav {
   border: solid;
   border-color: rgba(115, 110, 110, .8);
   border-radius: 50px;
+  margin-inline: 2em;
+  color: white;
+  font-weight: bold;
+  box-shadow: .2em .2em .2em .2em rgba(115, 110, 110, .4);
+}
+
+/*
+███████╗██╗ ██████╗ ███╗   ██╗██╗   ██╗██████╗ 
+██╔════╝██║██╔════╝ ████╗  ██║██║   ██║██╔══██╗
+███████╗██║██║  ███╗██╔██╗ ██║██║   ██║██████╔╝
+╚════██║██║██║   ██║██║╚██╗██║██║   ██║██╔═══╝ 
+███████║██║╚██████╔╝██║ ╚████║╚██████╔╝██║     
+╚══════╝╚═╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝ ╚═╝     
+*/ 
+
+.signupSection {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 15vh;
+}
+
+.signupSection a {
+  font-weight: bold;
+  text-decoration: none;
+  color: white;
+  font-size: 1.5em;
+}
+
+.actionButton button { /* problème du au parent */
+  
+  width: 15em;
+  height: 3em;
+  background-color: rgba(153,122, 26, 1);
+  border: solid;
+  border-radius: 50px;
+  border-color: rgba(153,122, 26, .8);
+  margin-inline: 2em;
+  box-shadow: .2em .2em .2em .2em rgba(153,122, 26, .4);
+}
+
+/*
+╔╦╗╦ ╦╔═╗╔═╗  ╔═╗╔═╗  ╔═╗╦ ╦╔═╗╔╦╗╔═╗╔╦╗╔═╗╦═╗
+ ║ ╚╦╝╠═╝║╣   ║ ║╠╣   ║  ║ ║╚═╗ ║ ║ ║║║║║╣ ╠╦╝
+ ╩  ╩ ╩  ╚═╝  ╚═╝╚    ╚═╝╚═╝╚═╝ ╩ ╚═╝╩ ╩╚═╝╩╚═
+*/
+
+#typeOfCustomer button {
+  width: 25em;
+  height: 3em;
+  background-color: rgba(153,122, 26, 1);
+  border: solid;
+  border-radius: 50px;
+  border-color: rgba(153,122, 26, .8);
+  margin-inline: 2em;
+  box-shadow: .2em .2em .2em .2em rgba(153,122, 26, .4);
+}
+
+button {
+  margin-top: 3vh;
+}
+
+/*
+╔═╗╔═╗╔╦╗╔═╗╔═╗╔╗╔╦ ╦  ╔═╗╦═╗╔═╗╔═╗╦╦  ╔═╗
+║  ║ ║║║║╠═╝╠═╣║║║╚╦╝  ╠═╝╠╦╝║ ║╠╣ ║║  ║╣ 
+╚═╝╚═╝╩ ╩╩  ╩ ╩╝╚╝ ╩   ╩  ╩╚═╚═╝╚  ╩╩═╝╚═╝
+*/
+
+#companyProfile button {
+  width: 25em;
+  height: 3em;
+  background-color: rgba(115, 110, 110, 1);
+  border: solid;
+  border-color: rgba(115, 110, 110, .8);
   margin-inline: 2em;
   color: white;
   font-weight: bold;
