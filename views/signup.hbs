@@ -1,44 +1,53 @@
-<div class="signupSection" id="typeOfCustomer">
-    <button><a id="individual" href="#">Particulier</a></button>
-    <button><a id="company" href="#">Entreprise</a></button>
+<div class="signupBlock" id="typeOfCustomer">
+  <div class="signupSection">
+    <button><a id="individual"/>Particulier</button>
+    <button><a id="company"/>Entreprise</button>
+  </div>
 </div>
-<div class="signupSection" id="companyProfile">
-    <button><a id="companyName" href="#">Nom</a></button>
-    <button><a id="vatNumber" href="#">N° de TVA</a></button>
-    <button><a id="regNumber" href="#">Siret</a></button>
-    <button><a id="nafCode" href="#">Code APE / NAF</a></button>
-    <div class="actionButton">
-      <button><a id="continue" href="#">Suivant</a></button>
-      <button><a id="previous" href="#">Précédent</a></button>
-    </div>
+<div class="signupBlock hidden-block" id="companyProfile">
+  <div class="signupSection">
+    <button><input id="companyName" type="text" placeholder="Nom"/></button>
+    <button><input id="vatNumber" type="text" placeholder="N° de TVA"/></button>
+    <button><input id="regNumber" type="text" placeholder="Siret"/></button>
+    <button><input id="nafCode" type="text" placeholder="Code APE / NAF"/></button>
+  </div> 
+  <div class="actionButton">
+    <button><a id="previous" href="#">Précédent</a></button>
+    <button><a id="continue" href="#">Suivant</a></button>
+  </div>
 </div>
-<div class="signupSection" id="userProfile">
-    <button><a id="userFirstName" href="#">Prénom</a></button>
-    <button><a id="userName" href="#">Nom</a></button>
-    <button><a id="userEmail" href="#">email</a></button>
-    <button><a id="userPhone" href="#">Téléphone</a></button>
-    <button><a id="userDateOfBirth" href="#">JJ/MM/AAAA</a></button>
-    <div class="actionButton">
-      <button><a id="continue" href="#">Suivant</a></button>
-      <button><a id="previous" href="#">Précédent</a></button>
-    </div>
+<div class="signupBlock hidden-block" id="userProfile">
+  <div class="signupSection">
+    <button><input id="userFirstName" type="text" placeholder="Prénom"/></button>
+    <button><input id="userName" type="text" placeholder="Nom"/></button>
+    <button><input id="userEmail" type="email" placeholder="email"/></button>
+    <button><input id="userPhone" type="tel" placeholder="Téléphone"/></button>
+    <button><input id="userDateOfBirth" type="date" placeholder="JJ/MM/AAAA"/></button>
+  </div>
+  <div class="actionButton">
+    <button><a id="previous" href="#">Précédent</a></button>
+    <button><a id="continue" href="#">Suivant</a></button>
+  </div>
 </div>
-<div class="signupSection" id="billingAdress">
-    <button><a id="country" href="#">Pays</a></button>
-    <button><a id="streetName" href="#">Nom de la voie</a></button>
-    <button><a id="streetNumber" href="#">Numéro de la voie</a></button>
-    <button><a id="zipCode" href="#">Code Postal</a></button>
-    <button><a id="city" href="#">Ville</a></button>
-    <div class="actionButton">
-      <button><a id="continue" href="#">Suivant</a></button>
-      <button><a id="previous" href="#">Précédent</a></button>
-    </div>
+<div class="signupBlock hidden-block" id="billingAdress">
+  <div class="signupSection">
+    <button><input id="country" type="text" placeholder="Pays"/></button>
+    <button><input id="streetName" type="text" placeholder="Nom de la voie"/></button>
+    <button><input id="streetNumber" type="text" placeholder="Numéro de la voie"/></button>
+    <button><input id="zipCode" type="text" placeholder="Code Postal"/></button>
+    <button><input id="city" type="text" placeholder="Ville"/></button>
+  </div>  
+  <div class="actionButton">
+    <button><a id="previous" href="#">Précédent</a></button>
+    <button><a id="continue" href="#">Suivant</a></button>
+  </div>
 </div>
-
-<div class="signupSection" id="security">
-    <button><a id="password" href="#">Mot de passe</a></button>
-    <div class="actionButton">
-      <button><a id="registration" href="#">Je m'enregistre !</a></button>
-      <button><a id="previous" href="#">Précédent</a></button>
-    </div>
+<div class="signupBlock hidden-block" id="security">
+  <div class="signupSection">
+    <button><input id="password" type="password" placeholder="Mot de passe"/></button>
+  </div>  
+  <div class="actionButton">
+    <button><a id="previous" href="#">Précédent</a></button>
+    <button><a id="registration" type="submit">Envoyer !</a></button>
+  </div>
 </div>
