@@ -15,28 +15,28 @@ const userSchema = new Schema(
       required: true
     },
     phoneNumber: {
-      type : String,
+      type: String,
     },
     email: {
-      type : String,
+      type: String,
       unique: true,
       required: true
+    },
+    dateOfBirth: {
+      type: String
     },
     company: {
       companyName: {
         type: String,
-        required: true
       },
       vatNumber: {
         type: String,
-        required: true
       },
-      apeCode: {
+      nafCode: {
         type: String
       },
-      registrationNumber: {
+      regNumber: {
         type: String,
-        required: true
       }
     }, 
     billingAdress: {
