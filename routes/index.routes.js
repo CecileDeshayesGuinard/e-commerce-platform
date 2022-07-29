@@ -33,18 +33,28 @@ router.get("/signup", (req, res, next) => {
   res.render("signup");
 });
 
-
-
 /* POST signup page */
 
 function validate(req) {
   const errors = []
 
   if (!req.body.firstName) {
-    errors.push({name: 'firstName', message: 'First name manquant'})
+    errors.push({name: 'firstName', message: 'Prénom requis'})
   }
-  if (req.body.firstName.length < 3) {
-    errors.push({name: 'firstName', message: 'First name manquant'})
+  if (!req.body.lastName) {
+    errors.push({name: 'lastName', message: 'Nom requis'})
+  }
+  if (!req.body.email) {
+    errors.push({name: 'email', message: 'email requis'})
+  }
+  if(req.body.email.includes('@')) {
+    errors.push({name: 'email', message: 'email non valide'})
+  }
+  if (!req.body.phoneNumber) {
+    errors.push({name: 'phoneNumber', message: 'n° de téléphone requis'})
+  }
+  if (req.body.PhoneNumber.length < 10) {
+    errors.push({name: 'phoneNumber', message: 'n° de téléphone non valide'})
   }
 
   return errors
@@ -54,7 +64,7 @@ function validate(req) {
 router.post('/signup/validate', function (req, res, next) {
   const errors = validate(req)
 
-  if (errors.length > 1) {
+  if (errors.length >= 1) {
     res.json(errors)
   }
 })
