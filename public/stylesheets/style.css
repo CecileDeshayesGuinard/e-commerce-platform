@@ -146,6 +146,18 @@ nav {
   max-width: 140px;
 }
 
+#cartLogoSpace {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+#cart {
+  padding-right: 1em;
+  background: white;
+  width: 40%;
+  height: 40%;
+}
+
 #header-bottom {
   width: 100%;
   display: flex;
