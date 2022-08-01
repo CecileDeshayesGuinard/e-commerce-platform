@@ -4,7 +4,7 @@
     <p>Voici la description de la catégorie</p>
   </div>
 </div>
-<!-- idée : afficher tout les produits avec un max de 8 produits par div + click bouton pour défilement + classement par top vente et nouveautés -->
+<!-- idée : faire un partial car indentique à la homePage sauf le filtre pré-programmé -->
 <div id="products">
 <h2>Nos Produits</h2>
   <div id="filterZone">
@@ -49,33 +49,4 @@
     <div class="radioButton" id="radioButton2"></div>
   </div>
 </div>
-<div id="footer">
-  <div id="columnBlock">
-    <div class="footerColumn" id="leftFooterColumn">
-      <h3>Qui Sommes Nous ?</h3>
-      <h4 id="company" href="#">Notre Société</h4>
-      <h4 id="generalConditions" href="#">CGV</h4>
-      <h4 id="paymentLaw" href="#">Paiement Sécurisé</h4>
-      <h4 id="legal" href="#">Mentions Légales</h4>
-    </div>
-    <div class="footerColumn" id="rightFooterColumn">
-      <h3>Contacts</h3>
-      <div>
-        <h4>Adresse</h4>
-        <p>2, boulevard Albert 1er, 94130 Nogent sur Marne, France</p>
-      </div>
-      <div>
-        <h4>Téléphone</h4>
-        <p>+33(0)1.39.73.04.45</p>
-      </div>
-      <div>
-        <h4>Email</h4>
-        <p>contact@cielmonjardin.com</p>
-      </div>
-    </div>
-  </div>
-  <div id="credits">
-    <p>made by Cécile&#xae;</p>
-    <p>powered by Ironhack</p>
-  </div>
-</div>
+{{>footer}}

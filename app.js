@@ -8,12 +8,19 @@ require("./db");
 // Handles http requests (express is node js framework)
 // https://www.npmjs.com/package/express
 const express = require("express");
-
+const app = express();
 // Handles the handlebars
 // https://www.npmjs.com/package/hbs
 const hbs = require("hbs");
+hbs.registerPartials("partials_absolute_path")
 
-const app = express();
+
+// Partials
+app.set('view engine', 'hbs');
+ 
+// ADD THIS:
+hbs.registerPartials(__dirname + "/views/partials");
+
 
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
 require("./config")(app);
