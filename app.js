@@ -9,17 +9,16 @@ require("./db");
 // https://www.npmjs.com/package/express
 const express = require("express");
 const app = express();
+
+
 // Handles the handlebars
 // https://www.npmjs.com/package/hbs
 const hbs = require("hbs");
-hbs.registerPartials("partials_absolute_path")
 
-
-// Partials
-app.set('view engine', 'hbs');
- 
-// ADD THIS:
-hbs.registerPartials(__dirname + "/views/partials");
+// Partials : code a rajouter pour utiliser cette fonction hbs.
+hbs.registerPartials("partials_absolute_path") // attention, n'est pas présent de facto dans Ironlauncher !
+app.set('view engine', 'hbs'); // attention, n'est pas présent de facto dans Ironlauncher !
+hbs.registerPartials(__dirname + "/views/partials"); // attention, n'est pas présent de facto dans Ironlauncher !
 
 
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware

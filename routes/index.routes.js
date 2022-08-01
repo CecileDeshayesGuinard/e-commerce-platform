@@ -47,7 +47,7 @@ function validate(req) {
   if (!req.body.email) {
     errors.push({name: 'email', message: 'email requis'})
   }
-  if(req.body.email.includes('@')) {
+  if(!req.body.email.includes('@')) {
     errors.push({name: 'email', message: 'email non valide'})
   }
   if (!req.body.phoneNumber) {
