@@ -84,24 +84,18 @@ const userProfile = document.querySelector('#userProfile');
 const billingAdress = document.querySelector('#billingAdress');
 const security = document.querySelector('#security');
 
-const individualButton = document.querySelector('#individual')
-const companyButton = document.querySelector('#company')
+const individualButton = document.querySelector('#individual');
+const companyButton = document.querySelector('#company');
 
 
 companyButton.onclick = function () {
   typeOfCustomer.classList.add('hidden-block');
   companyProfile.classList.remove('hidden-block');
-  router.get("/signup", (req, res, next) => {
-  res.render("signup/company")
-});
 }
 
-userButton.onclick = function () {
+individualButton.onclick = function () {
   typeOfCustomer.classList.add('hidden-block');
   userProfile.classList.remove('hidden-block');
-  router.get("/signup", (req, res, next) => {
-  res.render("signup/user")
-});
 }
 
 /*
@@ -113,17 +107,11 @@ userButton.onclick = function () {
 continueCompany.onclick = function () {
   companyProfile.classList.add('hidden-block');
   userProfile.classList.remove('hidden-block');
-  router.get("/signup/company", (req, res, next) => {
-  res.render("signup/user")
-});
 }
 
 previousCompany.onclick = function () {
   companyProfile.classList.add('hidden-block');
   typeOfCustomer.classList.remove('hidden-block');
-  router.get("/signup/company", (req, res, next) => {
-  res.render("signup")
-});
 }
 
 /*
@@ -135,17 +123,14 @@ previousCompany.onclick = function () {
 continueUser.onclick = function () {
   userProfile.classList.add('hidden-block');
   billingAdress.classList.remove('hidden-block');
-  router.get("/signup/user", (req, res, next) => {
-  res.render("signup/adress")
-});
+  /*router.post("/signup/validate/user", (req, res, next) => {
+  res.render("signup")
+  });*/
 }
 
 previousUser.onclick = function () {
   userProfile.classList.add('hidden-block');
   typeOfCustomer.classList.remove('hidden-block');
-  router.get("/signup/user", (req, res, next) => {
-  res.render("signup")
-});
 }
 
 /*
@@ -157,17 +142,14 @@ previousUser.onclick = function () {
 continueAdress.onclick = function () {
   billingAdress.classList.add('hidden-block');
   security.classList.remove('hidden-block');
-  router.get("/signup/adress", (req, res, next) => {
-  res.render("signup/security")
-});
+  /*router.post("/signup/validate/address", (req, res, next) => {
+  res.render("signup")
+  });*/
 }
 
 previousAdress.onclick = function () {
   billingAdress.classList.add('hidden-block');
   userProfile.classList.remove('hidden-block');
-  router.get("/signup/adress", (req, res, next) => {
-  res.render("signup/user")
-});
 }
 
 
@@ -179,15 +161,12 @@ previousAdress.onclick = function () {
 
 registration.onclick = function () {
   security.classList.add('hidden-block');
-  router.get("/signup/security", (req, res, next) => {
+  /*router.get("/signup/validate/password", (req, res, next) => {
   res.redirect("/")
-});
+  });*/
 }
 
 previousPassword.onclick = function () {
-  user.classList.add('hidden-block');
+  security.classList.add('hidden-block');
   billingAdress.classList.remove('hidden-block');
-  router.get("/signup/security", (req, res, next) => {
-  res.render("signup/adress")
-});
 }

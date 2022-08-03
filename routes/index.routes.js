@@ -68,10 +68,9 @@ router.post('/validate/user', function (req, res, next) {
   }
 })
 
-
 // Error checking Adress
 
-function validateAdress(req) {
+function validateAddress(req) {
   const errors = []
 
   if (!req.body.countryName) {
@@ -93,8 +92,8 @@ function validateAdress(req) {
 }
 
 // Appeler cette route a chaque fois que suivant (AJAX)
-router.post('/validate/adress', function (req, res, next) {
-  const errors = validateAdress(req)
+router.post('/validate/address', function (req, res, next) {
+  const errors = validateAddress(req)
 
   if (errors.length >= 1) {
     res.json(errors)
