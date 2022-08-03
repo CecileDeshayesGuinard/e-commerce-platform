@@ -123,7 +123,8 @@ previousCompany.onclick = function () {
 continueUser.onclick = function () {
   userProfile.classList.add('hidden-block');
   billingAdress.classList.remove('hidden-block');
-  router.post('/validate/user', function (req, res, next) {
+  // non, le 2e parametre, n'est pas bon pour axios, il faut consulter la doc
+  axios.post('/validate/user', function (req, res, next) {
     const errors = validateUser(req)
   
     if (errors.length >= 1) {
@@ -146,7 +147,7 @@ previousUser.onclick = function () {
 continueAdress.onclick = function () {
   billingAdress.classList.add('hidden-block');
   security.classList.remove('hidden-block');
-  router.post('/validate/address', function (req, res, next) {
+  axios.post('/validate/address', function (req, res, next) {
     const errors = validateAddress(req)
   
     if (errors.length >= 1) {
@@ -169,7 +170,7 @@ previousAdress.onclick = function () {
 
 registration.onclick = function () {
   security.classList.add('hidden-block');
-  router.post('/validate/password', function (req, res, next) {
+  axios.post('/validate/password', function (req, res, next) {
     const errors = validatePassword(req)
   
     if (errors.length >= 1) {

@@ -38,6 +38,8 @@ router.get("/signup", (req, res, next) => {
 function validateUser(req) {
   const errors = []
 
+  console.log('validateUser', req.body)
+
   if (!req.body.firstName) {
     errors.push({name: 'firstName', message: 'Prénom requis'})
   }
@@ -46,16 +48,22 @@ function validateUser(req) {
   }
   if (!req.body.email) {
     errors.push({name: 'email', message: 'email requis'})
-  }
-  if(!req.body.email.includes('@')) {
-    errors.push({name: 'email', message: 'email non valide'})
+  } else {
+    if(!req.body.email.includes('@')) { // ici tu as le meme probleme si jamais req.body.email vaut undefined => .includes sur undefined genererERROR
+      errors.push({name: 'email', message: 'email non valide'})
+    }
   }
   if (!req.body.phoneNumber) {
     errors.push({name: 'phoneNumber', message: 'n° de téléphone requis'})
+  } else {
+    // ici tu es sure que req.body.phoneNumber existe!
+    if (req.body.phoneNumber.length < 10) { // ici si jamais tu n'envoie pas de phoneNumber a ton serveur, alors req.body.phoneNumber vaudra undefined, et de tenter de faire .length dessus generera une erreur...
+      errors.push({name: 'phoneNumber', message: 'n° de téléphone non valide'})
+    }
   }
-  if (req.body.phoneNumber.length < 10) {
-    errors.push({name: 'phoneNumber', message: 'n° de téléphone non valide'})
-  }
+
+  console.log('errors=', errors)
+
   return errors
 }
 
@@ -63,8 +71,13 @@ function validateUser(req) {
 router.post('/validate/user', function (req, res, next) {
   const errors = validateUser(req)
 
+  console.log('errors vaut', errors)
+
   if (errors.length >= 1) {
-    res.json(errors)
+    res.status(400).json(errors) // ici, on va retourner un code d'erreur 400
+  } else {
+    // ok, pas d'erreur: il faut qd meme donner une reponse au client
+    res.json({})
   }
 })
 
@@ -96,7 +109,10 @@ router.post('/validate/address', function (req, res, next) {
   const errors = validateAddress(req)
 
   if (errors.length >= 1) {
-    res.json(errors)
+    res.status(400).json(errors) // ici, on va retourner un code d'erreur 400
+  } else {
+    // ok, pas d'erreur: il faut qd meme donner une reponse au client
+    res.json({})
   }
 })
 
@@ -119,7 +135,10 @@ router.post('/validate/password', function (req, res, next) {
   const errors = validatePassword(req)
 
   if (errors.length >= 1) {
-    res.json(errors)
+    res.status(400).json(errors) // ici, on va retourner un code d'erreur 400
+  } else {
+    // ok, pas d'erreur: il faut qd meme donner une reponse au client
+    res.json({})
   }
 })
 
