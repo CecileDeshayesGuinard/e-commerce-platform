@@ -106,7 +106,7 @@ individualButton.onclick = function () {
 
 continueCompany.onclick = function () {
   companyProfile.classList.add('hidden-block');
-  userProfile.classList.remove('hidden-block');
+  userProfile.classList.remove('hidden-block');  
 }
 
 previousCompany.onclick = function () {
@@ -123,9 +123,13 @@ previousCompany.onclick = function () {
 continueUser.onclick = function () {
   userProfile.classList.add('hidden-block');
   billingAdress.classList.remove('hidden-block');
-  /*router.post("/signup/validate/user", (req, res, next) => {
-  res.render("signup")
-  });*/
+  router.post('/validate/user', function (req, res, next) {
+    const errors = validateUser(req)
+  
+    if (errors.length >= 1) {
+      res.json(errors)
+    }
+  })
 }
 
 previousUser.onclick = function () {
@@ -142,9 +146,13 @@ previousUser.onclick = function () {
 continueAdress.onclick = function () {
   billingAdress.classList.add('hidden-block');
   security.classList.remove('hidden-block');
-  /*router.post("/signup/validate/address", (req, res, next) => {
-  res.render("signup")
-  });*/
+  router.post('/validate/address', function (req, res, next) {
+    const errors = validateAddress(req)
+  
+    if (errors.length >= 1) {
+      res.json(errors)
+    }
+  })
 }
 
 previousAdress.onclick = function () {
@@ -161,9 +169,13 @@ previousAdress.onclick = function () {
 
 registration.onclick = function () {
   security.classList.add('hidden-block');
-  /*router.get("/signup/validate/password", (req, res, next) => {
-  res.redirect("/")
-  });*/
+  router.post('/validate/password', function (req, res, next) {
+    const errors = validatePassword(req)
+  
+    if (errors.length >= 1) {
+      res.json(errors)
+    }
+  })
 }
 
 previousPassword.onclick = function () {

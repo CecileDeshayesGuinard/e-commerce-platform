@@ -1,6 +1,6 @@
 const router = require("express").Router();
-const User = require("../models/User.model")
-/*const bcryptJs = require("bcryptjs")*/
+const User = require("../models/User.model");
+const bcryptJs = require("bcryptjs");
 
 
 /*
@@ -53,7 +53,7 @@ function validateUser(req) {
   if (!req.body.phoneNumber) {
     errors.push({name: 'phoneNumber', message: 'n° de téléphone requis'})
   }
-  if (req.body.PhoneNumber.length < 10) {
+  if (req.body.phoneNumber.length < 10) {
     errors.push({name: 'phoneNumber', message: 'n° de téléphone non valide'})
   }
   return errors
@@ -142,18 +142,52 @@ router.post('/signup', (req, res, next) => {
   const cityName = req.body.cityName
 
   const password = req.body.password
-  const cryptedPassword = bcryptJs.hashSync(req.body.password)
 
 
-  const errors = (validateUser(req) + validateAdress(req) + validatePassword(req))
+  const errors = (validateUser(req) + validateAddress(req) + validatePassword(req))
 
-  if (errors.length <= 0) {
-    res.render("account", {
-      message: 'Vous êtes enregistré !'
+  if (errors.length === 0) {
+    User.findOne({email : email})
+     .then((user) => {
+      if (user) {
+        res.render("signup", {
+          message: `L'\email ${user.email} est deja pris`
+        })
+      } else {
+        const cryptedPassword = bcryptJs.hashSync(req.body.password)
+        const newUser = new User ({
+          companyName: companyName,
+          vatNumber: vatNumber,
+          regNumber: regNumber,
+          nafCode: nafCode,
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          phoneNumber: phoneNumber,
+          dateOfBirth: dateOfBirth,
+          countryName: countryName,
+          streetName: streetName,
+          streetNumber: streetNumber,
+          zipCode: zipCode,
+          cityName: cityName,
+          password: cryptedPassword,
+        })
+      
+        newUser.save()
+          .then( newUser => {
+            console.log('user saved', newUser)
+            res.redirect("/")
+          })
+          .catch(err => {
+            console.log('user not saved', err)
+          })
+        res.redirect("/", {
+          message: 'Vous êtes enregistré !'
+        })
+      }
     })
   }
 })
-
 
 
 /* GET account page */
