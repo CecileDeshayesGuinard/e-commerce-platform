@@ -21,12 +21,9 @@ const hiddenCategory = document.querySelectorAll('#menu-zone ul ul');
 const dropDownCategory = document.querySelector('#category-menu');
 
 /*
-███╗   ███╗ █████╗ ██╗███╗   ██╗     ██████╗ █████╗ ████████╗███████╗ ██████╗  ██████╗ ██████╗ ██╗███████╗███████╗
-████╗ ████║██╔══██╗██║████╗  ██║    ██╔════╝██╔══██╗╚══██╔══╝██╔════╝██╔════╝ ██╔═══██╗██╔══██╗██║██╔════╝██╔════╝
-██╔████╔██║███████║██║██╔██╗ ██║    ██║     ███████║   ██║   █████╗  ██║  ███╗██║   ██║██████╔╝██║█████╗  ███████╗
-██║╚██╔╝██║██╔══██║██║██║╚██╗██║    ██║     ██╔══██║   ██║   ██╔══╝  ██║   ██║██║   ██║██╔══██╗██║██╔══╝  ╚════██║
-██║ ╚═╝ ██║██║  ██║██║██║ ╚████║    ╚██████╗██║  ██║   ██║   ███████╗╚██████╔╝╚██████╔╝██║  ██║██║███████╗███████║
-╚═╝     ╚═╝╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝     ╚═════╝╚═╝  ╚═╝   ╚═╝   ╚══════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚═╝╚══════╝╚══════╝                                                                                                            
+╔╦╗╔═╗╦╔╗╔  ╔═╗╔═╗╔╦╗╔═╗╔═╗╔═╗╦═╗╦╔═╗╔═╗
+║║║╠═╣║║║║  ║  ╠═╣ ║ ║╣ ║ ╦║ ║╠╦╝║║╣ ╚═╗
+╩ ╩╩ ╩╩╝╚╝  ╚═╝╩ ╩ ╩ ╚═╝╚═╝╚═╝╩╚═╩╚═╝╚═╝
 */
 
 
@@ -52,13 +49,10 @@ dropDownMenu.onclick = function () {
 }
 
 /*
-███████╗███████╗ ██████╗ ██████╗ ███╗   ██╗██████╗      ██████╗ █████╗ ████████╗███████╗ ██████╗  ██████╗ ██████╗ ██╗███████╗███████╗
-██╔════╝██╔════╝██╔════╝██╔═══██╗████╗  ██║██╔══██╗    ██╔════╝██╔══██╗╚══██╔══╝██╔════╝██╔════╝ ██╔═══██╗██╔══██╗██║██╔════╝██╔════╝
-███████╗█████╗  ██║     ██║   ██║██╔██╗ ██║██║  ██║    ██║     ███████║   ██║   █████╗  ██║  ███╗██║   ██║██████╔╝██║█████╗  ███████╗
-╚════██║██╔══╝  ██║     ██║   ██║██║╚██╗██║██║  ██║    ██║     ██╔══██║   ██║   ██╔══╝  ██║   ██║██║   ██║██╔══██╗██║██╔══╝  ╚════██║
-███████║███████╗╚██████╗╚██████╔╝██║ ╚████║██████╔╝    ╚██████╗██║  ██║   ██║   ███████╗╚██████╔╝╚██████╔╝██║  ██║██║███████╗███████║
-╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═════╝      ╚═════╝╚═╝  ╚═╝   ╚═╝   ╚══════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚═╝╚══════╝╚══════╝
-*/                                                                                                                                    
+╦ ╦╔╗╔╔╦╗╔═╗╦═╗  ╔═╗╔═╗╔╦╗╔═╗╔═╗╔═╗╦═╗╦╔═╗╔═╗
+║ ║║║║ ║║║╣ ╠╦╝  ║  ╠═╣ ║ ║╣ ║ ╦║ ║╠╦╝║║╣ ╚═╗
+╚═╝╝╚╝═╩╝╚═╝╩╚═  ╚═╝╩ ╩ ╩ ╚═╝╚═╝╚═╝╩╚═╩╚═╝╚═╝
+*/
 
 dropDownCategory.onclick = function () {
   hiddenCategory.forEach(function(ul) {
@@ -75,6 +69,125 @@ dropDownCategory.onclick = function () {
   })
 }
 
+/*
+███████╗██╗ ██████╗ ███╗   ██╗██╗   ██╗██████╗ 
+██╔════╝██║██╔════╝ ████╗  ██║██║   ██║██╔══██╗
+███████╗██║██║  ███╗██╔██╗ ██║██║   ██║██████╔╝
+╚════██║██║██║   ██║██║╚██╗██║██║   ██║██╔═══╝ 
+███████║██║╚██████╔╝██║ ╚████║╚██████╔╝██║     
+╚══════╝╚═╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝ ╚═╝                                            
+*/
+
+const typeOfCustomer = document.querySelector('#typeOfCustomer');
+const companyProfile = document.querySelector('#companyProfile');
+const userProfile = document.querySelector('#userProfile');
+const billingAdress = document.querySelector('#billingAdress');
+const security = document.querySelector('#security');
+
+const individualButton = document.querySelector('#individual')
+const companyButton = document.querySelector('#company')
 
 
+companyButton.onclick = function () {
+  typeOfCustomer.classList.add('hidden-block');
+  companyProfile.classList.remove('hidden-block');
+  router.get("/signup", (req, res, next) => {
+  res.render("signup/company")
+});
+}
 
+userButton.onclick = function () {
+  typeOfCustomer.classList.add('hidden-block');
+  userProfile.classList.remove('hidden-block');
+  router.get("/signup", (req, res, next) => {
+  res.render("signup/user")
+});
+}
+
+/*
+╔═╗╔═╗╔╦╗╔═╗╔═╗╔╗╔╦ ╦
+║  ║ ║║║║╠═╝╠═╣║║║╚╦╝
+╚═╝╚═╝╩ ╩╩  ╩ ╩╝╚╝ ╩ 
+*/
+
+continueCompany.onclick = function () {
+  companyProfile.classList.add('hidden-block');
+  userProfile.classList.remove('hidden-block');
+  router.get("/signup/company", (req, res, next) => {
+  res.render("signup/user")
+});
+}
+
+previousCompany.onclick = function () {
+  companyProfile.classList.add('hidden-block');
+  typeOfCustomer.classList.remove('hidden-block');
+  router.get("/signup/company", (req, res, next) => {
+  res.render("signup")
+});
+}
+
+/*
+╦ ╦╔═╗╔═╗╦═╗
+║ ║╚═╗║╣ ╠╦╝
+╚═╝╚═╝╚═╝╩╚═
+*/
+
+continueUser.onclick = function () {
+  userProfile.classList.add('hidden-block');
+  billingAdress.classList.remove('hidden-block');
+  router.get("/signup/user", (req, res, next) => {
+  res.render("signup/adress")
+});
+}
+
+previousUser.onclick = function () {
+  userProfile.classList.add('hidden-block');
+  typeOfCustomer.classList.remove('hidden-block');
+  router.get("/signup/user", (req, res, next) => {
+  res.render("signup")
+});
+}
+
+/*
+╔╗ ╦╦  ╦  ╦╔╗╔╔═╗  ╔═╗╔╦╗╦═╗╔═╗╔═╗╔═╗
+╠╩╗║║  ║  ║║║║║ ╦  ╠═╣ ║║╠╦╝║╣ ╚═╗╚═╗
+╚═╝╩╩═╝╩═╝╩╝╚╝╚═╝  ╩ ╩═╩╝╩╚═╚═╝╚═╝╚═╝
+*/
+
+continueAdress.onclick = function () {
+  billingAdress.classList.add('hidden-block');
+  security.classList.remove('hidden-block');
+  router.get("/signup/adress", (req, res, next) => {
+  res.render("signup/security")
+});
+}
+
+previousAdress.onclick = function () {
+  billingAdress.classList.add('hidden-block');
+  userProfile.classList.remove('hidden-block');
+  router.get("/signup/adress", (req, res, next) => {
+  res.render("signup/user")
+});
+}
+
+
+/*
+╔═╗╔═╗╔═╗╦ ╦╦═╗╦╔╦╗╦ ╦
+╚═╗║╣ ║  ║ ║╠╦╝║ ║ ╚╦╝
+╚═╝╚═╝╚═╝╚═╝╩╚═╩ ╩  ╩ 
+*/
+
+registration.onclick = function () {
+  security.classList.add('hidden-block');
+  router.get("/signup/security", (req, res, next) => {
+  res.redirect("/")
+});
+}
+
+previousPassword.onclick = function () {
+  user.classList.add('hidden-block');
+  billingAdress.classList.remove('hidden-block');
+  router.get("/signup/security", (req, res, next) => {
+  res.render("signup/adress")
+});
+}

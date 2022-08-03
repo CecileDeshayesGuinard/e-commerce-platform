@@ -34,6 +34,29 @@ app.locals.appTitle = `${capitalized(projectName)}`;
 const index = require("./routes/index.routes");
 app.use("/", index);
 
+const signup = require("./routes/index.routes");
+app.use("/signup", signup);
+
+const account = require("./routes/index.routes");
+app.use("/account", account);
+
+const categories = require("./routes/index.routes");
+app.use("/categories", categories);
+
+const product = require("./routes/index.routes");
+app.use("/product", product);
+
+const cart = require("./routes/index.routes");
+app.use("/cart", cart);
+
+const checkout = require("./routes/index.routes");
+app.use("/checkout", checkout);
+
+//bcrpytjs
+
+const bcrypt = require('bcryptjs');
+
+
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
 

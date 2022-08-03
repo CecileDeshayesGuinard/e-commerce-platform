@@ -33,9 +33,9 @@ router.get("/signup", (req, res, next) => {
   res.render("signup");
 });
 
-/* POST signup page */
+// Error checking User
 
-function validate(req) {
+function validateUser(req) {
   const errors = []
 
   if (!req.body.firstName) {
@@ -56,13 +56,68 @@ function validate(req) {
   if (req.body.PhoneNumber.length < 10) {
     errors.push({name: 'phoneNumber', message: 'n° de téléphone non valide'})
   }
-
   return errors
 }
 
 // Appeler cette route a chaque fois que suivant (AJAX)
-router.post('/signup/validate', function (req, res, next) {
-  const errors = validate(req)
+router.post('/validate/user', function (req, res, next) {
+  const errors = validateUser(req)
+
+  if (errors.length >= 1) {
+    res.json(errors)
+  }
+})
+
+
+// Error checking Adress
+
+function validateAdress(req) {
+  const errors = []
+
+  if (!req.body.countryName) {
+    errors.push({name: 'countryName', message: 'Prénom requis'})
+  }
+  if (!req.body.streetName) {
+    errors.push({name: 'streetName', message: 'Nom requis'})
+  }
+  if (!req.body.zipCode) {
+    errors.push({name: 'zipCode', message: 'email requis'})
+  }
+  if(req.body.zipCode.includes('')) {
+    errors.push({name: 'zipCode', message: 'email non valide'})
+  }
+  if (!req.body.cityName) {
+    errors.push({name: 'cityName', message: 'n° de téléphone requis'})
+  }
+  return errors
+}
+
+// Appeler cette route a chaque fois que suivant (AJAX)
+router.post('/validate/adress', function (req, res, next) {
+  const errors = validateAdress(req)
+
+  if (errors.length >= 1) {
+    res.json(errors)
+  }
+})
+
+// Error checking Password
+
+function validatePassword(req) {
+  const errors = []
+
+  if (!req.body.password) {
+    errors.push({name: 'password', message: 'Mot de passe (requis)'})
+  }
+  if (!req.body.password.includes('1'||'2'||'3'||'4'||'5'||'6'||'7'||'8'||'9'||'O')) {
+    errors.push({name: 'password', message: 'utilisez au moins un chiffre !'})
+  }
+  return errors
+}
+
+// Appeler cette route a chaque fois que suivant (AJAX)
+router.post('/validate/password', function (req, res, next) {
+  const errors = validatePassword(req)
 
   if (errors.length >= 1) {
     res.json(errors)
@@ -70,10 +125,6 @@ router.post('/signup/validate', function (req, res, next) {
 })
 
 router.post('/signup', (req, res, next) => {
-  // si pas entreprise, on va direct dans user profile
-  // user profile terminée, on permute sur billing adress
-  // billing adress finie, on va sur securité
-  // vérifier si l'adresse email n'existe pas déjà
   const companyName = req.body.companyName
   const vatNumber = req.body.vatNumber
   const regNumber = req.body.regNumber
@@ -85,40 +136,23 @@ router.post('/signup', (req, res, next) => {
   const phoneNumber = req.body.phoneNumber
   const dateOfBirth = req.body.dateOfBirth
 
-  const errors = validate(req)
-
-  if (errors.length <= 0) {
-    // validation ALL GOOD
-
-    // => signup
-  }
-
-  if (firstName === "" || lastName === "" || email === "" || phoneNumber === ""){
-    res.render("signup", { // faire attention a bien renvoyer sur la bonne div
-      message: "Veuillez remplir les champs obligatoires" // mettre en surbrillance les champs en question
-      })
-  }
-
   const countryName = req.body.countryName
   const streetName = req.body.streetName
   const streetNumber = req.body.streetNumber
   const zipCode = req.body.zipCode
   const cityName = req.body.cityName
 
-  if (countryName === "" || streetName === "" || streetNumber === "" || zipCode === "" || cityName === ""){
-    res.render("signup", { // faire attention a bien renvoyer sur la bonne div
-      message: "Veuillez remplir les champs obligatoires" // mettre en surbrillance les champs en question
-      })
+  const password = req.body.password
+  const cryptedPassword = bcryptJs.hashSync(req.body.password)
+
+
+  const errors = (validateUser(req) + validateAdress(req) + validatePassword(req))
+
+  if (errors.length <= 0) {
+    res.render("account", {
+      message: 'Vous êtes enregistré !'
+    })
   }
-
-  /*const cryptedPassword = bcryptJs.hashSync(req.body.password)*/
-
-  if (cryptedPassword === ""){
-    res.render("signup", { // faire attention a bien renvoyer sur la bonne div
-      message: "Veuillez remplir les champs obligatoires" // mettre en surbrillance les champs en question
-      })
-  }
-
 })
 
 
