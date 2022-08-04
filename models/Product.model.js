@@ -23,7 +23,8 @@ const productSchema = new Schema(
         required: true
       },
       vat: {
-        type: Number, // we need to adapt VAT with user location
+        type: Number,
+        required: true // we need to adapt VAT with user location
       },
       discount: {
         type: Number, // % de la valeur TTC donc exVat * vat
