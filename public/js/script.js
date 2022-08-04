@@ -106,7 +106,7 @@ individualButton.onclick = function () {
 
 continueCompany.onclick = function () {
   companyProfile.classList.add('hidden-block');
-  userProfile.classList.remove('hidden-block');  
+  userProfile.classList.remove('hidden-block');
 }
 
 previousCompany.onclick = function () {
@@ -124,13 +124,19 @@ continueUser.onclick = function () {
   userProfile.classList.add('hidden-block');
   billingAdress.classList.remove('hidden-block');
   // non, le 2e parametre, n'est pas bon pour axios, il faut consulter la doc
-  axios.post('/validate/user', function (req, res, next) {
-    const errors = validateUser(req)
-  
-    if (errors.length >= 1) {
-      res.json(errors)
-    }
+  axios.post('signup/validate/user', {
+    firstName: 'firstName',
+    lastName: 'lastName',
+    email: 'email',
+    phoneNumber: 'phoneNumber',
+    dateOfBirth: 'dateOfBirth',
   })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
 }
 
 previousUser.onclick = function () {
@@ -147,13 +153,19 @@ previousUser.onclick = function () {
 continueAdress.onclick = function () {
   billingAdress.classList.add('hidden-block');
   security.classList.remove('hidden-block');
-  axios.post('/validate/address', function (req, res, next) {
-    const errors = validateAddress(req)
-  
-    if (errors.length >= 1) {
-      res.json(errors)
-    }
+  axios.post('signup/validate/adress', {
+    countryName: 'countryName',
+    streetName: 'streetName',
+    streetNumber: 'streetNumber',
+    zipCode: 'zipCode',
+    cityName: 'cityName',
   })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
 }
 
 previousAdress.onclick = function () {
@@ -170,13 +182,15 @@ previousAdress.onclick = function () {
 
 registration.onclick = function () {
   security.classList.add('hidden-block');
-  axios.post('/validate/password', function (req, res, next) {
-    const errors = validatePassword(req)
-  
-    if (errors.length >= 1) {
-      res.json(errors)
-    }
+  axios.post('signup/validate/adress', {
+    password: password,
   })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
 }
 
 previousPassword.onclick = function () {

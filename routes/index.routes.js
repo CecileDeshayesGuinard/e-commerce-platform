@@ -68,7 +68,7 @@ function validateUser(req) {
 }
 
 // Appeler cette route a chaque fois que suivant (AJAX)
-router.post('/validate/user', function (req, res, next) {
+router.post('signup/validate/user', function (req, res, next) {
   const errors = validateUser(req)
 
   console.log('errors vaut', errors)
@@ -87,25 +87,22 @@ function validateAddress(req) {
   const errors = []
 
   if (!req.body.countryName) {
-    errors.push({name: 'countryName', message: 'Prénom requis'})
+    errors.push({name: 'countryName', message: 'Pays requis'})
   }
   if (!req.body.streetName) {
-    errors.push({name: 'streetName', message: 'Nom requis'})
+    errors.push({name: 'streetName', message: 'Nom de la voie requis'})
   }
   if (!req.body.zipCode) {
-    errors.push({name: 'zipCode', message: 'email requis'})
-  }
-  if(req.body.zipCode.includes('')) {
-    errors.push({name: 'zipCode', message: 'email non valide'})
+    errors.push({name: 'zipCode', message: 'Code postal requis'})
   }
   if (!req.body.cityName) {
-    errors.push({name: 'cityName', message: 'n° de téléphone requis'})
+    errors.push({name: 'cityName', message: 'Nom de la ville requis'})
   }
   return errors
 }
 
 // Appeler cette route a chaque fois que suivant (AJAX)
-router.post('/validate/address', function (req, res, next) {
+router.post('signup/validate/address', function (req, res, next) {
   const errors = validateAddress(req)
 
   if (errors.length >= 1) {
@@ -123,15 +120,16 @@ function validatePassword(req) {
 
   if (!req.body.password) {
     errors.push({name: 'password', message: 'Mot de passe (requis)'})
-  }
-  if (!req.body.password.includes('1'||'2'||'3'||'4'||'5'||'6'||'7'||'8'||'9'||'O')) {
-    errors.push({name: 'password', message: 'utilisez au moins un chiffre !'})
+  } else {
+    if (!req.body.password.includes('1'||'2'||'3'||'4'||'5'||'6'||'7'||'8'||'9'||'O')) {
+      errors.push({name: 'password', message: 'utilisez au moins un chiffre !'})
+    }
   }
   return errors
 }
 
 // Appeler cette route a chaque fois que suivant (AJAX)
-router.post('/validate/password', function (req, res, next) {
+router.post('signup/validate/password', function (req, res, next) {
   const errors = validatePassword(req)
 
   if (errors.length >= 1) {
@@ -175,33 +173,34 @@ router.post('/signup', (req, res, next) => {
       } else {
         const cryptedPassword = bcryptJs.hashSync(req.body.password)
         const newUser = new User ({
-          companyName: companyName,
-          vatNumber: vatNumber,
-          regNumber: regNumber,
-          nafCode: nafCode,
           firstName: firstName,
           lastName: lastName,
           email: email,
           phoneNumber: phoneNumber,
           dateOfBirth: dateOfBirth,
-          countryName: countryName,
-          streetName: streetName,
-          streetNumber: streetNumber,
-          zipCode: zipCode,
-          cityName: cityName,
+          company: {
+            companyName: companyName,
+            vatNumber: vatNumber,
+            regNumber: regNumber,
+            nafCode: nafCode
+          },
+          billingAdress: {
+            countryName: countryName,
+            streetName: streetName,
+            streetNumber: streetNumber,
+            zipCode: zipCode,
+            cityName: cityName
+          },
           password: cryptedPassword,
         })
       
         newUser.save()
-          .then( newUser => {
-            console.log('user saved', newUser)
-            res.redirect("/")
-          })
-          .catch(err => {
-            console.log('user not saved', err)
-          })
-        res.redirect("/", {
-          message: 'Vous êtes enregistré !'
+        .then( newUser => {
+          console.log('user saved', newUser)
+          res.redirect("/")
+        })
+        .catch(err => {
+          console.log('user not saved', err)
         })
       }
     })

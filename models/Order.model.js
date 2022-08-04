@@ -52,6 +52,28 @@ const orderSchema = new Schema(
         required: true
       }
     },
+    deliveryAdress: {
+      streetName: {
+        type: String,
+        required: true
+      },
+      streetNumber: {
+        type: Number,
+        required: true
+      },
+      zipCode: {
+        type: Number,
+        required: true
+      },
+      cityName: {
+        type: String,
+        required: true
+      },
+      countryName: {
+        type: String,
+        required: true
+      }
+    },
     shipmentStatus: {
       type: String
     },
