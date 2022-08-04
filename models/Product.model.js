@@ -31,25 +31,23 @@ const productSchema = new Schema(
     },
     materials: [{type: String}],
     productSize: {
-      sizingTypeLinear: {
-        lenght: {
-          type: Number,
-        },
-        width: {
-          type: Number,
-        },
-        eight: {
-          type: Number,
-        },
-        thickness: {
-          type: Number,
-        },
-        surface: {
-          type: Number,
-        },
-        weight: {
-          type: Number,
-        }
+      lenght: {
+        type: Number,
+      },
+      width: {
+        type: Number,
+      },
+      height: {
+        type: Number,
+      },
+      thickness: {
+        type: Number,
+      },
+      surface: {
+        type: Number,
+      },
+      weight: {
+        type: Number,
       }
     },
     packagingSize: {
@@ -61,7 +59,7 @@ const productSchema = new Schema(
         type: Number,
         required: true
       },
-      eight: {
+      height: {
         type: Number,
         required: true
       },

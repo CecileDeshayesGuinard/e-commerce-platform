@@ -1,5 +1,5 @@
 E-Commerce (module 2)
---------
+-------
 
 Pour commencer il est possible de créer son dossier avec "ironlauncher"
 
@@ -8,10 +8,10 @@ Installation (1 fois dans "/") :
 
 Créer votre projet avec le package :
   $ ironlauncher "nom du projet"
- -------
+
  
 Ironlauncher contient :
-
+-------
   JSON & NODE_MODULES : npm install
   MONGOOSE : npm install mongoose
   EXPRESS : npm install express
@@ -24,9 +24,10 @@ Prérequis: installation de packages via le Terminal (si non intégrés dans l'i
   CONNECT-MONGO : npm install connect-mongo
   CHART.JS : npm i chart.js
   AXIOS: npm install axios
--------
+
 
 Dépôt git:
+-------
 
 Créer un dépôt github
 
@@ -35,10 +36,10 @@ Créer un dépôt github
   $ git commit -m "first-commit"
   $ git remote add origin lien du dépot créé dans github
   $ git push origin master
--------
+
 
 Fichier app.js : copier
-
+-------
 - const bcrypt = require('bcryptjs');
 
 routes des pages hbs (exemple ci-dessous)
@@ -68,13 +69,20 @@ gestion des partial pas automatique danq Ironlauncher (recopier code ci-dessous)
 + hbs.registerPartials("partials_absolute_path");
 + app.set('view engine', 'hbs');
 + hbs.registerPartials(__dirname + "/views/partials");
--------
+
 
 Fichier layout.hbs : copier
+-------
 
 - <script src="/js/script.js"></script>
 - <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
+
+
+Fichier .env :
 -------
+
+PORT=3000
+CLOUDINARY_URL=...
 
 
 
