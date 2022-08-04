@@ -1,0 +1,29 @@
+<form method="post" enctype="multipart/form-data">
+  <div id="graphicElem"> 
+    <div>
+      <p>Photo Principale</p>
+      <label for="mainPhoto">Photo Principale</label>
+      <img src="">
+      <input type="file" id="mainPhoto" name="mainPhoto" accept=".jpg, .jpeg, .png">  
+    </div>
+    <div>
+      <label for="otherPhotos">Autres Photos</label>
+      <input type="file" id="otherPhotos" name="otherPhotos" accept=".jpg, .jpeg, .png" multiple>
+    </div>
+    <div>
+      <label for="notice">Notice</label>
+      <input type="file" id="notice" name="notice" accept=".pdf">
+    <div>
+  </div>
+    <div>
+      <select>
+        <label for="categorieList">Catégories</label>
+        <option>Verre Trempé</option>
+        <option>Polycarbonate</option>
+        <option>Adossées</option>
+        <option>Accessoires</option>
+      </select>
+    </div>
+    <button type="submit">Créer / Editer</button>
+  </div>
+</form>

@@ -238,6 +238,11 @@ router.get("/orders", (req, res, next) => {
   res.render("checkout");
 });
 
+/* GET product-admin page */
+router.get("/product_admin", (req, res, next) => {
+  res.render("product_admin");
+});
+
 // FAIRE DES ROUTES ET TRAVAILLER "not-found" ET "error"
 
 module.exports = router;

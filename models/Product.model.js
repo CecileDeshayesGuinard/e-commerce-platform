@@ -82,8 +82,11 @@ const productSchema = new Schema(
     },
     otherPhotos: [{type: String}], // urls
     stock: {
-        type: Number // has to be edited after each order
-      },
+      type: Number // has to be edited after each order
+    },
+    notice: {
+      type: String
+    },
     category: {
       type: String
     },  

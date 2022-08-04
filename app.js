@@ -55,7 +55,11 @@ app.use("/cart", cart);
 const checkout = require("./routes/index.routes");
 app.use("/checkout", checkout);
 
-//bcrpytjs
+const product_admin = require("./routes/index.routes");
+app.use("/product_admin", product_admin);
+
+
+// bcrpytjs
 
 const bcrypt = require('bcryptjs');
 
