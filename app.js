@@ -37,6 +37,9 @@ app.use("/", index);
 const signup = require("./routes/index.routes");
 app.use("/signup", signup);
 
+const login = require("./routes/index.routes");
+app.use("/login", login);
+
 const account = require("./routes/index.routes");
 app.use("/account", account);
 

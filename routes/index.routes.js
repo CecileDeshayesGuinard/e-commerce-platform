@@ -213,6 +213,11 @@ router.get("/account", (req, res, next) => {
   res.render("account");
 });
 
+/* GET login page */
+router.get("/login", (req, res, next) => {
+  res.render("login");
+});
+
 /* GET categories page */
 router.get("/categories", (req, res, next) => {
   res.render("categories");
