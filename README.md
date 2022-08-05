@@ -25,6 +25,7 @@ Prérequis: installation de packages via le Terminal (si non intégrés dans l'i
 + CONNECT-MONGO : npm install connect-mongo
 + CHART.JS : npm i chart.js
 + AXIOS: npm install axios
++ CLOUDINARY / MULTER: npm install cloudinary multer multer-storage-cloudinary
 
 
 Dépôt git:
@@ -39,12 +40,14 @@ Créer un dépôt github
 + $ git push origin master
 
 
-Fichier app.js : copier
+Fichier app.js : copier (bcrypt: sécurité password // fileUploader: cloudinary)
 -------
 
 - const bcrypt = require('bcryptjs');
+- const fileUploader = require('../config/cloudinary.config');
 
-routes des pages hbs (exemple ci-dessous)
+
+Exemple des routes issues des routes des pages hbs (exemple ci-dessous) :
 + const index = require("./routes/index.routes");
 + app.use("/", index);
 
@@ -85,6 +88,12 @@ Fichier .env :
 
 + PORT=3000
 + CLOUDINARY_URL=...
+
+
+Fichier cloudinary.config.js (le créer dans le dossier config)
+-------
+
+
 
 
 

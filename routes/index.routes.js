@@ -2,6 +2,7 @@ const router = require("express").Router();
 const User = require("../models/User.model");
 const Product = require("../models/Product.model");
 const bcryptJs = require("bcryptjs");
+const fileUploader = require('../config/cloudinary.config');
 
 
 /*
@@ -306,6 +307,10 @@ function validateProduct(req) {
       errors.push({name: 'weight', message: 'Poids non valide'})
     }
   }
+  if (req.body.otherPhotos.length > 3) { 
+    errors.push({name: 'otherPhotos', message: '3 photos socondaires maximum'})
+  }
+
 
   console.log('errors=', errors)
 
