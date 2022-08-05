@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const User = require("../models/User.model");
 const Product = require("../models/Product.model");
+const Category = require("../models/Category.model");
 const bcryptJs = require("bcryptjs");
 const fileUploader = require('../config/cloudinary.config');
 
@@ -210,44 +211,13 @@ router.post('/signup', (req, res, next) => {
 })
 
 
-/* GET account page */
-router.get("/account", (req, res, next) => {
-  res.render("account");
-});
-
-/* GET login page */
-router.get("/login", (req, res, next) => {
-  res.render("login");
-});
-
-/* GET categories page */
-router.get("/categories", (req, res, next) => {
-  res.render("categories");
-});
-
-/* GET product page */
-router.get("/product", (req, res, next) => {
-  res.render("product");
-});
-
-/* GET cart page */
-router.get("/cart", (req, res, next) => {
-  res.render("cart");
-});
-
-/* GET orders page (for payments) */
-router.get("/orders", (req, res, next) => {
-  res.render("checkout");
-});
-
 /*
 ██████╗ ██████╗  ██████╗ ██████╗ ██╗   ██╗ ██████╗████████╗      █████╗ ██████╗ ███╗   ███╗██╗███╗   ██╗
 ██╔══██╗██╔══██╗██╔═══██╗██╔══██╗██║   ██║██╔════╝╚══██╔══╝     ██╔══██╗██╔══██╗████╗ ████║██║████╗  ██║
 ██████╔╝██████╔╝██║   ██║██║  ██║██║   ██║██║        ██║        ███████║██║  ██║██╔████╔██║██║██╔██╗ ██║
 ██╔═══╝ ██╔══██╗██║   ██║██║  ██║██║   ██║██║        ██║        ██╔══██║██║  ██║██║╚██╔╝██║██║██║╚██╗██║
 ██║     ██║  ██║╚██████╔╝██████╔╝╚██████╔╝╚██████╗   ██║███████╗██║  ██║██████╔╝██║ ╚═╝ ██║██║██║ ╚████║
-╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚═════╝  ╚═════╝  ╚═════╝   ╚═╝╚══════╝╚═╝  ╚═╝╚═════╝ ╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝
-                                                                                                        
+╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚═════╝  ╚═════╝  ╚═════╝   ╚═╝╚══════╝╚═╝  ╚═╝╚═════╝ ╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝                                                                                                   
 */
 
 /* GET product_admin page */
@@ -317,16 +287,15 @@ function validateProduct(req) {
   return errors
 }
 
-// Appeler cette route a chaque fois que suivant (AJAX)
-router.post('signup/validate/product', function (req, res, next) {
+// Appeler cette route à la tentative d'enregistrement
+router.post('product_admin/validate/product', function (req, res, next) {
   const errors = validateProduct(req)
 
   console.log('errors vaut', errors)
 
   if (errors.length >= 1) {
-    res.status(400).json(errors) // ici, on va retourner un code d'erreur 400
+    res.status(400).json(errors)
   } else {
-    // ok, pas d'erreur: il faut qd meme donner une reponse au client
     res.json({})
   }
 })
@@ -366,7 +335,7 @@ router.post('/product_admin', (req, res, next) => {
      .then((product) => {
       if (product) {
         res.render("product_admin", {
-          message: `L'\email ${product.productName} est deja pris`
+          message: `Le produit ${product.productName} éxiste déjà`
         })
       } else {
         const newProduct = new Product ({
@@ -416,10 +385,262 @@ router.post('/product_admin', (req, res, next) => {
 })
 
 
+// Delete Produit
+
+router.get('/product_admin/:id', (req, res, next) => {
+  Product.findById(req.params.id)
+  .then(function (productFromDB) {
+    console.log("productFromDB=", productFromDB);
+    res.render("product", { product: productFromDB, });
+  })
+  .catch((err) => {
+    console.log(err);
+    next(err);
+  });
+})
+
+router.post('/product_admin/:id/delete',(req,res,next)=>{
+  Product.findByIdAndRemove(req.params.id)
+  .then(()=> {
+    console.log('product deleted')
+    res.redirect('/product_admin')
+  })
+  .catch(err=>{
+    console.log('error deleting product',err)
+    next(err)
+  })
+})
+
+// Edit Produit
+
+router.get('product_admin/:id/edit',(req,res,next)=>{
+  Product.findById(req.params.id)
+  .then((productFromDB)=>{
+      console.log(productFromDB)
+      res.render('product/edit',{product: productFromDB})
+  })
+  .catch(err=>{
+    console.log('error for product edition', err)
+    next(err)
+  })
+})
+
+router.post('product_amin/:id/edit',(req,res,next)=>{
+  Product.findByIdAndUpdate(req.params.id,{
+    productName: productName,
+    productDescription: productDescription,
+    productCost: productCost,
+    productPrice: {
+      exVat: exVat,
+      vat: vat,
+      discount: discount,
+    },
+    materials: [{materials}],
+    productSize: {
+      length: productLength,
+      width: productWidth,
+      height: productHeight,
+      thickness: productThickness,
+      surface: productSurface,
+      weight: productWeight
+    },
+    packagingSize: {
+      length: packagingLength,
+      width: packagingWidth,
+      height: packagingHeight,
+      weight: packagingWeight
+    },
+    color: color,
+    brand: brand,
+    mainPhoto: mainPhoto,
+    otherPhotos: otherPhotos,
+    stock: stock,
+    notice: notice,
+    category: category
+  },
+  {new:true})
+  .then((productFromDB)=>{
+    res.redirect(`/product/${productFromDB._id}`)
+  })
+  .catch((err)=>{
+    console.log('error editing product',err)
+    next(err)
+  })
+})
 
 
+/*
+ ██████╗ █████╗ ████████╗███████╗ ██████╗  ██████╗ ██████╗ ██╗███████╗███████╗         █████╗ ██████╗ ███╗   ███╗██╗███╗   ██╗
+██╔════╝██╔══██╗╚══██╔══╝██╔════╝██╔════╝ ██╔═══██╗██╔══██╗██║██╔════╝██╔════╝        ██╔══██╗██╔══██╗████╗ ████║██║████╗  ██║
+██║     ███████║   ██║   █████╗  ██║  ███╗██║   ██║██████╔╝██║█████╗  ███████╗        ███████║██║  ██║██╔████╔██║██║██╔██╗ ██║
+██║     ██╔══██║   ██║   ██╔══╝  ██║   ██║██║   ██║██╔══██╗██║██╔══╝  ╚════██║        ██╔══██║██║  ██║██║╚██╔╝██║██║██║╚██╗██║
+╚██████╗██║  ██║   ██║   ███████╗╚██████╔╝╚██████╔╝██║  ██║██║███████╗███████║███████╗██║  ██║██████╔╝██║ ╚═╝ ██║██║██║ ╚████║
+ ╚═════╝╚═╝  ╚═╝   ╚═╝   ╚══════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚══════╝╚═╝  ╚═╝╚═════╝ ╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝                                                                                                                       
+*/
+
+/* GET categories_admin page */
+router.get("/categories_admin", (req, res, next) => {
+  res.render("categories_admin");
+});
+
+function validateCategory(req) {
+  const errors = []
+
+  console.log('validateCategory', req.body)
+
+  if (!req.body.categoryName) {
+    errors.push({name: 'categoryName', message: 'Nom de Catégorie requis'})
+  }
+  if (!req.body.categoryDescription) {
+    errors.push({name: 'categoryDescription', message: 'C\'est quand même mieux de la présenter !'})
+  } 
+
+  console.log('errors=', errors)
+
+  return errors
+}
+
+// Appeler cette route lors de l'enregistrement
+
+router.post('categories_admin/validate/category', function (req, res, next) {
+  const errors = validateCategory(req)
+
+  console.log('errors vaut', errors)
+
+  if (errors.length >= 1) {
+    res.status(400).json(errors)
+  } else {
+    res.json({})
+  }
+})
 
 
+router.post('/categories_admin', (req, res, next) => {
+  const categoryName = req.body.categoryName
+  const categoryDescription = req.body.categoryDescription
+
+  const errors = (validateCategory(req));
+
+  if (errors.length === 0) {
+    Category.findOne({categortyName : categoryName})
+     .then((category) => {
+      if (category) {
+        res.render('categories_admin', {
+          message: `La catégorie ${category.categoryName} existe déjà`
+        })
+      } else {
+        const newCategory = new Category ({ //////////////////////
+          categoryName: categoryName,
+          categoryDescription: categoryDescription,
+        })
+      
+        newCategory.save()
+        .then( newCategory => {
+          console.log('category saved', newCategory)
+          res.redirect('categories_admin')
+        })
+        .catch(err => {
+          console.log('category not saved', err)
+        })
+      }
+    })
+  }
+})
+
+
+// Delete Categorie
+
+router.get('categories_admin/:id', (req, res, next) => {
+  Category.findById(req.params.id)
+  .then(function (categoryFromDB) {
+    console.log("categoryFromDB=", categoryFromDB);
+    res.render("category", { category: categoryFromDB, });
+  })
+  .catch((err) => {
+    console.log(err);
+    next(err);
+  });
+})
+
+router.post('categories_admin/:id/delete',(req,res,next)=>{
+  Category.findByIdAndRemove(req.params.id)
+  .then(()=> {
+    console.log('category deleted')
+    res.redirect('/categories_admin')
+  })
+  .catch(err=>{
+    console.log('error deleting category',err)
+    next(err)
+  })
+})
+
+// Edit Category // Demander Verification à Antoine
+
+router.get('categories_admin/:id/edit',(req,res,next)=>{
+  Category.findById(req.params.id)
+  .then((categoryFromDB)=>{
+      console.log(categoryFromDB)
+      res.render('categories/edit',{category: categoryFromDB})
+      productFromDB.forEach((prod)=>{
+        if (categoryFromDB.productGroup.includes(prod._id)){
+            prod.selected = true
+        }
+    });
+    res.render('categories/edit',{
+        category:categoryFromDB,
+        product:productFromDB})
+  })
+  .catch(err=>{
+    console.log('error for category edition', err)
+    next(err)
+  })
+})
+
+router.post('categories_admin/:id/edit',(req,res,next)=>{
+  Category.findByIdAndUpdate(req.params.id,{
+    categoyName: categoryName,
+    categoryDescription: categoryDescription
+  },
+  {new:true})
+  .then((categoryFromDB)=>{
+    res.redirect(`/categories/${categoryFromDB._id}`)
+  })
+  .catch((err)=>{
+    console.log('error editing category',err)
+    next(err)
+  })
+})
+
+
+/* GET account page */
+router.get("/account", (req, res, next) => {
+  res.render("account");
+});
+
+/* GET login page */
+router.get("/login", (req, res, next) => {
+  res.render("login");
+});
+
+/* GET categories page */
+router.get("/categories", (req, res, next) => {
+  res.render("categories");
+});
+
+/* GET product page */
+router.get("/product", (req, res, next) => {
+  res.render("product");
+});
+
+/* GET cart page */
+router.get("/cart", (req, res, next) => {
+  res.render("cart");
+});
+
+/* GET orders page (for payments) */
+router.get("/orders", (req, res, next) => {
+  res.render("checkout");
+});
 
 
 

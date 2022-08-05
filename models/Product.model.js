@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 
-// User model Below
+// Product model Below
 const productSchema = new Schema(
   {
     id:{
@@ -30,7 +30,9 @@ const productSchema = new Schema(
         type: Number, // % de la valeur TTC donc exVat * vat
       }
     },
-    materials: [{type: String}],
+    materials: [{
+      type: String
+    }],
     productSize: {
       lenght: {
         type: Number,
@@ -79,16 +81,18 @@ const productSchema = new Schema(
       type: String, // url
       required: true
     },
-    otherPhotos: [{type: String}], // urls
+    otherPhotos: [{
+      type: String
+    }], // urls
     stock: {
       type: Number // has to be edited after each order
     },
     notice: {
       type: String
     },
-    category: {
+    category: [{
       type: String
-    },  
+    }]
 },
 
   {

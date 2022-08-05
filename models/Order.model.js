@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 
-// User model Below
+// Oder model Below
 const orderSchema = new Schema(
   {
     id:{
