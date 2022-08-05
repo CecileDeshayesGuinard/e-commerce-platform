@@ -837,6 +837,7 @@ button {
 .product-adminColumn {
   display: flex;
   flex-direction: column;
+  width: 50%;
 }
 
 .elementBlock {
