@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const User = require("../models/User.model");
+const Product = require("../models/Product.model");
 const bcryptJs = require("bcryptjs");
 
 
@@ -328,65 +329,81 @@ router.post('signup/validate/product', function (req, res, next) {
 
 router.post('/product_admin', (req, res, next) => {
   const productName = req.body.productName
-  const vatNumber = req.body.vatNumber
-  const regNumber = req.body.regNumber
-  const nafCode = req.body.nafCode
+  const productDescription = req.body.productDescription
+  const productCost = req.body.productCost
+  const exVat = req.body.exVat
+  const vat = req.body.vat
+  const discount = req.body.discount
+  const materials = req.body.materials
+  const productLength = req.body.productSize.length
+  const productWidth = req.body.productSize.width
+  const productHeight = req.body.productSize.height
+  const productThickness = req.body.productSize.productThickness
+  const productSurface = req.body.productSize.surface
+  const productWeight = req.body.productSize.weight
+  const packagingLength = req.body.packagingSize.length
+  const packagingWidth = req.body.packagingSize.width
+  const packagingHeight = req.body.packagingSize.height
+  const packagingWeight = req.body.packagingSize.weight
+  const stock = req.body.stock
+  const color = req.body.color
+  const brand = req.body.brand
+  const mainPhoto = req.body.mainPhoto
+  const otherPhotos = req.body.otherPhotos
+  const notice = req.body.notice
+  const category = req.body.category
 
-  const firstName = req.body.firstName
-  const lastName = req.body.lastName
-  const email = req.body.email
-  const phoneNumber = req.body.phoneNumber
-  const dateOfBirth = req.body.dateOfBirth
 
-  const countryName = req.body.countryName
-  const streetName = req.body.streetName
-  const streetNumber = req.body.streetNumber
-  const zipCode = req.body.zipCode
-  const cityName = req.body.cityName
-
-  const password = req.body.password
-
-
-  const errors = (validateUser(req) + validateAddress(req) + validatePassword(req))
+  const errors = (validateProduct(req));
 
   if (errors.length === 0) {
-    User.findOne({email : email})
-     .then((user) => {
-      if (user) {
-        res.render("signup", {
-          message: `L'\email ${user.email} est deja pris`
+    Product.findOne({productName : productName})
+     .then((product) => {
+      if (product) {
+        res.render("product_admin", {
+          message: `L'\email ${product.productName} est deja pris`
         })
       } else {
-        const cryptedPassword = bcryptJs.hashSync(req.body.password)
-        const newUser = new User ({
-          firstName: firstName,
-          lastName: lastName,
-          email: email,
-          phoneNumber: phoneNumber,
-          dateOfBirth: dateOfBirth,
-          company: {
-            companyName: companyName,
-            vatNumber: vatNumber,
-            regNumber: regNumber,
-            nafCode: nafCode
+        const newProduct = new Product ({
+          productName: productName,
+          productDescription: productDescription,
+          productCost: productCost,
+          productPrice: {
+            exVat: exVat,
+            vat: vat,
+            discount: discount,
           },
-          billingAdress: {
-            countryName: countryName,
-            streetName: streetName,
-            streetNumber: streetNumber,
-            zipCode: zipCode,
-            cityName: cityName
+          materials: [{materials}],
+          productSize: {
+            length: productLength,
+            width: productWidth,
+            height: productHeight,
+            thickness: productThickness,
+            surface: productSurface,
+            weight: productWeight
           },
-          password: cryptedPassword,
+          packagingSize: {
+            length: packagingLength,
+            width: packagingWidth,
+            height: packagingHeight,
+            weight: packagingWeight
+          },
+          color: color,
+          brand: brand,
+          mainPhoto: mainPhoto,
+          otherPhotos: otherPhotos,
+          stock: stock,
+          notice: notice,
+          category: category
         })
       
-        newUser.save()
-        .then( newUser => {
-          console.log('user saved', newUser)
-          res.redirect("/")
+        newProduct.save()
+        .then( newProduct => {
+          console.log('product saved', newProduct)
+          res.redirect("product_admin")
         })
         .catch(err => {
-          console.log('user not saved', err)
+          console.log('product not saved', err)
         })
       }
     })

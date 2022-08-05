@@ -4,26 +4,27 @@ E-Commerce (module 2)
 Pour commencer il est possible de créer son dossier avec "ironlauncher"
 
 Installation (1 fois dans "/") :
-  npm install -g ironlauncher
++ npm install -g ironlauncher
 
 Créer votre projet avec le package :
-  $ ironlauncher "nom du projet"
++ $ ironlauncher "nom du projet"
 
  
 Ironlauncher contient :
 -------
-  JSON & NODE_MODULES : npm install
-  MONGOOSE : npm install mongoose
-  EXPRESS : npm install express
-  NODEMON : npm i -D nodemon
+
++ JSON & NODE_MODULES : npm install
++ MONGOOSE : npm install mongoose
++ EXPRESS : npm install express
++ NODEMON : npm i -D nodemon
 
 
 Prérequis: installation de packages via le Terminal (si non intégrés dans l'ironlauncher)
 
-  BCRYPT : npm install bcryptjs
-  CONNECT-MONGO : npm install connect-mongo
-  CHART.JS : npm i chart.js
-  AXIOS: npm install axios
++ BCRYPT : npm install bcryptjs
++ CONNECT-MONGO : npm install connect-mongo
++ CHART.JS : npm i chart.js
++ AXIOS: npm install axios
 
 
 Dépôt git:
@@ -31,15 +32,16 @@ Dépôt git:
 
 Créer un dépôt github
 
-  $ git init
-  $ git add .
-  $ git commit -m "first-commit"
-  $ git remote add origin lien du dépot créé dans github
-  $ git push origin master
++ $ git init
++ $ git add .
++ $ git commit -m "first-commit"
++ $ git remote add origin lien du dépot créé dans github
++ $ git push origin master
 
 
 Fichier app.js : copier
 -------
+
 - const bcrypt = require('bcryptjs');
 
 routes des pages hbs (exemple ci-dessous)
@@ -81,8 +83,8 @@ Fichier layout.hbs : copier
 Fichier .env :
 -------
 
-PORT=3000
-CLOUDINARY_URL=...
++ PORT=3000
++ CLOUDINARY_URL=...
 
 
 
