@@ -88,6 +88,9 @@ Fichier .env :
 
 + PORT=3000
 + CLOUDINARY_URL=...
++ CLOUDINARY_NAME=...
++ CLOUDINARY_KEY=...
++ CLOUDINARY_SECRET=...
 
 
 Fichier cloudinary.config.js (le créer dans le dossier config)
@@ -99,70 +102,37 @@ Fichier cloudinary.config.js (le créer dans le dossier config)
 
 
 
-But : réaliser le back-end / office d'un site e-commerce
+TO DO
+-------
 
---------
++ Push Photos + notice => Cloudinary
++ Recupération automatique des urls et push au moment du click dans MongoDB
 
-Sujet :
+=> onclick => push Photo
+<= Récupération url
+=> push data (urls incluse dans MongoDB)
 
-les sites marchands reposent sur une structure "base" qui permet la présentation produit, la gestion panier, la gestion de stock et la transaction sécurisé
-Le site e-commerce est un projet standard pour un fullstack que la réalisation soit sur-mesure ou adossée à un CMS Opensource
 
-L'administrateur n'est pas forcément un développeur, il dois pouvoir utiliser le site grace à des pages dédiées 
++ Push données produit si titre existant (système de recherche DataBas edans l'input "titre Produit")
+Dans page product_admin
 
---------
+=> put Nom produit
+<= Si existe alors affichage de toute les données depuis la DataBase
 
-Type Utilisateurs :
+Suppose un Edit ou Delete, le Create sera refusé car "Nom déjà pris"
 
-- User
-- Administrator
++ Push données dans page produit + productList de HomePage et CategoriesPage
 
---------
++ Mode connecté avec authentification (Axios)
 
-PARTIE : USER (front)
+TO DO LOT 2
+-------
 
-Phase 1 = homepage avec liste forme tableau 4*4 colonnes/lignes de produits + filtre produit
-Phase 2 = redirection vers le cart dès qu'un produit est selectionné + addition de ce produit
-Phase 3 = checkout (récap commande avant transaction)
-Phase 4 = simulation de transaction
-
---------
-
-PARTIE : ADMIN (backend office)
-
-=> Phase 1 : création d'une page produit à l'usage de l'administrateur
-=> Phase 2/3 : création d'une page admin gestion des commandes clients
-=> Phase 4 : modification / édition facture (suppose la capacité de générer un fichier PDF)
-
-Phase 5 : KPI (voir cours "financial datas graphic)
-
---------
-
-PARTIE : BACKEND
-
-Phase 1 => création produits dans la BDD et upload contenu (photos / notices / etc...)
-Phase 2 => création du cart
-Phase 3/4 => création du contenu et possibilité de download de la facture
-
-Phase 5 : enregistrement des commandes dans la BDD
-
---------
-           
-HOME PAGE :
-
-- NavBar
-- Div Produits
-- Footer
-
---------
-
-PAGE ADMIN :
-
-- Photos Uploaded
-- Liste Commandes Clients
-- KPI
-
---------
++ Checkout_Page
++ KPI_Page (données issues de la DataBase)
++ Order_Admin_Page
++ API paiement
++ API Google Analytics
 
 
 
