@@ -55,7 +55,7 @@ app.use("/cart", cart);
 const checkout = require("./routes/index.routes");
 app.use("/checkout", checkout);
 
-const product_admin = require("./routes/index.routes"); // ne parche pas
+const product_admin = require("./routes/index.routes"); // NE MARCHE PAS => LAYOUT 1 TOUJOURS ACTIFS
 app.use("/product_admin", product_admin)
 app.get('/product_admin', (req, res, next) => {
   let data = {

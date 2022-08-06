@@ -122,16 +122,23 @@ router.post('/signup/validate/address', function (req, res, next) {
 
 function validatePassword(req) {
   const errors = []
+  const passwordContent = req.body.password.split (''); // passwordContent est une array de caractères
+
+  let el = "";
 
   if (!req.body.password) {
     errors.push({name: 'password', message: 'Mot de passe (requis)'})
   } else {
-    if (!req.body.password.includes('1'||'2'||'3'||'4'||'5'||'6'||'7'||'8'||'9'||'O')) {
-      errors.push({name: 'password', message: 'utilisez au moins un chiffre !'})
+    for(let i=0; i<=passwordContent.length; i++) {
+      if (!passwordContent.includes('1', '2', '3', '4', '5', '6', '7', '8', '9', '0')) {
+        errors.push({name: 'password', message: 'utilisez au moins un chiffre !'})
+      } else {
+        console.log('password validate')
+      }
     }
   }
   return errors
-}
+} // cette fonction analyse chaque caractères mais donne le résultat pour chacun au lieu de valider au premier rencontré
 
 // Appeler cette route a chaque fois que suivant (AJAX)
 router.post('/signup/validate/password', function (req, res, next) {
