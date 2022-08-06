@@ -4,6 +4,7 @@ const Product = require("../models/Product.model");
 const Category = require("../models/Category.model");
 const bcryptJs = require("bcryptjs");
 const fileUploader = require('../config/cloudinary.config');
+/*const { listenerCount } = require("../app");*/
 
 
 /*
@@ -15,7 +16,11 @@ const fileUploader = require('../config/cloudinary.config');
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝    ╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚══════╝                                                                      
 */
 
-/* GET HOME PAGE */
+/*
+╔═╗╔═╗╔╦╗  ╦ ╦╔═╗╔╦╗╔═╗╔═╗╔═╗╔═╗╔═╗
+║ ╦║╣  ║   ╠═╣║ ║║║║║╣ ╠═╝╠═╣║ ╦║╣ 
+╚═╝╚═╝ ╩   ╩ ╩╚═╝╩ ╩╚═╝╩  ╩ ╩╚═╝╚═╝
+*/
 
 router.get("/", (req, res, next) => {
   res.render("index");
@@ -31,14 +36,27 @@ router.get("/", (req, res, next) => {
 ╚══════╝╚═╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝ ╚═╝         ╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚══════╝                                                                                  
 */
 
-/* GET signup page */
+/*
+╔═╗╔═╗╔╦╗  ╔═╗╦╔═╗╔╗╔╦ ╦╔═╗  ╔═╗╔═╗╔═╗╔═╗
+║ ╦║╣  ║   ╚═╗║║ ╦║║║║ ║╠═╝  ╠═╝╠═╣║ ╦║╣ 
+╚═╝╚═╝ ╩   ╚═╝╩╚═╝╝╚╝╚═╝╩    ╩  ╩ ╩╚═╝╚═╝
+*/
 router.get("/signup", (req, res, next) => {
   res.render("signup");
 });
 
-// Error checking User
 
-function validateUser(req) {
+/*
+╔═╗╔═╗╔═╗╔╦╗  ╔═╗╦╔═╗╔╗╔╦ ╦╔═╗  ╔═╗╔═╗╔═╗╔═╗
+╠═╝║ ║╚═╗ ║   ╚═╗║║ ╦║║║║ ║╠═╝  ╠═╝╠═╣║ ╦║╣ 
+╩  ╚═╝╚═╝ ╩   ╚═╝╩╚═╝╝╚╝╚═╝╩    ╩  ╩ ╩╚═╝╚═╝
+*/
+
+/*
+USER VALIDATION
+*/
+
+function validateUser(req) { // utiliser cette fonction pour tous les paramètres "required" dans le modèle
   const errors = []
 
   console.log('validateUser', req.body)
@@ -52,15 +70,14 @@ function validateUser(req) {
   if (!req.body.email) {
     errors.push({name: 'email', message: 'email requis'})
   } else {
-    if(!req.body.email.includes('@')) { // ici tu as le meme probleme si jamais req.body.email vaut undefined => .includes sur undefined genererERROR
+    if(!req.body.email.includes('@')) { // la méthode includes dois etre testée comme dépendance pour éviter une erreur si l'email n'est pas remplis
       errors.push({name: 'email', message: 'email non valide'})
     }
   }
   if (!req.body.phoneNumber) {
     errors.push({name: 'phoneNumber', message: 'n° de téléphone requis'})
   } else {
-    // ici tu es sure que req.body.phoneNumber existe!
-    if (req.body.phoneNumber.length < 10) { // ici si jamais tu n'envoie pas de phoneNumber a ton serveur, alors req.body.phoneNumber vaudra undefined, et de tenter de faire .length dessus generera une erreur...
+    if (req.body.phoneNumber.length < 10) { // mettre en dépendance pour éviter le undefined su le numéro nde téléphone n'est pas remplis
       errors.push({name: 'phoneNumber', message: 'n° de téléphone non valide'})
     }
   }
@@ -70,8 +87,8 @@ function validateUser(req) {
   return errors
 }
 
-// Appeler cette route a chaque fois que suivant (AJAX)
-router.post('/signup/validate/user', function (req, res, next) {
+
+router.post('/signup/validate/user', function (req, res, next) { // nous testons les infos avec la route ../validate/user
   const errors = validateUser(req)
 
   console.log('errors vaut', errors)
@@ -79,12 +96,14 @@ router.post('/signup/validate/user', function (req, res, next) {
   if (errors.length >= 1) {
     res.status(400).json(errors) // ici, on va retourner un code d'erreur 400
   } else {
-    // ok, pas d'erreur: il faut qd meme donner une reponse au client
-    res.json({})
+    res.json({}) // si aucune erreur, renvoyer le json comme réponse au client
   }
 })
 
-// Error checking Adress
+
+/*
+ADDRESS VALIDATION
+*/
 
 function validateAddress(req) {
   const errors = []
@@ -104,57 +123,55 @@ function validateAddress(req) {
   return errors
 }
 
-// Appeler cette route a chaque fois que suivant (AJAX)
 router.post('/signup/validate/address', function (req, res, next) {
   const errors = validateAddress(req)
 
   console.log('errors vaut', errors)
 
   if (errors.length >= 1) {
-    res.status(400).json(errors) // ici, on va retourner un code d'erreur 400
+    res.status(400).json(errors) // code erreur 400
   } else {
-    // ok, pas d'erreur: il faut qd meme donner une reponse au client
-    res.json({})
+    res.json({}) // aucune erreur détecté mais envois d'une réponse avec le json
   }
 })
 
-// Error checking Password
+
+/*
+PASSWORD VALIDATION
+*/
 
 function validatePassword(req) {
   const errors = []
   const passwordContent = req.body.password.split (''); // passwordContent est une array de caractères
+  const mandatoryNumberList = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']; // mandatoryNumber est une array de chiffres
 
-  let el = "";
+// utilisation de la méthode forEach pour comparer chaque élement d'un tableau avec tous les éléments de l'autre tableau
 
-  if (!req.body.password) {
-    errors.push({name: 'password', message: 'Mot de passe (requis)'})
-  } else {
-    for(let i=0; i<=passwordContent.length; i++) {
-      if (!passwordContent.includes('1', '2', '3', '4', '5', '6', '7', '8', '9', '0')) {
-        errors.push({name: 'password', message: 'utilisez au moins un chiffre !'})
+  function MatchElem(passwordContent, mandatoryNumberList) {
+    passwordContent.forEach(function(element){
+      if(!mandatoryNumberList.includes(element)){
+      errors.push({name: 'password', message: 'utilisez au moins un chiffre !'})
       } else {
-        console.log('password validate')
+      console.log('password validate')
       }
-    }
+    })
   }
   return errors
-} // cette fonction analyse chaque caractères mais donne le résultat pour chacun au lieu de valider au premier rencontré
+}
 
-// Appeler cette route a chaque fois que suivant (AJAX)
 router.post('/signup/validate/password', function (req, res, next) {
   const errors = validatePassword(req)
 
   console.log('errors vaut', errors)
 
   if (errors.length >= 1) {
-    res.status(400).json(errors) // ici, on va retourner un code d'erreur 400
+    res.status(400).json(errors)
   } else {
-    // ok, pas d'erreur: il faut qd meme donner une reponse au client
     res.json({})
   }
 })
 
-router.post('/signup', (req, res, next) => {
+router.post('/signup', (req, res, next) => { // création de variable pour contenir les éléments récupérés grace à "name=" dans le fichier .hbs
   const companyName = req.body.companyName
   const vatNumber = req.body.vatNumber
   const regNumber = req.body.regNumber
@@ -174,10 +191,10 @@ router.post('/signup', (req, res, next) => {
 
   const password = req.body.password
 
-
+  // nous additionnons les erreurs obtenues dans chaque étape de validation s'il y en a...
   const errors = (validateUser(req) + validateAddress(req) + validatePassword(req))
 
-  if (errors.length === 0) {
+  if (errors.length === 0) { // si pas d'erreur alors vérification de l'unicité de l'email pour éviter les doublons (méthode: findOne)
     User.findOne({email : email})
      .then((user) => {
       if (user) {
@@ -185,8 +202,8 @@ router.post('/signup', (req, res, next) => {
           message: `L'\email ${user.email} est deja pris`
         })
       } else {
-        const cryptedPassword = bcryptJs.hashSync(req.body.password)
-        const newUser = new User ({
+        const cryptedPassword = bcryptJs.hashSync(req.body.password) // création d'une variable contenant le mot de passe crypté
+        const newUser = new User ({ // si email disponible alors création du User en suivant le modèle
           firstName: firstName,
           lastName: lastName,
           email: email,
@@ -208,10 +225,10 @@ router.post('/signup', (req, res, next) => {
           password: cryptedPassword,
         })
       
-        newUser.save()
+        newUser.save() // utilisation de la méthode .save
         .then( newUser => {
           console.log('user saved', newUser)
-          res.redirect("/")
+          res.redirect("/") // redirection vers la Homepage
         })
         .catch(err => {
           console.log('user not saved', err)

@@ -64,8 +64,6 @@ app.get('/product_admin', (req, res, next) => {
   res.render('product_admin', data);
 })
 
-
-
 // bcrpytjs
 
 const bcrypt = require('bcryptjs');
