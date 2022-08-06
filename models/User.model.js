@@ -46,7 +46,6 @@ const userSchema = new Schema(
       },
       streetNumber: {
         type: Number,
-        required: true
       },
       zipCode: {
         type: Number,
@@ -63,7 +62,6 @@ const userSchema = new Schema(
     },
     password: { // come back to password because bcrypt / hasch
       type : String,
-      unique: true,
       required: true
     },
   }, 

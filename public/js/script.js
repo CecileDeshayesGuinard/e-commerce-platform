@@ -282,6 +282,24 @@ input.addEventListener('change', (e) => {
     }
 });
 
+
+/*
+╔╦╗╔═╗╦═╗╔═╗╦╔╗╔  ╔╦╗╔═╗╔╗╔╔═╗╔═╗╔═╗╔╦╗╔═╗╔╗╔╔╦╗
+║║║╠═╣╠╦╝║ ╦║║║║  ║║║╠═╣║║║╠═╣║ ╦║╣ ║║║║╣ ║║║ ║ 
+╩ ╩╩ ╩╩╚═╚═╝╩╝╚╝  ╩ ╩╩ ╩╝╚╝╩ ╩╚═╝╚═╝╩ ╩╚═╝╝╚╝ ╩ 
+*/
+
+/*const productMargin = document.querySelector ('#margin');
+const costOfProduct = document.querySelector ('#costOfProduct');
+const exVatPrice = document.querySelector ('#exVatPrice');
+const ValueAddedTaxe = document.querySelector ('#ValueAddedPrice');
+const taxedPrice = document.querySelector ('#taxedPrice');
+const priceManagementModule = "";*/
+
+
+
+
+
 /*
  ██████╗ █████╗ ████████╗███████╗ ██████╗  ██████╗ ██████╗ ██╗███████╗███████╗         █████╗ ██████╗ ███╗   ███╗██╗███╗   ██╗
 ██╔════╝██╔══██╗╚══██╔══╝██╔════╝██╔════╝ ██╔═══██╗██╔══██╗██║██╔════╝██╔════╝        ██╔══██╗██╔══██╗████╗ ████║██║████╗  ██║

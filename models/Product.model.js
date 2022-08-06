@@ -34,7 +34,7 @@ const productSchema = new Schema(
       type: String
     }],
     productSize: {
-      lenght: {
+      length: {
         type: Number,
       },
       width: {
@@ -54,7 +54,7 @@ const productSchema = new Schema(
       }
     },
     packagingSize: {
-      lenght: {
+      length: {
         type: Number,
         required: true
       },

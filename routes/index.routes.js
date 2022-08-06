@@ -71,7 +71,7 @@ function validateUser(req) {
 }
 
 // Appeler cette route a chaque fois que suivant (AJAX)
-router.post('signup/validate/user', function (req, res, next) {
+router.post('/signup/validate/user', function (req, res, next) {
   const errors = validateUser(req)
 
   console.log('errors vaut', errors)
@@ -105,8 +105,10 @@ function validateAddress(req) {
 }
 
 // Appeler cette route a chaque fois que suivant (AJAX)
-router.post('signup/validate/address', function (req, res, next) {
+router.post('/signup/validate/address', function (req, res, next) {
   const errors = validateAddress(req)
+
+  console.log('errors vaut', errors)
 
   if (errors.length >= 1) {
     res.status(400).json(errors) // ici, on va retourner un code d'erreur 400
@@ -132,8 +134,10 @@ function validatePassword(req) {
 }
 
 // Appeler cette route a chaque fois que suivant (AJAX)
-router.post('signup/validate/password', function (req, res, next) {
+router.post('/signup/validate/password', function (req, res, next) {
   const errors = validatePassword(req)
+
+  console.log('errors vaut', errors)
 
   if (errors.length >= 1) {
     res.status(400).json(errors) // ici, on va retourner un code d'erreur 400
@@ -237,47 +241,24 @@ function validateProduct(req) {
   }
   if (!req.body.exVat) {
     errors.push({name: 'exVat', message: 'Prix HT requis'})
-  } else {
-    if(!req.body.exVat.includes('1'||'2'||'3'||'4'||'5'||'6'||'7'||'8'||'9'||'O')) {
-      errors.push({name: 'exVat', message: 'Prix HT non valide'})
-    }
   }
   if (!req.body.vat) {
     errors.push({name: 'vat', message: 'Taux de TVA requis'})
-  } else {
-    if(!req.body.vat.includes('1'||'2'||'3'||'4'||'5'||'6'||'7'||'8'||'9'||'O')) {
-    }
   }
-  if (!req.body.packagingSize.length) {
-    errors.push({name: 'length', message: 'Longueur requise'})
-  } else {
-    if (!req.body.packagingSize.length.includes('1'||'2'||'3'||'4'||'5'||'6'||'7'||'8'||'9'||'O')) {
-      errors.push({name: 'length', message: 'Longueur non valide'})
-    }
+  if (!req.body.packagingSize_length) {
+    errors.push({name: 'packagingSize_length', message: 'Longueur requise'})
   }
-  if (!req.body.packagingSize.width) {
-    errors.push({name: 'width', message: 'Largeur requise'})
-  } else {
-    if (!req.body.packagingSize.width.includes('1'||'2'||'3'||'4'||'5'||'6'||'7'||'8'||'9'||'O')) {
-      errors.push({name: 'width', message: 'Largeur non valide'})
-    }
+  if (!req.body.packagingSize_width) {
+    errors.push({name: 'packagingSize_width', message: 'Largeur requise'})
   }
-  if (!req.body.packagingSize.height) {
-    errors.push({name: 'height', message: 'Hauteur requise'})
-  } else {
-    if (!req.body.packagingSize.height.includes('1'||'2'||'3'||'4'||'5'||'6'||'7'||'8'||'9'||'O')) {
-      errors.push({name: 'height', message: 'Hauteur non valide'})
-    }
+  if (!req.body.packagingSize_height) {
+    errors.push({name: 'packagingSize_height', message: 'Hauteur requise'})
   }
-  if (!req.body.packagingSize.weight) {
-    errors.push({name: 'weight', message: 'Poids requis'})
-  } else {
-    if (!req.body.packagingSize.weight.includes('1'||'2'||'3'||'4'||'5'||'6'||'7'||'8'||'9'||'O')) {
-      errors.push({name: 'weight', message: 'Poids non valide'})
-    }
+  if (!req.body.packagingSize_weight) {
+    errors.push({name: 'packagingSize_weight', message: 'Poids requis'})
   }
   if (req.body.otherPhotos.length > 3) { 
-    errors.push({name: 'otherPhotos', message: '3 photos socondaires maximum'})
+    errors.push({name: 'otherPhotos', message: '3 photos secondaires maximum'})
   }
 
 
@@ -287,7 +268,7 @@ function validateProduct(req) {
 }
 
 // Appeler cette route à la tentative d'enregistrement
-router.post('product_admin/validate/product', function (req, res, next) {
+router.post('/product_admin/validate/product', function (req, res, next) {
   const errors = validateProduct(req)
 
   console.log('errors vaut', errors)
@@ -308,16 +289,16 @@ router.post('/product_admin', (req, res, next) => {
   const vat = req.body.vat
   const discount = req.body.discount
   const materials = req.body.materials
-  const productLength = req.body.productSize.length
-  const productWidth = req.body.productSize.width
-  const productHeight = req.body.productSize.height
-  const productThickness = req.body.productSize.productThickness
-  const productSurface = req.body.productSize.surface
-  const productWeight = req.body.productSize.weight
-  const packagingLength = req.body.packagingSize.length
-  const packagingWidth = req.body.packagingSize.width
-  const packagingHeight = req.body.packagingSize.height
-  const packagingWeight = req.body.packagingSize.weight
+  const productLength = req.body.productSize_length
+  const productWidth = req.body.productSize_width
+  const productHeight = req.body.productSize_height
+  const productThickness = req.body.productSize_productThickness
+  const productSurface = req.body.productSize_surface
+  const productWeight = req.body.productSize_weight
+  const packagingLength = req.body.packagingSize_length
+  const packagingWidth = req.body.packagingSize_width
+  const packagingHeight = req.body.packagingSize_height
+  const packagingWeight = req.body.packagingSize_weight
   const stock = req.body.stock
   const color = req.body.color
   const brand = req.body.brand
@@ -412,7 +393,7 @@ router.post('/product_admin/:id/delete',(req,res,next)=>{
 
 // Edit Produit
 
-router.get('product_admin/:id/edit',(req,res,next)=>{
+router.get('/product_admin/:id/edit',(req,res,next)=>{
   Product.findById(req.params.id)
   .then((productFromDB)=>{
       console.log(productFromDB)
@@ -424,50 +405,55 @@ router.get('product_admin/:id/edit',(req,res,next)=>{
   })
 })
 
-router.post('product_amin/:id/edit',(req,res,next)=>{
-  Product.findByIdAndUpdate(req.params.id,{
-    productName: productName,
-    productDescription: productDescription,
-    productCost: productCost,
-    productPrice: {
-      exVat: exVat,
-      vat: vat,
-      discount: discount,
-    },
-    materials: [{materials}],
-    productSize: {
-      length: productLength,
-      width: productWidth,
-      height: productHeight,
-      thickness: productThickness,
-      surface: productSurface,
-      weight: productWeight
-    },
-    packagingSize: {
-      length: packagingLength,
-      width: packagingWidth,
-      height: packagingHeight,
-      weight: packagingWeight
-    },
-    color: color,
-    brand: brand,
-    mainPhoto: mainPhoto,
-    otherPhotos: otherPhotos,
-    stock: stock,
-    notice: notice,
-    category: category
-  },
-  {new:true})
-  .then((productFromDB)=>{
-    res.redirect(`/product/${productFromDB._id}`)
-  })
-  .catch((err)=>{
-    console.log('error editing product',err)
-    next(err)
-  })
-})
+router.post('/product_amin/:id/edit',(req,res,next)=>{
 
+  const errors = (validateProduct(req));
 
+  if (errors.length === 0) {
+    Product.findByIdAndUpdate(req.params.id,{
+      productName: productName,
+      productDescription: productDescription,
+      productCost: productCost,
+      productPrice: {
+        exVat: exVat,
+        vat: vat,
+        discount: discount,
+      },
+      materials: [{materials}],
+      productSize: {
+        length: productLength,
+        width: productWidth,
+        height: productHeight,
+        thickness: productThickness,
+        surface: productSurface,
+        weight: productWeight
+      },
+      packagingSize: {
+        length: packagingLength,
+        width: packagingWidth,
+        height: packagingHeight,
+        weight: packagingWeight
+      },
+      color: color,
+      brand: brand,
+      mainPhoto: mainPhoto,
+      otherPhotos: otherPhotos,
+      stock: stock,
+      notice: notice,
+      category: category
+    },
+    {new:true})
+    .then((productFromDB)=>{
+      res.redirect(`/product/${productFromDB._id}`)
+    })
+    .catch((err)=>{
+      console.log('error editing product',err)
+      next(err)
+    })
+  } 
+})  
+  
+  
 /*
  ██████╗ █████╗ ████████╗███████╗ ██████╗  ██████╗ ██████╗ ██╗███████╗███████╗         █████╗ ██████╗ ███╗   ███╗██╗███╗   ██╗
 ██╔════╝██╔══██╗╚══██╔══╝██╔════╝██╔════╝ ██╔═══██╗██╔══██╗██║██╔════╝██╔════╝        ██╔══██╗██╔══██╗████╗ ████║██║████╗  ██║
@@ -501,7 +487,7 @@ function validateCategory(req) {
 
 // Appeler cette route lors de l'enregistrement
 
-router.post('categories_admin/validate/category', function (req, res, next) {
+router.post('/categories_admin/validate/category', function (req, res, next) {
   const errors = validateCategory(req)
 
   console.log('errors vaut', errors)
@@ -549,7 +535,7 @@ router.post('/categories_admin', (req, res, next) => {
 
 // Delete Categorie
 
-router.get('categories_admin/:id', (req, res, next) => {
+router.get('/categories_admin/:id', (req, res, next) => {
   Category.findById(req.params.id)
   .then(function (categoryFromDB) {
     console.log("categoryFromDB=", categoryFromDB);
@@ -561,7 +547,7 @@ router.get('categories_admin/:id', (req, res, next) => {
   });
 })
 
-router.post('categories_admin/:id/delete',(req,res,next)=>{
+router.post('/categories_admin/:id/delete',(req,res,next)=>{
   Category.findByIdAndRemove(req.params.id)
   .then(()=> {
     console.log('category deleted')
@@ -575,7 +561,7 @@ router.post('categories_admin/:id/delete',(req,res,next)=>{
 
 // Edit Category // Demander Verification à Antoine
 
-router.get('categories_admin/:id/edit',(req,res,next)=>{
+router.get('/categories_admin/:id/edit',(req,res,next)=>{
   Category.findById(req.params.id)
   .then((categoryFromDB)=>{
       console.log(categoryFromDB)
@@ -595,7 +581,7 @@ router.get('categories_admin/:id/edit',(req,res,next)=>{
   })
 })
 
-router.post('categories_admin/:id/edit',(req,res,next)=>{
+router.post('/categories_admin/:id/edit',(req,res,next)=>{
   Category.findByIdAndUpdate(req.params.id,{
     categoyName: categoryName,
     categoryDescription: categoryDescription
