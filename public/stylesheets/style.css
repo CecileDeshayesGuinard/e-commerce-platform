@@ -834,17 +834,7 @@ button {
   height: 100%;
 }
 
-.product-adminColumn {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-}
-
-.elementBlock {
-  margin-top: 3vh;
-}
-
-.product-adminColumn .elementBlock input {
+.product_adminColumn .elementBlock input {
   min-width: 20em;
   min-height: 5vh;
   background-color: rgba(115, 110, 110, 1);
@@ -858,5 +848,33 @@ button {
   color: rgba(255, 255, 255, .4);
   border-bottom-color: rgba(255, 255, 255, .4);
   margin-top: 1.5vh
+}
+
+#product_adminLeft {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#product_adminRight {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+}
+
+.product_adminColumn {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  padding-left: .5%;
+  padding: .5%;
+}
+
+.elementBlock {
+  margin-top: 3vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 

@@ -238,42 +238,41 @@ function validateProduct(req) {
   if (!req.body.exVat) {
     errors.push({name: 'exVat', message: 'Prix HT requis'})
   } else {
-    if(!req.body.exVat.includes('1'||'2'||'3'||'4'||'5'||'6'||'7'||'8'||'9'||'O')) { // ici tu as le meme probleme si jamais req.body.email vaut undefined => .includes sur undefined genererERROR
+    if(!req.body.exVat.includes('1'||'2'||'3'||'4'||'5'||'6'||'7'||'8'||'9'||'O')) {
       errors.push({name: 'exVat', message: 'Prix HT non valide'})
     }
   }
   if (!req.body.vat) {
     errors.push({name: 'vat', message: 'Taux de TVA requis'})
   } else {
-    if(!req.body.vat.includes('1'||'2'||'3'||'4'||'5'||'6'||'7'||'8'||'9'||'O')) { // ici tu as le meme probleme si jamais req.body.email vaut undefined => .includes sur undefined genererERROR
-      errors.push({name: 'vat', message: 'Taux de TVA non valide'})
+    if(!req.body.vat.includes('1'||'2'||'3'||'4'||'5'||'6'||'7'||'8'||'9'||'O')) {
     }
   }
   if (!req.body.packagingSize.length) {
     errors.push({name: 'length', message: 'Longueur requise'})
   } else {
-    if (!req.body.packagingSize.length.includes('1'||'2'||'3'||'4'||'5'||'6'||'7'||'8'||'9'||'O')) { // ici si jamais tu n'envoie pas de phoneNumber a ton serveur, alors req.body.phoneNumber vaudra undefined, et de tenter de faire .length dessus generera une erreur...
+    if (!req.body.packagingSize.length.includes('1'||'2'||'3'||'4'||'5'||'6'||'7'||'8'||'9'||'O')) {
       errors.push({name: 'length', message: 'Longueur non valide'})
     }
   }
   if (!req.body.packagingSize.width) {
     errors.push({name: 'width', message: 'Largeur requise'})
   } else {
-    if (!req.body.packagingSize.width.includes('1'||'2'||'3'||'4'||'5'||'6'||'7'||'8'||'9'||'O')) { // ici si jamais tu n'envoie pas de phoneNumber a ton serveur, alors req.body.phoneNumber vaudra undefined, et de tenter de faire .length dessus generera une erreur...
+    if (!req.body.packagingSize.width.includes('1'||'2'||'3'||'4'||'5'||'6'||'7'||'8'||'9'||'O')) {
       errors.push({name: 'width', message: 'Largeur non valide'})
     }
   }
   if (!req.body.packagingSize.height) {
     errors.push({name: 'height', message: 'Hauteur requise'})
   } else {
-    if (!req.body.packagingSize.height.includes('1'||'2'||'3'||'4'||'5'||'6'||'7'||'8'||'9'||'O')) { // ici si jamais tu n'envoie pas de phoneNumber a ton serveur, alors req.body.phoneNumber vaudra undefined, et de tenter de faire .length dessus generera une erreur...
+    if (!req.body.packagingSize.height.includes('1'||'2'||'3'||'4'||'5'||'6'||'7'||'8'||'9'||'O')) {
       errors.push({name: 'height', message: 'Hauteur non valide'})
     }
   }
   if (!req.body.packagingSize.weight) {
     errors.push({name: 'weight', message: 'Poids requis'})
   } else {
-    if (!req.body.packagingSize.weight.includes('1'||'2'||'3'||'4'||'5'||'6'||'7'||'8'||'9'||'O')) { // ici si jamais tu n'envoie pas de phoneNumber a ton serveur, alors req.body.phoneNumber vaudra undefined, et de tenter de faire .length dessus generera une erreur...
+    if (!req.body.packagingSize.weight.includes('1'||'2'||'3'||'4'||'5'||'6'||'7'||'8'||'9'||'O')) {
       errors.push({name: 'weight', message: 'Poids non valide'})
     }
   }

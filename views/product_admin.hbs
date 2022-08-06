@@ -1,5 +1,5 @@
 <form id="product_admin" method="post" enctype="multipart/form-data">
-  <div id="product_adminLeft" class="product-adminColumn">
+  <div id="product_adminLeft" class="product_adminColumn">
     <div id="productInfo" class="elementBlock">
       <input name="productName" type="text" placeholder="Titre Produit">
       <input name="productDescription" type="text" placeholder="Description du produit">
@@ -46,7 +46,7 @@
       </div>
     </div>
   </div>
-  <div id="product-adminRight" class="product-adminColumn">
+  <div id="product_adminRight" class="product_adminColumn">
     <div id="qualification" class="elementBlock">
       <input id="productColor" name="color" type="text" placeholder="Couleur Produit">
       <input id="productBrand" name="brand" type="text" placeholder="Marque">
@@ -77,9 +77,9 @@
       </select>
     </div>
     <div class="elementBlock">
-      <button type="submit">Créer</button>
-      <button type="submit">Editer</button>
-      <button type="submit">Supprimer</button>
+      <button id="createProduct" type="submit">Créer</button>
+      <button id="editProduct" type="submit">Editer</button> <!-- LOT 2-->
+      <button id="deleteProduct" type="submit">Supprimer</button> <!-- LOT 2-->
     </div>
   </div>
 </form>

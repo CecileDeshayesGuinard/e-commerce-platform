@@ -55,14 +55,16 @@ app.use("/cart", cart);
 const checkout = require("./routes/index.routes");
 app.use("/checkout", checkout);
 
-const product_admin = require("./routes/index.routes");
-app.use("/product_admin", product_admin);
+const product_admin = require("./routes/index.routes"); // ne parche pas
+app.use("/product_admin", product_admin)
 app.get('/product_admin', (req, res, next) => {
-    let data = {
-      layout: 'layout2'
-    }
-    res.render('product_admin', data);
+  let data = {
+    layout: 'layout2'
+  }
+  res.render('product_admin', data);
 })
+
+
 
 // bcrpytjs
 

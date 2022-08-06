@@ -124,7 +124,6 @@ previousCompany.onclick = function () {
 continueUser.onclick = function () {
   userProfile.classList.add('hidden-block');
   billingAdress.classList.remove('hidden-block');
-  // non, le 2e parametre, n'est pas bon pour axios, il faut consulter la doc
   axios.post('signup/validate/user', {
     firstName: 'firstName',
     lastName: 'lastName',
@@ -208,6 +207,64 @@ previousPassword.onclick = function () {
 ╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚═════╝  ╚═════╝  ╚═════╝   ╚═╝╚══════╝╚═╝  ╚═╝╚═════╝ ╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝                                                                                                
 */
 
+
+const createProduct = document.querySelector ('#createProduct');
+const editProduct  = document.querySelector ('#editProduct');
+const deleteProduct = document.querySelector ('#deleteProduct');
+
+/*
+╔═╗╦═╗╔═╗╔═╗╔╦╗╔═╗
+║  ╠╦╝║╣ ╠═╣ ║ ║╣ 
+╚═╝╩╚═╚═╝╩ ╩ ╩ ╚═╝
+*/
+
+createProduct.onclick = function () {
+  axios.post('product_admin/validate/product', {
+    productName: 'productName',
+    exVat: 'exVat',
+    vat: 'vat',
+    packagingSize: {
+      length : 'length',
+      width: 'width',
+      height: 'height',
+      weight: 'weight'
+    }
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+}
+
+/*
+╔═╗╔╦╗╦╔╦╗
+║╣  ║║║ ║ 
+╚═╝═╩╝╩ ╩ 
+*/
+
+editProduct.onclick = function () {
+  axios.post('product_admin/validate/product', {
+    productName: 'productName',
+    exVat: 'exVat',
+    vat: 'vat',
+    packagingSize: {
+      length : 'length',
+      width: 'width',
+      height: 'height',
+      weight: 'weight'
+    }
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+}
+
+
 /*
 ╔╦╗╦ ╦╦ ╔╦╗╦╔═╗╦  ╔═╗  ╔═╗╦ ╦╔═╗╔╦╗╔═╗╔═╗  ╔╦╗╔═╗╔╗╔╔═╗╔═╗╔═╗╔╦╗╔═╗╔╗╔╔╦╗
 ║║║║ ║║  ║ ║╠═╝║  ║╣   ╠═╝╠═╣║ ║ ║ ║ ║╚═╗  ║║║╠═╣║║║╠═╣║ ╦║╣ ║║║║╣ ║║║ ║ 
@@ -224,3 +281,15 @@ input.addEventListener('change', (e) => {
         return;
     }
 });
+
+/*
+ ██████╗ █████╗ ████████╗███████╗ ██████╗  ██████╗ ██████╗ ██╗███████╗███████╗         █████╗ ██████╗ ███╗   ███╗██╗███╗   ██╗
+██╔════╝██╔══██╗╚══██╔══╝██╔════╝██╔════╝ ██╔═══██╗██╔══██╗██║██╔════╝██╔════╝        ██╔══██╗██╔══██╗████╗ ████║██║████╗  ██║
+██║     ███████║   ██║   █████╗  ██║  ███╗██║   ██║██████╔╝██║█████╗  ███████╗        ███████║██║  ██║██╔████╔██║██║██╔██╗ ██║
+██║     ██╔══██║   ██║   ██╔══╝  ██║   ██║██║   ██║██╔══██╗██║██╔══╝  ╚════██║        ██╔══██║██║  ██║██║╚██╔╝██║██║██║╚██╗██║
+╚██████╗██║  ██║   ██║   ███████╗╚██████╔╝╚██████╔╝██║  ██║██║███████╗███████║███████╗██║  ██║██████╔╝██║ ╚═╝ ██║██║██║ ╚████║
+ ╚═════╝╚═╝  ╚═╝   ╚═╝   ╚══════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚══════╝╚═╝  ╚═╝╚═════╝ ╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝                                                                                                                      
+*/
+
+
+
