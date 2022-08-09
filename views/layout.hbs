@@ -1,62 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 
-   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <title>{{appTitle}}</title>
-      <link rel="stylesheet" href="../stylesheets/style.css" />
-   </head>
-
-   <body>
-      <header>
-        <nav>
-          <div id="menu-zone" class="nav-sides-container">
-            <img id="menuHamburger" src="/images/hamburger.svg" alt="Menu">
-            <div class="wrapped-menu">
-              <ul>
-                <li><a id="category-menu" href="#">Nos Serres</a></li>
-                  <ul class="cat-hidden">
-                    <li><a href="#">Serres en Verre Trempé</a></li>
-                    <li><a href="#">Serres en Polycarbonate</a></li>
-                    <li><a href="#">Serres Adossées</a></li>
-                  </ul>
-              </ul>
-              <ul>
-                <li><a href="#">Serres en pré-commande</a></li>
-              </ul>
-              <ul>
-                <li><a href="#">Accessoires</a></li>
-              </ul>
-              <ul>
-                <li><a href="#">Conseils</a></li>
-              </ul>
-            </div>  
-          </div>
-          <div id="logo-container">
-            <img id="logo" src="/images/ciel-mon-jardin--logo.jpg" alt="ciel-mon-jardin-logo" />
-          </div>
-          <div id="cartLog" class="nav-sides-container">
-            <div id="cartZone">
-              <img id="cartLogo" src="/images/shopping-cart.svg" alt="panier">
-            </div>
-            <div id="accountZone">
-              <img id="loginLogo" src="/images/log.svg" alt="login">
-        <!--  <ul>
-                <li><a href="/login">Login</a></li>
-                <li><a href="/account">Mes informations</a></li>
-              </ul> -->
-            </div>
-          </div>
-        </nav>
-        <div id="header-bottom">
-          <div id="separator"></div>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{appTitle}}</title>
+    <link rel="stylesheet" href="../stylesheets/style.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div id="menu-zone" class="nav-sides-container">
+          <img id="menuHamburger" src="/images/hamburger.svg" alt="Menu">
+          <div class="wrapped-menu">
+            <ul>
+              <li><a id="category-menu" href="#">Nos Serres</a></li>
+                <ul class="cat-hidden">
+                  <li><a href="#">Serres en Verre Trempé</a></li>
+                  <li><a href="#">Serres en Polycarbonate</a></li>
+                  <li><a href="#">Serres Adossées</a></li>
+                </ul>
+            </ul>
+            <ul>
+              <li><a href="#">Serres en pré-commande</a></li>
+            </ul>
+            <ul>
+              <li><a href="#">Accessoires</a></li>
+            </ul>
+            <ul>
+              <li><a href="#">Conseils</a></li>
+            </ul>
+          </div>  
         </div>
-      </header>
-
-      {{{body}}}
-
+        <div id="logo-container">
+          <img id="logo" src="/images/ciel-mon-jardin--logo.jpg" alt="ciel-mon-jardin-logo" />
+        </div>
+        <div id="cartLog" class="nav-sides-container">
+          <div id="accountZone">
+            <img id="loginLogo" src="/images/log.svg" alt="login">
+      <!--  <ul>
+              <li><a href="/login">Login</a></li>
+              <li><a href="/account">Mes informations</a></li>
+            </ul> -->
+          </div>
+          <div id="cartZone">
+            <img id="cartLogo" src="/images/shopping-cart.svg" alt="panier">
+          </div>
+        </div>
+      </nav>
+      <div id="header-bottom">
+        <div id="separator"></div>
+      </div>
+    </header>
+    {{{body}}}
     <script src="/js/script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
   </body>
