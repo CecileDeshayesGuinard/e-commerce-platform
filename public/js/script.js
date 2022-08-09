@@ -224,10 +224,10 @@ createProduct.onclick = function () {
     exVat: 'exVat',
     vat: 'vat',
     packagingSize: {
-      length : 'length',
-      width: 'width',
-      height: 'height',
-      weight: 'weight'
+      length : 'packagingSize_length',
+      width: 'packagingSize_width',
+      height: 'packagingSize_height',
+      weight: 'packagingSize_weight'
     }
   })
   .then(function (response) {

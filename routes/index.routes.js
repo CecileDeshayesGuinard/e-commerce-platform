@@ -52,6 +52,7 @@ router.get("/signup", (req, res, next) => {
 ╩  ╚═╝╚═╝ ╩   ╚═╝╩╚═╝╝╚╝╚═╝╩    ╩  ╩ ╩╚═╝╚═╝
 */
 
+
 /*
 USER VALIDATION
 */
@@ -144,18 +145,22 @@ function validatePassword(req) {
   const errors = []
   const passwordContent = req.body.password.split (''); // passwordContent est une array de caractères
   const mandatoryNumberList = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']; // mandatoryNumber est une array de chiffres
-
+  
+  if (!req.body.password) {
+    errors.push({name: 'firstName', message: 'mot de passe requis'})
+  } else {
 // utilisation de la méthode forEach pour comparer chaque élement d'un tableau avec tous les éléments de l'autre tableau
-
-  function MatchElem(passwordContent, mandatoryNumberList) {
-    passwordContent.forEach(function(element){
-      if(!mandatoryNumberList.includes(element)){
-      errors.push({name: 'password', message: 'utilisez au moins un chiffre !'})
-      } else {
-      console.log('password validate')
-      }
-    })
+    function MatchElem(passwordContent, mandatoryNumberList) {
+      passwordContent.forEach(function(element){
+        if(!mandatoryNumberList.includes(element)){
+        errors.push({name: 'password', message: 'utilisez au moins un chiffre !'})
+        } else {
+        console.log('password validate')
+        }
+      })
+    }
   }
+
   return errors
 }
 
@@ -248,12 +253,21 @@ router.post('/signup', (req, res, next) => { // création de variable pour conte
 ╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚═════╝  ╚═════╝  ╚═════╝   ╚═╝╚══════╝╚═╝  ╚═╝╚═════╝ ╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝                                                                                                   
 */
 
-/* GET product_admin page */
+/*
+╔═╗╔═╗╔╦╗  ╔═╗╦═╗╔═╗╔╦╗╦ ╦╔═╗╔╦╗   ╔═╗╔╦╗╔╦╗╦╔╗╔
+║ ╦║╣  ║   ╠═╝╠╦╝║ ║ ║║║ ║║   ║    ╠═╣ ║║║║║║║║║
+╚═╝╚═╝ ╩   ╩  ╩╚═╚═╝═╩╝╚═╝╚═╝ ╩────╩ ╩═╩╝╩ ╩╩╝╚╝
+*/
+
+
 router.get("/product_admin", (req, res, next) => {
   res.render("product_admin");
 });
 
-// Error checking Product
+
+/*
+PRODUCT VALIDATION
+*/
 
 function validateProduct(req) {
   const errors = []
@@ -281,8 +295,10 @@ function validateProduct(req) {
   if (!req.body.packagingSize_weight) {
     errors.push({name: 'packagingSize_weight', message: 'Poids requis'})
   }
-  if (req.body.otherPhotos.length > 3) { 
-    errors.push({name: 'otherPhotos', message: '3 photos secondaires maximum'})
+  if (req.body.otherPhotos) { 
+    if(req.body.otherPhotos.length > 3) { 
+      errors.push({name: 'otherPhotos', message: '3 photos secondaires maximum'})
+    }
   }
 
 
@@ -335,21 +351,21 @@ router.post('/product_admin', (req, res, next) => {
   const errors = (validateProduct(req));
 
   if (errors.length === 0) {
-    Product.findOne({productName : productName})
+    Product.findOne({productName : productName}) // on recherche le produit pour savoir d'il existe déjà
      .then((product) => {
       if (product) {
         res.render("product_admin", {
           message: `Le produit ${product.productName} éxiste déjà`
         })
       } else {
-        const newProduct = new Product ({
+        const newProduct = new Product ({ // si inexistant = nouveau produit
           productName: productName,
           productDescription: productDescription,
           productCost: productCost,
           productPrice: {
             exVat: exVat,
             vat: vat,
-            discount: discount,
+            discount: discount
           },
           materials: [{materials}],
           productSize: {
@@ -369,7 +385,7 @@ router.post('/product_admin', (req, res, next) => {
           color: color,
           brand: brand,
           mainPhoto: mainPhoto,
-          otherPhotos: otherPhotos,
+          otherPhotos: [{otherPhotos}],
           stock: stock,
           notice: notice,
           category: category
@@ -389,7 +405,9 @@ router.post('/product_admin', (req, res, next) => {
 })
 
 
-// Delete Produit
+/*
+DELETE PRODUCT
+*/
 
 router.get('/product_admin/:id', (req, res, next) => {
   Product.findById(req.params.id)
@@ -415,7 +433,10 @@ router.post('/product_admin/:id/delete',(req,res,next)=>{
   })
 })
 
-// Edit Produit
+
+/*
+EDIT PRODUCT
+*/
 
 router.get('/product_admin/:id/edit',(req,res,next)=>{
   Product.findById(req.params.id)
@@ -429,7 +450,7 @@ router.get('/product_admin/:id/edit',(req,res,next)=>{
   })
 })
 
-router.post('/product_amin/:id/edit',(req,res,next)=>{
+router.post('/product_admin/:id/edit',(req,res,next)=>{
 
   const errors = (validateProduct(req));
 
@@ -475,7 +496,24 @@ router.post('/product_amin/:id/edit',(req,res,next)=>{
       next(err)
     })
   } 
-})  
+})
+
+router.post('/product_admin', fileUploader.single('mainPhoto'), (req, res) => {
+  const { title, description } = req.body;
+ 
+  Product.create({ title, description, imageUrl: req.file.path })
+    .then(() => res.redirect('/product_admin'))
+    .catch(error => console.log(`Error while creating a new product: ${error}`));
+});
+
+router.post('/product_admin', fileUploader.single('otherPhotos'), (req, res) => {
+  const { title, description } = req.body;
+ 
+  Product.create({ title, description, imageUrl: req.file.path })
+    .then(() => res.redirect('/product_admin'))
+    .catch(error => console.log(`Error while creating a new product: ${error}`));
+});
+
   
   
 /*
@@ -487,10 +525,19 @@ router.post('/product_amin/:id/edit',(req,res,next)=>{
  ╚═════╝╚═╝  ╚═╝   ╚═╝   ╚══════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚══════╝╚═╝  ╚═╝╚═════╝ ╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝                                                                                                                       
 */
 
-/* GET categories_admin page */
+
+/*
+GET CATEGORIES_ADMIN
+*/
+
 router.get("/categories_admin", (req, res, next) => {
   res.render("categories_admin");
 });
+
+
+/*
+CATEGORIES VALIDATION
+*/
 
 function validateCategory(req) {
   const errors = []
@@ -509,8 +556,8 @@ function validateCategory(req) {
   return errors
 }
 
-// Appeler cette route lors de l'enregistrement
 
+// Appeler cette route lors de l'enregistrement
 router.post('/categories_admin/validate/category', function (req, res, next) {
   const errors = validateCategory(req)
 
@@ -557,7 +604,9 @@ router.post('/categories_admin', (req, res, next) => {
 })
 
 
-// Delete Categorie
+/*
+DELETE CATEGORY
+*/
 
 router.get('/categories_admin/:id', (req, res, next) => {
   Category.findById(req.params.id)
@@ -583,7 +632,10 @@ router.post('/categories_admin/:id/delete',(req,res,next)=>{
   })
 })
 
-// Edit Category // Demander Verification à Antoine
+
+/*
+EDIT CATEGORY
+*/
 
 router.get('/categories_admin/:id/edit',(req,res,next)=>{
   Category.findById(req.params.id)
@@ -650,7 +702,6 @@ router.get("/cart", (req, res, next) => {
 router.get("/orders", (req, res, next) => {
   res.render("checkout");
 });
-
 
 
 module.exports = router;
