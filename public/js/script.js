@@ -88,6 +88,11 @@ const security = document.querySelector('#security');
 const individualButton = document.querySelector('#individual');
 const companyButton = document.querySelector('#company');
 
+/*
+╔╦╗╦ ╦╔═╗╔═╗  ╔═╗╔═╗  ╔═╗╦ ╦╔═╗╔╦╗╔═╗╔╦╗╔═╗╦═╗
+ ║ ╚╦╝╠═╝║╣   ║ ║╠╣   ║  ║ ║╚═╗ ║ ║ ║║║║║╣ ╠╦╝
+ ╩  ╩ ╩  ╚═╝  ╚═╝╚    ╚═╝╚═╝╚═╝ ╩ ╚═╝╩ ╩╚═╝╩╚═
+*/
 
 companyButton.onclick = function () {
   typeOfCustomer.classList.add('hidden-block');
@@ -124,7 +129,7 @@ previousCompany.onclick = function () {
 continueUser.onclick = function () {
   userProfile.classList.add('hidden-block');
   billingAdress.classList.remove('hidden-block');
-  axios.post('signup/validate/user', {
+  axios.post('/signup/validate/user', {
     firstName: 'firstName',
     lastName: 'lastName',
     email: 'email',
@@ -153,7 +158,7 @@ previousUser.onclick = function () {
 continueAdress.onclick = function () {
   billingAdress.classList.add('hidden-block');
   security.classList.remove('hidden-block');
-  axios.post('signup/validate/adress', {
+  axios.post('/signup/validate/address', {
     countryName: 'countryName',
     streetName: 'streetName',
     streetNumber: 'streetNumber',
@@ -182,7 +187,7 @@ previousAdress.onclick = function () {
 
 registration.onclick = function () {
   security.classList.add('hidden-block');
-  axios.post('signup/validate/adress', {
+  axios.post('/signup/validate/password', {
     password: password,
   })
   .then(function (response) {
@@ -219,7 +224,7 @@ const deleteProduct = document.querySelector ('#deleteProduct');
 */
 
 createProduct.onclick = function () {
-  axios.post('product_admin/validate/product', {
+  axios.post('/product_admin/validate/product', {
     productName: 'productName',
     exVat: 'exVat',
     vat: 'vat',
@@ -245,15 +250,15 @@ createProduct.onclick = function () {
 */
 
 editProduct.onclick = function () {
-  axios.post('product_admin/validate/product', {
+  axios.post('/product_admin/validate/product', {
     productName: 'productName',
     exVat: 'exVat',
     vat: 'vat',
     packagingSize: {
-      length : 'length',
-      width: 'width',
-      height: 'height',
-      weight: 'weight'
+      length : 'packagingSize_length',
+      width: 'packagingSize_width',
+      height: 'packagingSize_height',
+      weight: 'packagingSize_weight'
     }
   })
   .then(function (response) {

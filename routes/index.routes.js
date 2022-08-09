@@ -70,7 +70,7 @@ function validateUser(req) { // utiliser cette fonction pour tous les paramètre
   }
   if (!req.body.email) {
     errors.push({name: 'email', message: 'email requis'})
-  } else {
+  } else { 
     if(!req.body.email.includes('@')) { // la méthode includes dois etre testée comme dépendance pour éviter une erreur si l'email n'est pas remplis
       errors.push({name: 'email', message: 'email non valide'})
     }
@@ -82,7 +82,6 @@ function validateUser(req) { // utiliser cette fonction pour tous les paramètre
       errors.push({name: 'phoneNumber', message: 'n° de téléphone non valide'})
     }
   }
-
   console.log('errors=', errors)
 
   return errors

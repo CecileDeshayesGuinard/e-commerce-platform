@@ -11,7 +11,8 @@ body {
   margin: 0px;
   padding: 0px;
   font-family: Montserrat, sans-serif;
-  color:white;
+  background-color:white;
+  color: rgba(115, 110, 110, 1);
 }
 
 nav {
@@ -27,7 +28,7 @@ nav {
 
 .nav-sides-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   width: 35%;
 }
 
@@ -56,7 +57,6 @@ nav {
 .wrapped-menu {
   display: none;
 }
-
 
 @media (max-width: 420px) {
 .unwrapped-menu {
@@ -95,28 +95,28 @@ nav {
     border-bottom-left-radius: 20px;
     transform: translateX(-0%);
     transition: transform 250ms ease-in-out;
-    }
   }
+}
 
-  @media (min-width: 1024px) {
-    .unwrapped-menu {
-      position: absolute;
-      width: 100%;
-      max-width: 25em;
-      margin-top: 18vh;
-      margin-left: 0;
-      display: flex;
-      flex-direction: column;
-      background: rgba(153,122, 26, 1);
-      border: solid;
-      border-width: .2em;
-      border-color: rgba(153,122, 26, 1);
-      border-bottom-right-radius: 20px;
-      border-bottom-left-radius: 0px;
-      transform: translateX(-0%);
-      transition: transform 250ms ease-in-out;
-      }
-    }
+@media (min-width: 1024px) {
+  .unwrapped-menu {
+    position: absolute;
+    width: 100%;
+    max-width: 25em;
+    margin-top: 18vh;
+    margin-left: 0;
+    display: flex;
+    flex-direction: column;
+    background: rgba(153,122, 26, 1);
+    border: solid;
+    border-width: .2em;
+    border-color: rgba(153,122, 26, 1);
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 0px;
+    transform: translateX(-0%);
+    transition: transform 250ms ease-in-out;
+  }
+}
 
 .unwrapped-menu ul {
   list-style-type: none;
@@ -146,16 +146,26 @@ nav {
   max-width: 140px;
 }
 
-#cartLogoSpace {
+#cartLog {
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: column;
+  justify-content: right;
 }
 
-#cart {
-  padding-right: 1em;
-  background: white;
-  width: 40%;
-  height: 40%;
+#cartLog div {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#cartLog div img {
+  width: 60%;
+  height: 60%;
+}
+
+#cartLog div a {
+  font-size: 1em;
+  color: rgba(115, 110, 110, 1);
 }
 
 #header-bottom {
@@ -177,32 +187,6 @@ nav {
   margin-right: auto;
 }
 
-#account-zone {
-  width: 100%;
-  height: 3em;
-  padding-top: .5em;
-  padding-bottom: .5em;
-  justify-content: center;
-}
-
-#account-zone button {
-  width: 35%;
-  max-width: 10em;
-  height: 5vh;
-  background-color: rgba(153,122, 26, 1);
-  border: solid;
-  border-color: rgba(153,122, 26, .8);
-  border-radius: 50px;
-  margin-inline: 1em;
-  font-size: 2vh;
-  color: white;
-  font-weight: bold;
-  box-shadow: .2em .2em .2em .2em rgba(153,122, 26, .4);
-}
-
-#account-zone button a {
-  font-size: 1em;
-}
 
 /*
 ███████╗ ██████╗  ██████╗ ████████╗███████╗██████╗ 

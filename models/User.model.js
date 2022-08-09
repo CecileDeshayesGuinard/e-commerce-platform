@@ -45,10 +45,10 @@ const userSchema = new Schema(
         required: true
       },
       streetNumber: {
-        type: Number,
+        type: String,
       },
       zipCode: {
-        type: Number,
+        type: String,
         required: true
       },
       cityName: {
