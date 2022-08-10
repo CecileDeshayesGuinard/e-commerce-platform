@@ -80,7 +80,7 @@ nav {
 .menuIcon {
   position: relative;
   width: 3.5em;
-  height: .5vh;
+  height: .4vh;
   background-color: rgba(153,122, 26, 1);
   display: inline-block;
 }
@@ -88,7 +88,7 @@ nav {
 .menuIcon::before,
 .menuIcon::after {
   width: 3.5em;
-  height: .5vh;
+  height: .4vh;
   background-color: rgba(153,122, 26, 1);
   display: inline-block;
   content: "";
@@ -314,7 +314,7 @@ align-items: center;
   cursor: pointer;
 }
 
-.button {
+.loginButton {
   display: flex;
   justify-content: center;
   width: 100%;
@@ -358,13 +358,13 @@ align-items: center;
 */
 
 #popup {
-  margin-top: 30vh;
+  margin-top: 1vh;
   display: flex;
   flex-direction: column;
-  width: 80%;
-  height: 40vh;
-  margin-left: 8.5%;
-  margin-right: 11.5%;
+  width: 50%;
+  height: 10vh;
+  margin-left: 23.5%;
+  margin-right: 26.5%;
   background-color: rgba(153,122, 26, .8);
   border-color: rgba(153,122, 26, 1);
   border-radius: 20px;
@@ -373,11 +373,11 @@ align-items: center;
   color: white;
   position: absolute;
   z-index: 8;
-  padding-bottom: 1.5em;
+  padding-bottom: 3em;
 }
 
 #popup a {
-  font-size: 3vh;
+  font-size: 1em;
   margin: .5em;
   color: white;
 }
@@ -385,7 +385,6 @@ align-items: center;
 #popup .popupSection {
   display: flex;
   flex-direction: column;
-  margin-bottom: 2vh;
 }
 
 @media (min-width: 1024px) {
@@ -411,7 +410,6 @@ align-items: center;
 }
 
 #popupContent {
-  margin-top: 1.5em;
   height: 100%;
   display: flex;
   justify-content: space-around;
@@ -420,22 +418,22 @@ align-items: center;
 #popup div .crossStyle .cross {
   margin: 0;
   padding-right: .2em;
-  font-size: 3vh;
+  font-size: 5vh;
 }
 
-.up {
-  position: fixed;
+.downPopup {
+  position: absolute;
   top: 0;
   bottom: 0;
   right: 0;
   left: 0;
   background: rgba(255, 255, 255, .8);
-  transition: opacity 0.4s;
+  transition: opacity 0.8s;
   visibility: hidden;
   opacity: 0;
 }
 
-.up:target {
+.upPopup {
   visibility: visible;
   opacity: 1;
 }
