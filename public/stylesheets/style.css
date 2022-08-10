@@ -358,7 +358,7 @@ align-items: center;
 */
 
 #popup {
-  margin-top: 8vh;
+  margin-top: 30vh;
   display: flex;
   flex-direction: column;
   width: 80%;
