@@ -16,14 +16,10 @@
         <div class="nav-sides-container" id="menu-zone" >
           <div class="menuDisplay">
             <input type="checkbox" class="checkboxAnimation" id="menuAnimation">
-
             <label for="menuAnimation" class="menuBtn">
               <span class="menuIcon">&nbsp;</span>
             </label>
-
             <div class="menuIconBackground">&nbsp;</div>
-
-
             <div class="wrapped-menu" id="menuElement">
               <div class="menuList">
                 <ul>
@@ -45,20 +41,14 @@
                 </ul>
               </div>
             </div>
-
           </div>
-          
         </div>
         <div id="logo-container">
           <img id="logo" src="/images/ciel-mon-jardin--logo.jpg" alt="ciel-mon-jardin-logo" />
         </div>
         <div id="cartLog" class="nav-sides-container">
-          <div id="accountZone">
-            <img id="loginLogo" src="/images/log.svg" alt="login">
-      <!--  <ul>
-              <li><a href="/login">Login</a></li>
-              <li><a href="/account">Mes informations</a></li>
-            </ul> -->
+          <div class="wrapped-account" id="accountZone">
+            <a href="#popup" class="button"><img id="loginLogo" src="/images/log.svg" alt="login"></a>
           </div>
           <div id="cartZone">
             <img id="cartLogo" src="/images/shopping-cart.svg" alt="panier">
@@ -67,6 +57,13 @@
       </nav>
       <div id="header-bottom">
         <div id="separator"></div>
+      </div>
+      <div id="popup" class="up">
+        <div class="popupSection" id="popupCross"><div class="crossStyle"><a href="#" class="cross">&times;</a></div></div>
+        <div class="popupSection" id="popupContent">
+          <a href="./login.hbs">Se Connecter</a>
+          <a href="./signup.hbs">Créer Mon Compte</a>
+        </div>
       </div>
     </header>
 
