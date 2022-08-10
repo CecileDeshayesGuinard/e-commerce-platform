@@ -8,30 +8,46 @@
     <title>{{appTitle}}</title>
     <link rel="stylesheet" href="../stylesheets/style.css" />
   </head>
+
   <body>
+
     <header>
       <nav>
-        <div id="menu-zone" class="nav-sides-container">
-          <img id="menuHamburger" src="/images/hamburger.svg" alt="Menu">
-          <div class="wrapped-menu">
-            <ul>
-              <li><a id="category-menu" href="#">Nos Serres</a></li>
-                <ul class="cat-hidden">
-                  <li><a href="#">Serres en Verre Trempé</a></li>
-                  <li><a href="#">Serres en Polycarbonate</a></li>
-                  <li><a href="#">Serres Adossées</a></li>
+        <div class="nav-sides-container" id="menu-zone" >
+          <div class="menuDisplay">
+            <input type="checkbox" class="checkboxAnimation" id="menuAnimation">
+
+            <label for="menuAnimation" class="menuBtn">
+              <span class="menuIcon">&nbsp;</span>
+            </label>
+
+            <div class="menuIconBackground">&nbsp;</div>
+
+
+            <div class="wrapped-menu" id="menuElement">
+              <div class="menuList">
+                <ul>
+                  <li><a class="link" id="category-menu" href="#">Nos Serres</a></li>
+                  <ul class="cat-hidden">
+                    <li><a class="link" href="#">Serres en Verre Trempé</a></li>
+                    <li><a class="link" href="#">Serres en Polycarbonate</a></li>
+                    <li><a class="link" href="#">Serres Adossées</a></li>
+                  </ul>
                 </ul>
-            </ul>
-            <ul>
-              <li><a href="#">Serres en pré-commande</a></li>
-            </ul>
-            <ul>
-              <li><a href="#">Accessoires</a></li>
-            </ul>
-            <ul>
-              <li><a href="#">Conseils</a></li>
-            </ul>
-          </div>  
+                <ul>
+                  <li><a class="link" href="#">Serres en pré-commande</a></li>
+                </ul>
+                <ul>
+                  <li><a class="link" href="#">Accessoires</a></li>
+                </ul>
+                <ul>
+                  <li><a class="link" href="#">Conseils</a></li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+          
         </div>
         <div id="logo-container">
           <img id="logo" src="/images/ciel-mon-jardin--logo.jpg" alt="ciel-mon-jardin-logo" />
@@ -53,7 +69,9 @@
         <div id="separator"></div>
       </div>
     </header>
+
     {{{body}}}
+
     <script src="/js/script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
   </body>

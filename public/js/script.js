@@ -16,9 +16,9 @@ document.addEventListener(
                                                                                                       
 */
 
-const hiddenMenu = document.querySelectorAll('#menu-zone div');
-const dropDownMenu = document.querySelector('#menuHamburger');
-const hiddenCategory = document.querySelectorAll('#menu-zone ul ul');
+const hiddenMenu = document.querySelectorAll('#menuElement');
+const dropDownMenu = document.querySelector('.menuBtn');
+const hiddenCategory = document.querySelectorAll('.menuDisplay ul ul');
 const dropDownCategory = document.querySelector('#category-menu');
 
 /*
