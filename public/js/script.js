@@ -111,15 +111,32 @@ document.body.onload = function() {
   container = document.querySelector('#carrousselCtn');
   leftBtn = document.querySelector('#leftBtn');
   rightBtn = document.querySelector('#rightBtn');
-  container.style.width(800*nbr)+"px";
+  container.style.width = (716.8*nbr)+"px";
 
   for (i=1; i<=nbr; i++) {
-    div = document.createElement ('div');
-    div.className = "image";
-    div.style.backgroundImage = "url('images/image"+i+".jpg')";
+    div = document.createElement ("div");
+    div.className = "photo";
+    div.style.backgroundImage = "url('/images/image"+i+".jpg')";
     container.appendChild(div);
   }
 }
+
+leftBtn.onclick = function() {
+  if(p>-nbr+1) {
+    p--;
+  container.style.transform = "translate("+p*716.8+"px)";
+  container.style.transition = "all 0.5s ease";
+  }
+}
+
+rightBtn.onclick = function() {
+  if(p<+nbr-1) {
+    p++;
+  container.style.transform = "translate("+p*716.8+"px)";
+  container.style.transition = "all 0.5s ease";
+  }
+}
+
 
 
 /*

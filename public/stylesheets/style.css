@@ -469,8 +469,8 @@ align-items: center;
   #carroussel {
     margin-top: 5vh;
     width: 100%;
-    height: 50vh;
-    background-color: white;
+    height: 70vh;
+    background-color: rgba(56, 111, 72, 1);
     color: white;
     position: relative;
   }
@@ -478,7 +478,6 @@ align-items: center;
   #carrousselCtn {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
     width: 100%;
     height: 100%;
   }
@@ -497,25 +496,18 @@ align-items: center;
     transform: scale(1.1);
   }
 
-  .image {
+  .photo {
     width: 100%;
-    height: auto;
+    height: 100%;
     margin: 0;
     display: inline-block;
     background-size: cover;
   }
 
-  .hilightedProd {
-    display: flex;
-    flex-direction: row;
-    justify-content: right;
-    width: 100%;
-  }
-
   .carrousselLink {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 30%;
     -webkit-clip-path: polygon(40% 0, 100% 0%, 100% 100%, 0% 100%);
     clip-path: polygon(40% 0, 100% 0%, 100% 100%, 0% 100%);
     background-color: rgba(56, 111, 72, 1);
@@ -525,7 +517,7 @@ align-items: center;
   .carrousselLink .clicked {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 30%;
     -webkit-clip-path: polygon(0 0, 100% 0%, 100% 100%, 40% 100%);
     clip-path: polygon(0 0, 100% 0%, 100% 100%, 40% 100%);
     background-color: rgba(56, 111, 72, 1);
