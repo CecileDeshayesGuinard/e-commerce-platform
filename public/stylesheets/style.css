@@ -460,7 +460,7 @@ align-items: center;
 */
 
 @media (max-width: 1023px) {
-  #carroussel {
+  .scrollSection {
     display: none;
   }
 }
@@ -550,9 +550,6 @@ align-items: center;
     margin-left: 92%;
   }
 }
-
-
-
 
 
 /*
