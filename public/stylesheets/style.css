@@ -467,10 +467,11 @@ align-items: center;
 
 @media (min-width: 421px) {
   #carroussel {
-    margin-top: 3vh;
+    margin-top: 5vh;
     width: 100%;
     height: 50vh;
-    background-color: rgba(56, 111, 72, 1);
+    background-color: white;
+    color: white;
     position: relative;
   }
 
@@ -489,6 +490,46 @@ align-items: center;
     position: absolute;
     cursor: pointer;
     margin-top: 18vh;
+    z-index: 9;
+  }
+
+  .carrousselBtn:hover {
+    transform: scale(1.1);
+  }
+
+  .image {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    display: inline-block;
+    background-size: cover;
+  }
+
+  .hilightedProd {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    width: 100%;
+  }
+
+  .carrousselLink {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    -webkit-clip-path: polygon(40% 0, 100% 0%, 100% 100%, 0% 100%);
+    clip-path: polygon(40% 0, 100% 0%, 100% 100%, 0% 100%);
+    background-color: rgba(56, 111, 72, 1);
+    z-index: 7;
+  }
+
+  .carrousselLink .clicked {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    -webkit-clip-path: polygon(0 0, 100% 0%, 100% 100%, 40% 100%);
+    clip-path: polygon(0 0, 100% 0%, 100% 100%, 40% 100%);
+    background-color: rgba(56, 111, 72, 1);
+    z-index: 7;
   }
 
   #leftBtn {
