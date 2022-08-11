@@ -1,12 +1,20 @@
-<div id="carroussel">
+<div class="carrousselSpace">
+  <div class="carrousselLink" id="leftLink">
+    <h3 {{product.title}}>Titre Produit</h3>
+    <P>Profitez de nos ventes exclusives !</P>
+    <button href={{product}}>Voir Produit</button>
+    <button href={{categories}}>Voir Categorie</button>
+  </div>
+  <div id="carroussel">
     <div id="carrousselCtn">
     </div>
     <div class="carrousselBtn" id="leftBtn">&lt;</div>
     <div class="carrousselBtn" id="rightBtn">&gt;</div>
-    <!--<div class="carrousselLink">
-      <h3 {{product.title}}>Titre Produit</h3>
-      <P>Profitez de nos ventes exclusives !</P>
-      <button href={{product}}>Voir Produit</button>
-      <button href={{categories}}>Voir Categorie</button>
-    </div> -->
+  </div>
+  <div class="carrousselLink" id="rightLink">
+    <h3 {{product.title}}>Titre Produit</h3>
+    <P>Profitez de nos ventes exclusives !</P>
+    <button href={{product}}>Voir Produit</button>
+    <button href={{categories}}>Voir Categorie</button>
+  </div>
 </div>
