@@ -438,75 +438,6 @@ align-items: center;
   opacity: 1;
 }
 
-
-
-/*
-███████╗ ██████╗  ██████╗ ████████╗███████╗██████╗ 
-██╔════╝██╔═══██╗██╔═══██╗╚══██╔══╝██╔════╝██╔══██╗
-█████╗  ██║   ██║██║   ██║   ██║   █████╗  ██████╔╝
-██╔══╝  ██║   ██║██║   ██║   ██║   ██╔══╝  ██╔══██╗
-██║     ╚██████╔╝╚██████╔╝   ██║   ███████╗██║  ██║
-╚═╝      ╚═════╝  ╚═════╝    ╚═╝   ╚══════╝╚═╝  ╚═╝                                               
-*/
-
-#footer {
-  margin-top: 7vh;
-  display: flex;
-  flex-direction: column;
-  background-color: rgba(115, 110, 110, 1);
-  height: 32vh;
-}
-
-#columnBlock {
-  display: flex;
-  flex-direction: row;
-}
-
-.footerColumn {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-}
-
-h3 {
-  font-size: 3vh;
-  margin-top: 1vh;
-  margin-bottom: 1vh;
-}
-
-h4 {
-  font-size: 2vh;
-  margin-top: .1vh;
-  margin-bottom: .1vh;
-}
-
-#leftFooterColumn h4, h3 {
-  text-align: left;
-  padding-left: 1em;
-}
-
-#rightFooterColumn h3, h4, p {
-  text-align: right;
-  padding-right: 1em;
-}
-
-#footer p {
-  font-size: 1.5vh;
-  padding-inline: 1em;
-}
-
-#credits {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-}
-
-#credits p {
-  font-size: 1.5vh;
-  font-weight: bold;
-}
-
-
 /*
 ██╗  ██╗ ██████╗ ███╗   ███╗███████╗██████╗  █████╗  ██████╗ ███████╗
 ██║  ██║██╔═══██╗████╗ ████║██╔════╝██╔══██╗██╔══██╗██╔════╝ ██╔════╝
@@ -517,29 +448,25 @@ h4 {
 */
 
 /*
-╔═╗╔═╗╔╦╗╔═╗╔═╗╔═╗╦═╗╦╔═╗╔═╗
-║  ╠═╣ ║ ║╣ ║ ╦║ ║╠╦╝║║╣ ╚═╗
-╚═╝╩ ╩ ╩ ╚═╝╚═╝╚═╝╩╚═╩╚═╝╚═╝
+╔═╗╔═╗╔╦╗╔═╗╔═╗╔═╗╦═╗╦╔═╗╔═╗    ╔═╗╔═╗╦═╗╔╦╗╦╔═╗╦  
+║  ╠═╣ ║ ║╣ ║ ╦║ ║╠╦╝║║╣ ╚═╗    ╠═╝╠═╣╠╦╝ ║ ║╠═╣║  
+╚═╝╩ ╩ ╩ ╚═╝╚═╝╚═╝╩╚═╩╚═╝╚═╝    ╩  ╩ ╩╩╚═ ╩ ╩╩ ╩╩═╝
 */
 
 #categories {
-  margin-top: 10vh;
+  margin-top: 3vh;
   width: 100%;
-  height: 30vh;
+  height: 35vh;
   display: flex;
   flex-direction: column;
 }
 
 #categories h2 {
   text-align: center;
-  height: 5vh;
-  width: 50%;
+  height: 7vh;
+  width: 100%;
   min-width: 10em;
-  margin-left: 25%;
-  margin-right: 25%;
-  padding-top: 1vh;
-  font-size: 2vh;
-  background-color: rgba(115, 110, 110, 1);
+  font-size: 5vh;
 }
 
 .categoryBlock {
@@ -583,30 +510,30 @@ h4 {
 }
 
 .categoryBlock img:hover {
-  scale: 110%;
+  scale: 105%;
   opacity: .6;
 }
 
 .categoryBlock p {
   width: 100%;
-  height: 5vh;
-  margin: 0;
+  height: 3vh;
+  margin-top: .2vh;
   font-size: .8em;
   font-weight: bold;
-  color: rgba(56, 111, 72, 1);
+  color: rgba(153,122, 26, 1);
   text-align: center;
 }
 
 /*
-╔═╗╦═╗╔═╗╔╦╗╦ ╦╔═╗╔╦╗╔═╗
-╠═╝╠╦╝║ ║ ║║║ ║║   ║ ╚═╗
-╩  ╩╚═╚═╝═╩╝╚═╝╚═╝ ╩ ╚═╝
+╔═╗╦═╗╔═╗╔╦╗╦ ╦╔═╗╔╦╗  ╔═╗╔═╗╦═╗╔╦╗╦╔═╗╦  
+╠═╝╠╦╝║ ║ ║║║ ║║   ║   ╠═╝╠═╣╠╦╝ ║ ║╠═╣║  
+╩  ╩╚═╚═╝═╩╝╚═╝╚═╝ ╩   ╩  ╩ ╩╩╚═ ╩ ╩╩ ╩╩═╝
 */
 
 @media (max-width: 420px) {
 
   #products {
-    margin-top: 5vh;
+    margin-top: 3vh;
     width: 100%;
     height: 120vh;
     display: flex;
@@ -614,7 +541,7 @@ h4 {
   }
 
   #productZone {
-    padding-top: 5vh;
+    padding-top: 3vh;
     display: flex;
     flex-wrap: wrap;
     height: 100%;
@@ -624,14 +551,13 @@ h4 {
 
   #products h2 {
     text-align: center;
-    height: 5vh;
+    height: 7vh;
     width: 50%;
     min-width: 10em;
     margin-left: 25%;
     margin-right: 25%;
     padding-top: 1vh;
-    font-size: 2vh;
-    background-color: rgba(115, 110, 110, 1);
+    font-size: 5vh;
     }
 
   .product {
@@ -1114,3 +1040,67 @@ button {
   justify-content: center;
 }
 
+
+/*
+███████╗ ██████╗  ██████╗ ████████╗███████╗██████╗ 
+██╔════╝██╔═══██╗██╔═══██╗╚══██╔══╝██╔════╝██╔══██╗
+█████╗  ██║   ██║██║   ██║   ██║   █████╗  ██████╔╝
+██╔══╝  ██║   ██║██║   ██║   ██║   ██╔══╝  ██╔══██╗
+██║     ╚██████╔╝╚██████╔╝   ██║   ███████╗██║  ██║
+╚═╝      ╚═════╝  ╚═════╝    ╚═╝   ╚══════╝╚═╝  ╚═╝                                               
+*/
+
+#footer {
+  margin-top: 7vh;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(115, 110, 110, 1);
+  height: 32vh;
+}
+
+#columnBlock {
+  display: flex;
+  flex-direction: row;
+}
+
+.footerColumn {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+h3 {
+  font-size: 3vh;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+}
+
+h4 {
+  font-size: 2vh;
+  margin-top: .1vh;
+  margin-bottom: .1vh;
+}
+
+#leftFooterColumn h4, h3 {
+  text-align: left;
+}
+
+#rightFooterColumn h3, h4, p {
+  text-align: right;
+}
+
+#footer p {
+  font-size: 1.5vh;
+  padding-inline: 1em;
+}
+
+#credits {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+#credits p {
+  font-size: 1.5vh;
+  font-weight: bold;
+}
