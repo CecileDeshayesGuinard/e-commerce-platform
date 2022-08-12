@@ -124,7 +124,7 @@ document.body.onload = function() {
   container = document.querySelector('#carrousel');
   leftBtn = document.querySelector('#leftBtn');
   rightBtn = document.querySelector('#rightBtn');
-  container.style.width = (716.8*nbr)+"px";
+  container.style.width = (1280*nbr)+"px";
 
   for (i=1; i<=nbr; i++) {
     div = document.createElement ("div");
@@ -137,7 +137,7 @@ document.body.onload = function() {
 leftBtn.onclick = function() {
   if(depPoint > -nbr+1) {
     depPoint--;
-    container.style.transform = "translate("+depPoint*716.8+"px)";
+    container.style.transform = "translate("+depPoint*1280+"px)";
     container.style.transition = "all 0.5s ease";
     btnVisibility()
   }
@@ -146,7 +146,7 @@ leftBtn.onclick = function() {
 rightBtn.onclick = function() {
   if(depPoint < 0) {
     depPoint++;
-    container.style.transform = "translate("+depPoint*716.8+"px)";
+    container.style.transform = "translate("+depPoint*1280+"px)";
     container.style.transition = "all 0.5s ease";
     btnVisibility()
   }
