@@ -7,6 +7,7 @@
 ╚══════╝╚═╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝ ╚═╝                                            
 */
 
+
 const typeOfCustomer = document.querySelector('#typeOfCustomer');
 const companyProfile = document.querySelector('#companyProfile');
 const userProfile = document.querySelector('#userProfile');
@@ -16,11 +17,13 @@ const security = document.querySelector('#security');
 const individualButton = document.querySelector('#individual');
 const companyButton = document.querySelector('#company');
 
+
 /*
 ╔╦╗╦ ╦╔═╗╔═╗  ╔═╗╔═╗  ╔═╗╦ ╦╔═╗╔╦╗╔═╗╔╦╗╔═╗╦═╗
  ║ ╚╦╝╠═╝║╣   ║ ║╠╣   ║  ║ ║╚═╗ ║ ║ ║║║║║╣ ╠╦╝
  ╩  ╩ ╩  ╚═╝  ╚═╝╚    ╚═╝╚═╝╚═╝ ╩ ╚═╝╩ ╩╚═╝╩╚═
 */
+
 
 individualButton.onclick = function () {
   typeOfCustomer.classList.add('hidden-block');
@@ -32,11 +35,13 @@ companyButton.onclick = function () {
   companyProfile.classList.remove('hidden-block');
 }
 
+
 /*
 ╔═╗╔═╗╔╦╗╔═╗╔═╗╔╗╔╦ ╦
 ║  ║ ║║║║╠═╝╠═╣║║║╚╦╝
 ╚═╝╚═╝╩ ╩╩  ╩ ╩╝╚╝ ╩ 
 */
+
 
 continueCompany.onclick = function () {
   companyProfile.classList.add('hidden-block');
@@ -48,11 +53,13 @@ previousCompany.onclick = function () {
   typeOfCustomer.classList.remove('hidden-block');
 }
 
+
 /*
 ╦ ╦╔═╗╔═╗╦═╗
 ║ ║╚═╗║╣ ╠╦╝
 ╚═╝╚═╝╚═╝╩╚═
 */
+
 
 continueUser.onclick = function () {
   userProfile.classList.add('hidden-block');
@@ -77,11 +84,13 @@ previousUser.onclick = function () {
   typeOfCustomer.classList.remove('hidden-block');
 }
 
+
 /*
 ╔╗ ╦╦  ╦  ╦╔╗╔╔═╗  ╔═╗╔╦╗╦═╗╔═╗╔═╗╔═╗
 ╠╩╗║║  ║  ║║║║║ ╦  ╠═╣ ║║╠╦╝║╣ ╚═╗╚═╗
 ╚═╝╩╩═╝╩═╝╩╝╚╝╚═╝  ╩ ╩═╩╝╩╚═╚═╝╚═╝╚═╝
 */
+
 
 continueAdress.onclick = function () {
   billingAdress.classList.add('hidden-block');
@@ -112,6 +121,7 @@ previousAdress.onclick = function () {
 ╚═╗║╣ ║  ║ ║╠╦╝║ ║ ╚╦╝
 ╚═╝╚═╝╚═╝╚═╝╩╚═╩ ╩  ╩ 
 */
+
 
 registration.onclick = function () {
   security.classList.add('hidden-block');

@@ -8,11 +8,11 @@
 */
 
 
-nbr = 5;
-depPoint = 0;
-container = document.querySelector('#carrousel');
-leftBtn = document.querySelector('#leftBtn');
-rightBtn = document.querySelector('#rightBtn');
+const nbr = 5;
+const depPoint = 0;
+const container = document.querySelector('#carrousel');
+const leftBtn = document.querySelector('#leftBtn');
+const rightBtn = document.querySelector('#rightBtn');
 container.style.width = (1280*nbr)+"px";
 
 function btnVisibility() {

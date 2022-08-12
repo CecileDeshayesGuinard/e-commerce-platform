@@ -12,11 +12,13 @@ const createProduct = document.querySelector ('#createProduct');
 const editProduct  = document.querySelector ('#editProduct');
 const deleteProduct = document.querySelector ('#deleteProduct');
 
+
 /*
 ╔═╗╦═╗╔═╗╔═╗╔╦╗╔═╗
 ║  ╠╦╝║╣ ╠═╣ ║ ║╣ 
 ╚═╝╩╚═╚═╝╩ ╩ ╩ ╚═╝
 */
+
 
 createProduct.onclick = function () {
   axios.post('/product_admin/validate/product', {
@@ -38,11 +40,13 @@ createProduct.onclick = function () {
   });
 }
 
+
 /*
 ╔═╗╔╦╗╦╔╦╗
 ║╣  ║║║ ║ 
 ╚═╝═╩╝╩ ╩ 
 */
+
 
 editProduct.onclick = function () {
   axios.post('/product_admin/validate/product', {
@@ -71,6 +75,7 @@ editProduct.onclick = function () {
 ╩ ╩╚═╝╩═╝╩ ╩╩  ╩═╝╚═╝  ╩  ╩ ╩╚═╝ ╩ ╚═╝╚═╝  ╩ ╩╩ ╩╝╚╝╩ ╩╚═╝╚═╝╩ ╩╚═╝╝╚╝ ╩ 
 */
 
+
 const otherPhotosInput = document.querySelector('#otherPhotos');
 
 input.addEventListener('change', (e) => {
@@ -88,6 +93,7 @@ input.addEventListener('change', (e) => {
 ║║║╠═╣╠╦╝║ ╦║║║║  ║║║╠═╣║║║╠═╣║ ╦║╣ ║║║║╣ ║║║ ║ 
 ╩ ╩╩ ╩╩╚═╚═╝╩╝╚╝  ╩ ╩╩ ╩╝╚╝╩ ╩╚═╝╚═╝╩ ╩╚═╝╝╚╝ ╩ 
 */
+
 
 /*const productMargin = document.querySelector ('#margin');
 const costOfProduct = document.querySelector ('#costOfProduct');
