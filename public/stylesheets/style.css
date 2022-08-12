@@ -237,14 +237,15 @@ nav {
 ╩═╝╚═╝╚═╝╚═╝  ╚═╝╚═╝╝╚╝╚═╝
 */
 
-#logo-container {
-  align-items: center;
+#logo-container a {
+  display: flex;
+  justify-content: space-around;
 }
 
 #logo {
   width: 80%;
   height: auto;
-  max-width: 140px;
+  max-width: 200px;
   z-index: 10;
 }
 
@@ -454,9 +455,9 @@ align-items: center;
 */
 
 /*
-╔═╗╔═╗╦═╗╦═╗╔═╗╦ ╦╔═╗╔═╗╔═╗╦    ╔═╗╔═╗╦═╗╔╦╗╦╔═╗╦  
-║  ╠═╣╠╦╝╠╦╝║ ║║ ║╚═╗╚═╗║╣ ║    ╠═╝╠═╣╠╦╝ ║ ║╠═╣║  
-╚═╝╩ ╩╩╚═╩╚═╚═╝╚═╝╚═╝╚═╝╚═╝╩═╝  ╩  ╩ ╩╩╚═ ╩ ╩╩ ╩╩═╝
+╔═╗╔═╗╦═╗╦═╗╔═╗╦ ╦╔═╗╔═╗╦    ╔═╗╔═╗╦═╗╔╦╗╦╔═╗╦  
+║  ╠═╣╠╦╝╠╦╝║ ║║ ║╚═╗║╣ ║    ╠═╝╠═╣╠╦╝ ║ ║╠═╣║  
+╚═╝╩ ╩╩╚═╩╚═╚═╝╚═╝╚═╝╚═╝╩═╝  ╩  ╩ ╩╩╚═ ╩ ╩╩ ╩╩═╝
 */
 
 @media (max-width: 1023px) {
@@ -471,7 +472,7 @@ align-items: center;
     flex-direction: row;
     width: 100%;
     height: 640px;
-    margin-top: 8vh;
+    margin-top: 15vh;
   }
   
   .carrouselSpace {
@@ -594,7 +595,7 @@ align-items: center;
 */
 
 #categories {
-  margin-top: 2vh;
+  margin-top: 10vh;
   width: 100%;
   height: 35vh;
   display: flex;
@@ -673,7 +674,7 @@ align-items: center;
 @media (max-width: 420px) {
 
   #products {
-    margin-top: 2vh;
+    margin-top: 10vh;
     width: 100%;
     height: 120vh;
     display: flex;
@@ -864,6 +865,7 @@ a {
   border-color: rgba(153,122, 26, .8);
   margin-inline: 2em;
   box-shadow: .2em .2em .2em .2em rgba(153,122, 26, .4);
+  cursor: pointer;
 }
 
 .hidden-block {
@@ -885,6 +887,7 @@ a {
   border-color: rgba(153,122, 26, .8);
   margin-inline: 2em;
   box-shadow: .2em .2em .2em .2em rgba(153,122, 26, .4);
+  cursor: pointer;
 }
 
 button {

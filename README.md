@@ -136,6 +136,13 @@ TO DO LOT 2
 
 
 
+Conditions CSS
+-------
+
++ Carrousel : image en 1024px ou inférieur avec hauteur deux fois moindre (height = width / 2)
+
+
+
 
 
 
