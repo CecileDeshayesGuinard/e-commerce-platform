@@ -1147,12 +1147,12 @@ button {
 .product_adminColumn .elementBlock input {
   min-width: 20em;
   min-height: 5vh;
-  background-color: rgba(48, 48, 48, 1);
+  background-color: rgba(115, 110, 110, 1);
   border: solid;
-  border-color: rgba(48, 48, 48, .8);
+  border-color: rgba(115, 110, 110, .8);
   color: white;
   font-weight: bold;
-  box-shadow: .2em .2em .2em .2em rgba(48, 48, 48, .4);
+  box-shadow: .2em .2em .2em .2em rgba(115, 110, 110, .4);
   font-size: 1em;
   text-align: center;
   color: rgba(255, 255, 255, .4);
@@ -1199,22 +1199,24 @@ button {
 */
 
 #footer {
-  margin-top: 7vh;
+  margin-top: 13vh;
   display: flex;
   flex-direction: column;
   background-color: rgba(48, 48, 48, 1);
   height: 32vh;
+  color: white;
 }
 
 #columnBlock {
   display: flex;
   flex-direction: row;
+  justify-content: space-around;
 }
 
 .footerColumn {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 45%;
 }
 
 h3 {
@@ -1239,7 +1241,6 @@ h4 {
 
 #footer p {
   font-size: 1.5vh;
-  padding-inline: 1em;
 }
 
 #credits {

@@ -78,7 +78,7 @@ editProduct.onclick = function () {
 
 const otherPhotosInput = document.querySelector('#otherPhotos');
 
-input.addEventListener('change', (e) => {
+otherPhotosInput.addEventListener('change', (e) => {
     const files = otherPhotosInput.files;
 
     if (files.length > 3) {
