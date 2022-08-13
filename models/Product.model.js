@@ -31,7 +31,7 @@ const productSchema = new Schema(
       }
     },
     materials: [{
-      type: String
+      type: Array
     }],
     productSize: {
       productSize_length: {
@@ -79,10 +79,9 @@ const productSchema = new Schema(
     },
     mainPhoto: {
       type: String, // url
-      required: true
     },
     otherPhotos: [{
-      type: String
+      type: Array
     }], // urls
     stock: {
       type: Number // has to be edited after each order

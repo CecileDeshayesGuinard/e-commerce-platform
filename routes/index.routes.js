@@ -347,7 +347,7 @@ router.post('/product_admin', (req, res, next) => {
   const category = req.body.category
 
 
-  const errors = (validateProduct(req));
+  const errors = validateProduct(req);
 
   if (errors.length === 0) {
     Product.findOne({productName : productName}) // on recherche le produit pour savoir d'il existe déjà
@@ -451,7 +451,7 @@ router.get('/product_admin/:id/edit',(req,res,next)=>{
 
 router.post('/product_admin/:id/edit',(req,res,next)=>{
 
-  const errors = (validateProduct(req));
+  const errors = validateProduct(req);
 
   if (errors.length === 0) {
     Product.findByIdAndUpdate(req.params.id,{
