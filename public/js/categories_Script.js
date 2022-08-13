@@ -20,7 +20,28 @@ const deleteCategory = document.querySelector ('#deleteCategory');
 
 
 createCategory.onclick = function () {
-  axios.post('/product_admin/validate/categories', {
+  axios.post('/categories_admin/validate/category', {
+    categoryName: 'categoryName',
+    categoryDescription: 'categoryDescription',
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+}
+
+
+/*
+╔═╗╔╦╗╦╔╦╗
+║╣  ║║║ ║ 
+╚═╝═╩╝╩ ╩ 
+*/
+
+
+editCategory.onclick = function () {
+  axios.post('/categories_admin/validate/category', {
     categoryName: 'categoryName',
     categoryDescription: 'categoryDescription',
   })
