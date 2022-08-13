@@ -143,6 +143,17 @@ Conditions CSS
 
 
 
+Erreurs résolues :
+-------
+
++ enctype="multipart/form-data" : avec la méthode de la form, ceci empeche la valeur de l'input, d'être chargée
+
+
+Erreurs pas résolues :
+-------
+
++ Info enregistrées depuis le select de product_admin (aucune valeur)
++ Photos poussées dans Mongo DB // pas url
 
 
 

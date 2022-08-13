@@ -408,8 +408,8 @@ router.post('/product_admin', (req, res, next) => {
 DELETE PRODUCT
 */
 
-router.get('/product_admin/:id', (req, res, next) => {
-  Product.findById(req.params.id)
+router.get('/product_admin/:productName', (req, res, next) => {
+  Product.findById(req.params.productName)
   .then(function (productFromDB) {
     console.log("productFromDB=", productFromDB);
     res.render("product", { product: productFromDB, });
@@ -420,8 +420,8 @@ router.get('/product_admin/:id', (req, res, next) => {
   });
 })
 
-router.post('/product_admin/:id/delete',(req,res,next)=>{
-  Product.findByIdAndRemove(req.params.id)
+router.post('/product_admin/:productName/delete',(req,res,next)=>{
+  Product.findByIdAndRemove(req.params.productName)
   .then(()=> {
     console.log('product deleted')
     res.redirect('/product_admin')
@@ -437,8 +437,8 @@ router.post('/product_admin/:id/delete',(req,res,next)=>{
 EDIT PRODUCT
 */
 
-router.get('/product_admin/:id/edit',(req,res,next)=>{
-  Product.findById(req.params.id)
+router.get('/product_admin/:productName/edit',(req,res,next)=>{
+  Product.findById(req.params.productName)
   .then((productFromDB)=>{
       console.log(productFromDB)
       res.render('product/edit',{product: productFromDB})
@@ -454,7 +454,7 @@ router.post('/product_admin/:id/edit',(req,res,next)=>{
   const errors = validateProduct(req);
 
   if (errors.length === 0) {
-    Product.findByIdAndUpdate(req.params.id,{
+    Product.findByIdAndUpdate(req.params.productName,{
       productName: productName,
       productDescription: productDescription,
       productCost: productCost,
@@ -488,7 +488,7 @@ router.post('/product_admin/:id/edit',(req,res,next)=>{
     },
     {new:true})
     .then((productFromDB)=>{
-      res.redirect(`/product/${productFromDB._id}`)
+      res.redirect(`/product/${productFromDB.productName}`)
     })
     .catch((err)=>{
       console.log('error editing product',err)
@@ -496,6 +496,9 @@ router.post('/product_admin/:id/edit',(req,res,next)=>{
     })
   } 
 })
+
+
+
 
 router.post('/product_admin', fileUploader.single('mainPhoto'), (req, res) => {
   const { title, description } = req.body;
@@ -608,7 +611,7 @@ DELETE CATEGORY
 */
 
 router.get('/categories_admin/:id', (req, res, next) => {
-  Category.findById(req.params.id)
+  Category.findBycategoryName(req.params.categoryName)
   .then(function (categoryFromDB) {
     console.log("categoryFromDB=", categoryFromDB);
     res.render("category", { category: categoryFromDB, });
@@ -620,7 +623,7 @@ router.get('/categories_admin/:id', (req, res, next) => {
 })
 
 router.post('/categories_admin/:id/delete',(req,res,next)=>{
-  Category.findByIdAndRemove(req.params.id)
+  Category.findBycategoryNameAndRemove(req.params.categoryName)
   .then(()=> {
     console.log('category deleted')
     res.redirect('/categories_admin')
@@ -637,7 +640,7 @@ EDIT CATEGORY
 */
 
 router.get('/categories_admin/:id/edit',(req,res,next)=>{
-  Category.findById(req.params.id)
+  Category.findBycategoryName(req.params.categoryName)
   .then((categoryFromDB)=>{
       console.log(categoryFromDB)
       res.render('categories/edit',{category: categoryFromDB})
@@ -657,8 +660,8 @@ router.get('/categories_admin/:id/edit',(req,res,next)=>{
 })
 
 router.post('/categories_admin/:id/edit',(req,res,next)=>{
-  Category.findByIdAndUpdate(req.params.id,{
-    categoyName: categoryName,
+  Category.findBycategoryNameAndUpdate(req.params.productName,{
+    categoryName: categoryName,
     categoryDescription: categoryDescription
   },
   {new:true})

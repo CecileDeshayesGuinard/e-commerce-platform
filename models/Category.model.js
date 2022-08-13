@@ -14,8 +14,11 @@ const categorySchema = new Schema(
     categoryDescription: {
       type: String,
     },
+    categoryPhoto: {
+      type: String
+    },
     productGroup: [{
-      type : String
+      type : Array
     }]
     
 },
