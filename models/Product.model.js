@@ -34,39 +34,39 @@ const productSchema = new Schema(
       type: String
     }],
     productSize: {
-      length: {
+      productSize_length: {
         type: Number,
       },
-      width: {
+      productSize_width: {
         type: Number,
       },
-      height: {
+      productSize_height: {
         type: Number,
       },
-      thickness: {
+      productSize_thickness: {
         type: Number,
       },
-      surface: {
+      productSize_surface: {
         type: Number,
       },
-      weight: {
+      productSize_weight: {
         type: Number,
       }
     },
     packagingSize: {
-      length: {
+      packagingSize_length: {
         type: Number,
         required: true
       },
-      width: {
+      packagingSize_width: {
         type: Number,
         required: true
       },
-      height: {
+      packagingSize_height: {
         type: Number,
         required: true
       },
-      weight: {
+      packagingSize_weight: {
           type: Number,
           required: true
         },

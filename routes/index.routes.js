@@ -328,16 +328,16 @@ router.post('/product_admin', (req, res, next) => {
   const vat = req.body.vat
   const discount = req.body.discount
   const materials = req.body.materials
-  const productLength = req.body.productSize_length
-  const productWidth = req.body.productSize_width
-  const productHeight = req.body.productSize_height
-  const productThickness = req.body.productSize_productThickness
-  const productSurface = req.body.productSize_surface
-  const productWeight = req.body.productSize_weight
-  const packagingLength = req.body.packagingSize_length
-  const packagingWidth = req.body.packagingSize_width
-  const packagingHeight = req.body.packagingSize_height
-  const packagingWeight = req.body.packagingSize_weight
+  const productSize_length = req.body.productSize_length
+  const productSize_width = req.body.productSize_width
+  const productSize_height = req.body.productSize_height
+  const productSize_thickness = req.body.productSize_thickness
+  const productSize_surface = req.body.productSize_surface
+  const productSize_weight = req.body.productSize_weight
+  const packagingSize_length = req.body.packagingSize_length
+  const packagingSize_width = req.body.packagingSize_width
+  const packagingSize_height = req.body.packagingSize_height
+  const packagingSize_weight = req.body.packagingSize_weight
   const stock = req.body.stock
   const color = req.body.color
   const brand = req.body.brand
@@ -368,18 +368,18 @@ router.post('/product_admin', (req, res, next) => {
           },
           materials: [{materials}],
           productSize: {
-            length: productLength,
-            width: productWidth,
-            height: productHeight,
-            thickness: productThickness,
-            surface: productSurface,
-            weight: productWeight
+            productSize_length: productSize_length,
+            productSize_width: productSize_width,
+            productSize_height: productSize_height,
+            productSize_thickness: productSize_thickness,
+            productSize_surface: productSize_surface,
+            productSize_weight: productSize_weight
           },
           packagingSize: {
-            length: packagingLength,
-            width: packagingWidth,
-            height: packagingHeight,
-            weight: packagingWeight
+            packagingSize_length: packagingSize_length,
+            packagingSize_width: packagingSize_width,
+            packagingSize_height: packagingSize_height,
+            packagingSize_weight: packagingSize_weight
           },
           color: color,
           brand: brand,

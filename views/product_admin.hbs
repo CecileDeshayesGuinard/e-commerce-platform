@@ -1,70 +1,70 @@
 <form id="product_admin" method="post" enctype="multipart/form-data">
   <div id="product_adminLeft" class="product_adminColumn">
     <div id="productInfo" class="elementBlock">
-      <input id="productName" name="productName" type="text" placeholder="Titre Produit">
-      <input id="productDescription" name="productDescription" type="text" placeholder="Description du produit">
+      <input name="productName" type="text" placeholder="Titre Produit"/>
+      <input name="productDescription" type="text" placeholder="Description du produit"/>
     </div>
     <div id="amountManagement" class="elementBlock">
       <div id="exVatZone">
-        <input id="productCost" name="productCost" type="number" step="0.01" placeholder="Coutant HT">
-        <input id="exVat" name="exVat" type="number" step="0.01" placeholder="Prix HT"> <!-- fonction de l'attribut marge ci-dessous -->
-        <input id="margin" name="margin" type="number" step="0.01" placeholder="Marge réelle ou relative"> <!-- condition js si présence de % -->
+        <input name="productCost" type="number" placeholder="Coutant HT"/>
+        <input name="exVat" type="number" placeholder="Prix HT"/> <!-- fonction de l'attribut marge ci-dessous -->
+        <input name="margin" type="number" placeholder="Marge réelle ou relative"/> <!-- condition js si présence de % -->
       </div>
       <div id="vatZone" class="elementBlock">
         <p>Prix TTC<span id="taxedPrice">0</span></p>
-        <input id="vat" name="vat" type="number" step="0.01" placeholder="Taux de TVA">
+        <input name="vat" type="number" placeholder="Taux de TVA"/>
       </div>
       <div id="discountZone">
-        <input id="discount" name="discount" type="number" step="0.01" placeholder="Remise"> <!-- condition js si présence de % -->
+        <input name="discount" type="number" placeholder="Remise"/> <!-- condition js si présence de % -->
       </div>
     </div>
     <div id"materialZone" class="elementBlock">
-      <input id="material1" name="materials" type="text" placeholder="Matériau">
-      <input id="material2" name="materials" type="text" placeholder="Matériau">
-      <input id="material3" name="materials" type="text" placeholder="Matériau">
-      <input id="material4" name="materials" type="text" placeholder="Matériau">
+      <input name="materials" type="text" placeholder="Matériau"/>
+      <input name="materials" type="text" placeholder="Matériau"/>
+      <input name="materials" type="text" placeholder="Matériau"/>
+      <input name="materials" type="text" placeholder="Matériau"/>
     </div>
     <div id="sizeZone" class="elementBlock">
       <div id="productSize">
-        <input id="productSize_length" name="productSize_length" type="number" step="0.01" placeholder="Longueur Produit en cm">
-        <input id="productSize_width" name="productSize_width" type="number" step="0.01" placeholder="Largeur Produit en cm">
-        <input id="productSize_height" name="productSize_height" type="number" step="0.01" placeholder="Hauteur Produit en cm">
-        <input id="productSize_thickness" name="productSize_thickness" type="number" step="0.01" placeholder="Epaisseur Produit en cm">
-        <input id="productSize_surface" name="productSize_surface" type="number" step="0.01" placeholder="Surface Couverte par le Produit">
-        <input id="productSize_weight" name="productSize_weight" type="number" step="0.01" placeholder="Poids Produit en cm">
+        <input name="productSize_length" type="number" placeholder="Longueur Produit en cm"/>
+        <input name="productSize_width" type="number" placeholder="Largeur Produit en cm"/>
+        <input name="productSize_height" type="number" placeholder="Hauteur Produit en cm"/>
+        <input name="productSize_thickness" type="number" placeholder="Epaisseur Produit en cm"/>
+        <input name="productSize_surface" type="number" placeholder="Surface Couverte par le Produit"/>
+        <input name="productSize_weight" type="number" placeholder="Poids Produit en cm"/>
       </div>
       <div id="logisticZone" class="elementBlock">
         <div id="packagingSize">
-          <input id="packagingSize_length" name="packagingSize_length" type="number" step="0.01" placeholder="Longueur Carton en cm">
-          <input id="packagingSize_width" name="packagingSize_width" type="number" step="0.01" placeholder="Largeur Carton en cm">
-          <input id="packagingSize_height" name="packagingSize_height" type="number" step="0.01" placeholder="Hauteur Carton en cm">
-          <input id="packagingSize_weight" name="packagingSize_weight" type="number" step="0.01" placeholder="Poids Carton en cm">
+          <input name="packagingSize_length" type="number" placeholder="Longueur Carton en cm"/>
+          <input name="packagingSize_width" type="number" placeholder="Largeur Carton en cm"/>
+          <input name="packagingSize_height" type="number" placeholder="Hauteur Carton en cm"/>
+          <input name="packagingSize_weight" type="number" placeholder="Poids Carton en cm"/>
         </div>
         <div id="stockLevel" class="elementBlock">
-          <input id=""stock name="stock" type="number" step="1" placeholder="Stock Produit">
+          <input name="stock" type="number" placeholder="Stock Produit"/>
         </div>
       </div>
     </div>
   </div>
   <div id="product_adminRight" class="product_adminColumn">
     <div id="qualification" class="elementBlock">
-      <input id="productColor" name="color" type="text" placeholder="Couleur Produit">
-      <input id="productBrand" name="brand" type="text" placeholder="Marque">
+      <input name="color" type="text" placeholder="Couleur Produit"/>
+      <input name="brand" type="text" placeholder="Marque"/>
     </div>
     <div id="graphicElem" class="elementBlock"> 
       <div>
         <p>Photo Principale</p>
         <label for="mainPhoto">Photo Principale</label>
         <img src="">
-        <input type="file" id="mainPhoto" name="mainPhoto" accept=".jpg, .jpeg, .png">  
+        <input type="file" name="mainPhoto" accept=".jpg, .jpeg, .png"/>  
       </div>
       <div>
         <label for="otherPhotos">Autres Photos</label>
-        <input type="file" id="otherPhotos" name="otherPhotos" accept=".jpg, .jpeg, .png" multiple>
+        <input type="file" name="otherPhotos" accept=".jpg, .jpeg, .png" multiple/>
       </div>
       <div>
         <label for="notice">Notice</label>
-        <input name="notice" type="file" id="notice" accept=".pdf">
+        <input name="notice" type="file" accept=".pdf"/>
       </div>
     </div>  
     <div class="elementBlock">

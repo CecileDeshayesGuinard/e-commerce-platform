@@ -25,12 +25,10 @@ createProduct.onclick = function () {
     productName: 'productName',
     exVat: 'exVat',
     vat: 'vat',
-    packagingSize: {
-      length : 'packagingSize_length',
-      width: 'packagingSize_width',
-      height: 'packagingSize_height',
-      weight: 'packagingSize_weight'
-    }
+    packagingSize_length: 'packagingSize_length',
+    packagingSize_width: 'packagingSize_width',
+    packagingSize_height: 'packagingSize_height',
+    packagingSize_weight: 'packagingSize_weight'
   })
   .then(function (response) {
     console.log(response);
@@ -53,12 +51,10 @@ editProduct.onclick = function () {
     productName: 'productName',
     exVat: 'exVat',
     vat: 'vat',
-    packagingSize: {
-      length : 'packagingSize_length',
-      width: 'packagingSize_width',
-      height: 'packagingSize_height',
-      weight: 'packagingSize_weight'
-    }
+    packagingSize_length: 'packagingSize_length',
+    packagingSize_width: 'packagingSize_width',
+    packagingSize_height: 'packagingSize_height',
+    packagingSize_weight: 'packagingSize_weight'
   })
   .then(function (response) {
     console.log(response);
