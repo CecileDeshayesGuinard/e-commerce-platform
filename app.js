@@ -64,6 +64,18 @@ app.use("/product_admin", product_admin);
   res.render('product_admin', data);
 })*/
 
+const product_adminList = require("./routes/index.routes");
+app.use("/product_admin/list", product_adminList);
+
+const product_adminEdit = require("./routes/index.routes");
+app.use("/product_admin/:id/edit", product_adminEdit);
+
+const categories_adminList = require("./routes/index.routes");
+app.use("/categories_admin/list", categories_adminList);
+
+const categories_adminEdit = require("./routes/index.routes");
+app.use("/categories_admin/:id/edit", categories_adminEdit);
+
 // bcrpytjs
 
 const bcrypt = require('bcryptjs');

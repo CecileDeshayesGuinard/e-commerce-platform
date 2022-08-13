@@ -1,0 +1,91 @@
+<h2>Editer le Produit: {{product.productName}}</h2>
+ 
+<form action="/product_admin/product/{{product.id}}/edit" method="post">
+  <div id="product_adminLeft" class="product_adminColumn">
+    <div id="productInfo" class="elementBlock">
+      <input name="productName" type="text" value="{{product.productName}}"/>
+      <input name="productDescription" type="text" value="{{product.productDescription}}"/>
+    </div>
+    <div id="amountManagement" class="elementBlock">
+      <div id="exVatZone">
+        <input name="productCost" type="number" value="{{product.productCost}}"/>
+        <input name="exVat" type="number" value="{{product.exVat}}"/> <!-- fonction de l'attribut marge ci-dessous -->
+        <input name="margin" type="number" value="{{product.margin}}"/> <!-- condition js si présence de % -->
+      </div>
+      <div id="vatZone" class="elementBlock">
+        <p>Prix TTC<span id="taxedPrice">0</span></p>
+        <input name="vat" type="number" value="{{product.vat}}"/>
+      </div>
+      <div id="discountZone">
+        <input name="discount" type="number" value="{{product.discount}}"/> <!-- condition js si présence de % -->
+      </div>
+    </div>
+    <div id"materialZone" class="elementBlock">
+      <input name="materials" type="text" value="{{product.materials[0]}}"/>
+      <input name="materials" type="text" value="{{product.materials[1]}}"/>
+      <input name="materials" type="text" value="{{product.materials[2]}}"/>
+      <input name="materials" type="text" value="{{product.materials[3]}}"/>
+    </div>
+    <div id="sizeZone" class="elementBlock">
+      <div id="productSize">
+        <input name="productSize_length" type="number" value="{{product.productSize_length}}"/>
+        <input name="productSize_width" type="number" value="{{product.productSize_width}}"/>
+        <input name="productSize_height" type="number" value="{{product.productSize_height}}"/>
+        <input name="productSize_thickness" type="number" value="{{product.productSize_thickness}}"/>
+        <input name="productSize_surface" type="number" value="{{product.productSize_surface}}"/>
+        <input name="productSize_weight" type="number" value="{{product.productSize_weight}}"/>
+      </div>
+      <div id="logisticZone" class="elementBlock">
+        <div id="packagingSize">
+          <input name="packagingSize_length" type="number" value="{{product.packagingSize_length}}"/>
+          <input name="packagingSize_width" type="number" value="{{product.packagingSize_width}}"/>
+          <input name="packagingSize_height" type="number" value="{{product.packagingSize_height}}"/>
+          <input name="packagingSize_weight" type="number" value="{{product.packagingSize_weight}}"/>
+        </div>
+        <div id="stockLevel" class="elementBlock">
+          <input name="stock" type="number" value="{{product.stock}}"/>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="product_adminRight" class="product_adminColumn">
+    <div id="qualification" class="elementBlock">
+      <input name="color" type="text" value="{{product.color}}"/>
+      <input name="brand" type="text" value="{{product.brand}}"/>
+    </div>
+    <div id="graphicElem" class="elementBlock"> 
+      <div>
+        <p>Photo Principale</p>
+        <label for="mainPhoto">Photo Principale</label>
+        <img src="{{product.mainPhoto}}">
+        <input type="file" name="mainPhoto" accept=".jpg, .jpeg, .png"/>  
+      </div>
+      <div>
+        <label for="otherPhotos">Autres Photos</label>
+        <img src="{{product.otherPhotos[0]}}"><img src="{{product.otherPhotos[1]}}"><img src="{{product.otherPhotos[2]}}">
+        <input type="file" name="otherPhotos" accept=".jpg, .jpeg, .png" multiple/>
+      </div>
+      <div>
+        <label for="notice">Notice</label>
+        <input name="notice" type="file" accept=".pdf" value="{{product.notice}}"/>
+      </div>
+    </div>  
+    <div class="elementBlock">
+      <select name="category">
+        <label for="category">Catégories</label>
+        <option>...</option>
+        <option>Verre Trempé</option>
+        <option>Polycarbonate</option>
+        <option>Adossées</option>
+        <option>Accessoires</option>
+      </select>
+    </div>
+    <div class="elementBlock">
+      <button id="createProduct" type="submit">Créer</button>
+      <button id="editProduct" type="submit">Editer</button> <!-- LOT 2-->
+      <button id="deleteProduct" type="submit">Supprimer</button> <!-- LOT 2-->
+    </div>
+  </div>
+</form>
+
+<script src="/js/product_adminScript.js"></script>

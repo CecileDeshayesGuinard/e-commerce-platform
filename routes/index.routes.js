@@ -412,7 +412,9 @@ router.post('/product_admin', (req, res, next) => {
 
 
 /*
-DELETE PRODUCT
+╔╦╗╔═╗╦  ╔═╗╔╦╗╔═╗  ╔═╗╦═╗╔═╗╔╦╗╦ ╦╔═╗╔╦╗   ╔═╗╔╦╗╔╦╗╦╔╗╔
+ ║║║╣ ║  ║╣  ║ ║╣   ╠═╝╠╦╝║ ║ ║║║ ║║   ║    ╠═╣ ║║║║║║║║║
+═╩╝╚═╝╩═╝╚═╝ ╩ ╚═╝  ╩  ╩╚═╚═╝═╩╝╚═╝╚═╝ ╩────╩ ╩═╩╝╩ ╩╩╝╚╝
 */
 
 router.get('/product_admin/:id', (req, res, next) => {
@@ -441,14 +443,16 @@ router.post('/product_admin/:id/delete',(req,res,next)=>{
 
 
 /*
-EDIT PRODUCT
+╔═╗╔═╗╔╦╗  ╔═╗╔╦╗╦╔╦╗  ╔═╗╦═╗╔═╗╔╦╗╦ ╦╔═╗╔╦╗   ╔═╗╔╦╗╔╦╗╦╔╗╔
+║ ╦║╣  ║   ║╣  ║║║ ║   ╠═╝╠╦╝║ ║ ║║║ ║║   ║    ╠═╣ ║║║║║║║║║
+╚═╝╚═╝ ╩   ╚═╝═╩╝╩ ╩   ╩  ╩╚═╚═╝═╩╝╚═╝╚═╝ ╩────╩ ╩═╩╝╩ ╩╩╝╚╝
 */
 
-router.get('/product_admin/:productName/edit',(req,res,next)=>{
+router.get('/product_admin/:id/edit',(req,res,next)=>{
   Product.findById(req.params._id)
   .then((productFromDB)=>{
       console.log(productFromDB)
-      res.render('product/edit',{product: productFromDB})
+      res.render('product-admin-edit',{product: productFromDB})
   })
   .catch(err=>{
     console.log('error for product edition', err)
@@ -495,7 +499,7 @@ router.post('/product_admin/:id/edit',(req,res,next)=>{
     },
     {new:true})
     .then((productFromDB)=>{
-      res.redirect(`/product/${productFromDB._id}`)
+      res.redirect(`/product_admin/${productFromDB._id}`)
     })
     .catch((err)=>{
       console.log('error editing product',err)
@@ -503,8 +507,6 @@ router.post('/product_admin/:id/edit',(req,res,next)=>{
     })
   } 
 })
-
-
 
 
 router.post('/product_admin', fileUploader.single('mainPhoto'), (req, res) => {
@@ -594,7 +596,7 @@ router.post('/categories_admin', (req, res, next) => {
           message: `La catégorie ${category.categoryName} existe déjà`
         })
       } else {
-        const newCategory = new Category ({ //////////////////////
+        const newCategory = new Category ({
           categoryName: categoryName,
           categoryDescription: categoryDescription,
         })
@@ -614,11 +616,13 @@ router.post('/categories_admin', (req, res, next) => {
 
 
 /*
-DELETE CATEGORY
+╔╦╗╔═╗╦  ╔═╗╔╦╗╔═╗  ╔═╗╔═╗╔╦╗╔═╗╔═╗╔═╗╦═╗╦╔═╗╔═╗    ╔═╗╔╦╗╔╦╗╦╔╗╔
+ ║║║╣ ║  ║╣  ║ ║╣   ║  ╠═╣ ║ ║╣ ║ ╦║ ║╠╦╝║║╣ ╚═╗    ╠═╣ ║║║║║║║║║
+═╩╝╚═╝╩═╝╚═╝ ╩ ╚═╝  ╚═╝╩ ╩ ╩ ╚═╝╚═╝╚═╝╩╚═╩╚═╝╚═╝────╩ ╩═╩╝╩ ╩╩╝╚╝
 */
 
 router.get('/categories_admin/:id', (req, res, next) => {
-  Category.findByIdName(req.params.categoryName)
+  Category.findByIdName(req.params._id)
   .then(function (categoryFromDB) {
     console.log("categoryFromDB=", categoryFromDB);
     res.render("category", { category: categoryFromDB, });
@@ -630,7 +634,7 @@ router.get('/categories_admin/:id', (req, res, next) => {
 })
 
 router.post('/categories_admin/:id/delete',(req,res,next)=>{
-  Category.findByIdAndRemove(req.params.categoryName)
+  Category.findByIdAndRemove(req.params._id)
   .then(()=> {
     console.log('category deleted')
     res.redirect('/categories_admin')
@@ -643,20 +647,22 @@ router.post('/categories_admin/:id/delete',(req,res,next)=>{
 
 
 /*
-EDIT CATEGORY
+╔═╗╔╦╗╦╔╦╗  ╔═╗╔═╗╔╦╗╔═╗╔═╗╔═╗╦═╗╦╔═╗╔═╗    ╔═╗╔╦╗╔╦╗╦╔╗╔
+║╣  ║║║ ║   ║  ╠═╣ ║ ║╣ ║ ╦║ ║╠╦╝║║╣ ╚═╗    ╠═╣ ║║║║║║║║║
+╚═╝═╩╝╩ ╩   ╚═╝╩ ╩ ╩ ╚═╝╚═╝╚═╝╩╚═╩╚═╝╚═╝────╩ ╩═╩╝╩ ╩╩╝╚╝
 */
 
 router.get('/categories_admin/:id/edit',(req,res,next)=>{
   Category.findById(req.params._id)
   .then((categoryFromDB)=>{
       console.log(categoryFromDB)
-      res.render('categories/edit',{category: categoryFromDB})
+      res.render('categories_admin-edit',{category: categoryFromDB})
       productFromDB.forEach((prod)=>{
         if (categoryFromDB.productGroup.includes(prod._id)){
             prod.selected = true
         }
     });
-    res.render('categories/edit',{
+    res.render('categories_admin-edit',{
         category:categoryFromDB,
         product:productFromDB})
   })
@@ -673,7 +679,7 @@ router.post('/categories_admin/:id/edit',(req,res,next)=>{
   },
   {new:true})
   .then((categoryFromDB)=>{
-    res.redirect(`/categories/${categoryFromDB._id}`)
+    res.redirect(`/categories_admin/${categoryFromDB._id}`)
   })
   .catch((err)=>{
     console.log('error editing category',err)
