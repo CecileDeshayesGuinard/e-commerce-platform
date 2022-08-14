@@ -32,24 +32,3 @@ createCategory.onclick = function () {
     console.log(error);
   });
 }
-
-
-/*
-╔═╗╔╦╗╦╔╦╗
-║╣  ║║║ ║ 
-╚═╝═╩╝╩ ╩ 
-*/
-
-
-editCategory.onclick = function () {
-  axios.post('/admin_categories/new/validate/category', {
-    categoryName: 'categoryName',
-    categoryDescription: 'categoryDescription',
-  })
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-}
