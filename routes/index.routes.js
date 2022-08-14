@@ -281,7 +281,7 @@ router.get('/admin_product/list', (req, res, next) => {
 */
 
 
-router.get("/admin_product_new", (req, res, next) => {
+router.get("/admin_product/new", (req, res, next) => {
   res.render("admin_product_new");
 });
 
@@ -426,7 +426,7 @@ router.post('/admin_product/new', (req, res, next) => {
         newProduct.save()
         .then( newProduct => {
           console.log('product saved', newProduct)
-          res.redirect("admin_product/list")
+          res.redirect("list")
         })
         .catch(err => {
           console.log('product not saved', err)
@@ -468,7 +468,7 @@ router.post('/admin_product/list/:id/delete',(req,res,next)=>{
   Product.findByIdAndRemove(req.params._id)
   .then(()=> {
     console.log('product deleted')
-    res.redirect('/admin_product/list')
+    res.redirect('list')
   })
   .catch(err=>{
     console.log('error deleting product',err)
@@ -486,7 +486,7 @@ router.post('/admin_product/list/:id/delete',(req,res,next)=>{
 
 router.get('/admin_product/:id/edit',(req,res,next)=>{
   Product.findById(req.params._id)
-  .then((productFromDb)=>{
+  .then((productFromDB)=>{
       console.log(productFromDB)
       res.render('admin_product_edit',{product: productFromDB})
   })
@@ -655,12 +655,12 @@ CATEGORIES POST
 router.post('/admin_categories/new', (req, res, next) => {
   const categoryName = req.body.categoryName;
   const categoryDescription = req.body.categoryDescription;
-  const categoryPhoto = req.body.categoryphoto;
+  const categoryPhoto = req.body.categoryPhoto;
 
   const errors = (validateCategory(req));
 
   if (errors.length === 0) {
-    Category.findOne({categortyName : categoryName})
+    Category.findOne({categoryName : categoryName})
      .then((category) => {
       if (category) {
         res.render('admin_categories_new', {
@@ -676,7 +676,7 @@ router.post('/admin_categories/new', (req, res, next) => {
         newCategory.save()
         .then( newCategory => {
           console.log('category saved', newCategory)
-          res.redirect('admin_categories/list')
+          res.redirect('list')
         })
         .catch(err => {
           console.log('category not saved', err)
@@ -718,7 +718,7 @@ router.post('/admin_categories/:id/delete',(req,res,next)=>{
   Category.findByIdAndRemove(req.params._id)
   .then(()=> {
     console.log('category deleted')
-    res.redirect('/admin_categories/list')
+    res.redirect('list')
   })
   .catch(err=>{
     console.log('error deleting category',err)

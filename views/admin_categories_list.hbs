@@ -1,19 +1,21 @@
-<h2>Liste des Catégories</h2>
-<div class="grid">
-  {{#each categories}}
-  <div id="productCard">
-    <p>{{name}}</p>
-    <img src="{{category.categoryPhoto}}" alt="category image">
-    <div class="action">
-      <a href="/admin_categories/{{_id}}"><p>Voir les détails des catégories</p></a>
-      <a href="/admin_categories/{{_id}}/edit"><p>Edit</p></a>
-      <form action="admin_categories/{{_id}}/delete" method="post"><button>Delete</button></form>
+<div id="categoryList">
+  <h2>Liste des Catégories</h2>
+  <div class="grid">
+    {{#each categories}}
+    <div id="categoryCard">
+      <p>{{category.categoryName}}</p>
+      <img src="{{category.categoryPhoto}}" alt="category image" width="150px" height="auto">
+      <div class="action">
+        <a href="/admin_categories/{{_id}}"><p>Détails de la Catégorie</p></a>
+        <a href="/admin_categories/{{_id}}/edit"><p>Editer la Catégorie</p></a>
+        <form action="admin_categories/{{_id}}/delete" method="post"><button>Delete</button></form>
+      </div>
     </div>
+    {{/each}}
   </div>
-  {{/each}}
+
+  <div class="categoriesCrud">
+    <p><a href="/admin_categories/new">Ajouter une nouvelle catégorie</a></p>
+    <p><a href="/admin">Retour au dashboard</a></p>
+  </div>
 </div>
-
-
-<p><a href="/admin_categories/new">Ajouter une nouvelle catégorie</a></p>
-<br>
-<p><a href="/admin">Retour au dashboard</a></p>
