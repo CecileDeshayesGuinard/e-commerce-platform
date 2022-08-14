@@ -1,6 +1,6 @@
-<h2>Editer le Produit: {{product.productName}}</h2>
+<h2>Editer le Produit: {{productName}}</h2>
  
-<form action="/product_admin/product/{{product.id}}/edit" method="post">
+<form action="/product_admin/{{product.id}}/edit" method="post">
   <div id="product_adminLeft" class="product_adminColumn">
     <div id="productInfo" class="elementBlock">
       <input name="productName" type="text" value="{{product.productName}}"/>

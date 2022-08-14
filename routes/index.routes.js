@@ -2,6 +2,7 @@ const router = require("express").Router();
 const User = require("../models/User.model");
 const Product = require("../models/Product.model");
 const Category = require("../models/Category.model");
+const Order = require("../models/Order.model");
 const bcryptJs = require("bcryptjs");
 const fileUploader = require('../config/cloudinary.config');
 /*const { listenerCount } = require("../app");*/
@@ -42,7 +43,7 @@ router.get("/", (req, res, next) => {
 ╚═╝╚═╝ ╩   ╚═╝╩╚═╝╝╚╝╚═╝╩    ╩  ╩ ╩╚═╝╚═╝
 */
 router.get("/signup", (req, res, next) => {
-  res.render("signup");
+  res.render("/front/signup");
 });
 
 
@@ -400,7 +401,7 @@ router.post('/product_admin', (req, res, next) => {
         newProduct.save()
         .then( newProduct => {
           console.log('product saved', newProduct)
-          res.redirect("product_admin")
+          res.redirect("product")
         })
         .catch(err => {
           console.log('product not saved', err)
@@ -449,7 +450,7 @@ router.post('/product_admin/:id/delete',(req,res,next)=>{
 */
 
 
-router.get('/product_admin/:id/edit',(req,res,next)=>{
+router.get('/product/:id/edit',(req,res,next)=>{
   Product.findById(req.params._id)
   .then((productToEdit)=>{
       console.log(productToEdit)
@@ -461,7 +462,7 @@ router.get('/product_admin/:id/edit',(req,res,next)=>{
   })
 })
 
-router.post('/product_admin/:id/edit',(req,res,next)=>{
+router.post('/product/:id/edit',(req,res,next)=>{
 
   const errors = validateProduct(req);
 
@@ -500,7 +501,7 @@ router.post('/product_admin/:id/edit',(req,res,next)=>{
     },
     {new:true})
     .then((productUpdated)=>{
-      res.redirect(`/product_admin/${productUpdated.id}`)
+      res.redirect(`/product/${productUpdated.id}`)
     })
     .catch((err)=>{
       console.log('error editing product',err)
