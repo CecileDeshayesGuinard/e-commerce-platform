@@ -261,7 +261,7 @@ router.post('/signup', (req, res, next) => { // création de variable pour conte
 */
 
 
-router.get('/admin_product_list', (req, res, next) => {
+router.get('/admin_product/list', (req, res, next) => {
   Product.find()
       .then(function (productsFromDB) {
           console.log('productsFromDB:', productsFromDB);
@@ -336,7 +336,7 @@ function validateProduct(req) {
 }
 
 // Appeler cette route à la tentative d'enregistrement
-router.post('/admin_product_new/validate/product', function (req, res, next) {
+router.post('/admin_product/new/validate/product', function (req, res, next) {
   const errors = validateProduct(req)
 
   console.log('errors vaut', errors)
@@ -353,7 +353,7 @@ router.post('/admin_product_new/validate/product', function (req, res, next) {
 PRODUCT POST
 */
 
-router.post('/admin_product_new', (req, res, next) => {
+router.post('/admin_product/new', (req, res, next) => {
   const productName = req.body.productName
   const productDescription = req.body.productDescription
   const productCost = req.body.productCost
@@ -426,7 +426,7 @@ router.post('/admin_product_new', (req, res, next) => {
         newProduct.save()
         .then( newProduct => {
           console.log('product saved', newProduct)
-          res.redirect("admin_product_list")
+          res.redirect("admin_product/list")
         })
         .catch(err => {
           console.log('product not saved', err)
@@ -444,7 +444,7 @@ router.post('/admin_product_new', (req, res, next) => {
 */
 
 
-router.get('/admin_product_list/:id', (req, res, next) => {
+router.get('/admin_product/list/:id', (req, res, next) => {
   Product.findById(req.params._id)
   .then(function (productFromDB) {
     console.log("productFromDB=", productFromDB);
@@ -464,11 +464,11 @@ router.get('/admin_product_list/:id', (req, res, next) => {
 */
 
 
-router.post('/admin_product_list/:id/delete',(req,res,next)=>{
+router.post('/admin_product/list/:id/delete',(req,res,next)=>{
   Product.findByIdAndRemove(req.params._id)
   .then(()=> {
     console.log('product deleted')
-    res.redirect('/admin_product_list')
+    res.redirect('/admin_product/list')
   })
   .catch(err=>{
     console.log('error deleting product',err)
@@ -553,19 +553,19 @@ router.post('/admin_product/:id/edit',(req,res,next)=>{
 })
 
 
-router.post('/admin_product_new', fileUploader.single('mainPhoto'), (req, res) => {
+router.post('/admin_product/new', fileUploader.single('mainPhoto'), (req, res) => {
   const { title, description } = req.body;
  
   Product.create({ title, description, imageUrl: req.file.path })
-    .then(() => res.redirect('/admin_product_list'))
+    .then(() => res.redirect('/admin_product/list'))
     .catch(error => console.log(`Error while creating a new product: ${error}`));
 });
 
-router.post('/admin_product_new', fileUploader.single('otherPhotos'), (req, res) => {
+router.post('/admin_product/new', fileUploader.single('otherPhotos'), (req, res) => {
   const { title, description } = req.body;
  
   Product.create({ title, description, imageUrl: req.file.path })
-    .then(() => res.redirect('/admin_product_list'))
+    .then(() => res.redirect('/admin_product/list'))
     .catch(error => console.log(`Error while creating a new product: ${error}`));
 });
 
@@ -588,7 +588,7 @@ router.post('/admin_product_new', fileUploader.single('otherPhotos'), (req, res)
 */
 
 
-router.get('/admin_categories_list', (req, res, next) => {
+router.get('/admin_categories/list', (req, res, next) => {
   Category.find()
       .then(function (categoriesFromDB) {
           console.log('productsFromDB:', categoriesFromDB);
@@ -608,8 +608,8 @@ router.get('/admin_categories_list', (req, res, next) => {
 */
 
 
-router.get("/admin_categories_new", (req, res, next) => {
-  res.render("categories_admin");
+router.get("/admin_categories/new", (req, res, next) => {
+  res.render("admin_categories_new");
 });
 
 
@@ -636,7 +636,7 @@ function validateCategory(req) {
 
 
 // Appeler cette route lors de l'enregistrement
-router.post('/admin-categories_new/validate/category', function (req, res, next) {
+router.post('/admin_categories/new/validate/category', function (req, res, next) {
   const errors = validateCategory(req)
 
   console.log('errors vaut', errors)
@@ -652,9 +652,10 @@ router.post('/admin-categories_new/validate/category', function (req, res, next)
 CATEGORIES POST
 */
 
-router.post('/admin_categories_new', (req, res, next) => {
-  const categoryName = req.body.categoryName
-  const categoryDescription = req.body.categoryDescription
+router.post('/admin_categories/new', (req, res, next) => {
+  const categoryName = req.body.categoryName;
+  const categoryDescription = req.body.categoryDescription;
+  const categoryPhoto = req.body.categoryphoto;
 
   const errors = (validateCategory(req));
 
@@ -662,19 +663,20 @@ router.post('/admin_categories_new', (req, res, next) => {
     Category.findOne({categortyName : categoryName})
      .then((category) => {
       if (category) {
-        res.render('admin_categorie_new', {
+        res.render('admin_categories_new', {
           message: `La catégorie ${category.categoryName} existe déjà`
         })
       } else {
         const newCategory = new Category ({
           categoryName: categoryName,
           categoryDescription: categoryDescription,
+          categoryPhoto: categoryPhoto
         })
       
         newCategory.save()
         .then( newCategory => {
           console.log('category saved', newCategory)
-          res.redirect('admin_categories_list')
+          res.redirect('admin_categories/list')
         })
         .catch(err => {
           console.log('category not saved', err)
@@ -692,7 +694,7 @@ router.post('/admin_categories_new', (req, res, next) => {
 */
 
 
-router.get('/admin_categories_list/:id', (req, res, next) => {
+router.get('/admin_categories/list/:id', (req, res, next) => {
   Category.findById(req.params._id)
   .then(function (categoryFromDB) {
     console.log("categoryFromDB=", categoryFromDB);
@@ -716,7 +718,7 @@ router.post('/admin_categories/:id/delete',(req,res,next)=>{
   Category.findByIdAndRemove(req.params._id)
   .then(()=> {
     console.log('category deleted')
-    res.redirect('/admin_categories_list')
+    res.redirect('/admin_categories/list')
   })
   .catch(err=>{
     console.log('error deleting category',err)

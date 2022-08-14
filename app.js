@@ -70,6 +70,9 @@ app.use("/admin_product/list", admin_product_list);
 const admin_product_edit = require("./routes/index.routes");
 app.use("/admin_product/edit", admin_product_edit);
 
+const admin_categories_new = require("./routes/index.routes");
+app.use("/admin_categories/new", admin_categories_new);
+
 const admin_categories_list = require("./routes/index.routes");
 app.use("/admin_categories/list", admin_categories_list);
 

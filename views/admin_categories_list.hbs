@@ -3,6 +3,7 @@
   {{#each categories}}
   <div id="productCard">
     <p>{{name}}</p>
+    <img src="{{category.categoryPhoto}}" alt="category image">
     <div class="action">
       <a href="/admin_categories/{{_id}}"><p>Voir les détails des catégories</p></a>
       <a href="/admin_categories/{{_id}}/edit"><p>Edit</p></a>
@@ -13,6 +14,6 @@
 </div>
 
 
-<p><a href="admin_categories_new">Ajouter une nouvelle catégorie</a></p>
+<p><a href="/admin_categories/new">Ajouter une nouvelle catégorie</a></p>
 <br>
 <p><a href="/admin">Retour au dashboard</a></p>
