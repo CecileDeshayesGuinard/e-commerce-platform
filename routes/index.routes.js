@@ -245,18 +245,39 @@ router.post('/signup', (req, res, next) => { // création de variable pour conte
 
 
 /*
-██████╗ ██████╗  ██████╗ ██████╗ ██╗   ██╗ ██████╗████████╗      █████╗ ██████╗ ███╗   ███╗██╗███╗   ██╗
-██╔══██╗██╔══██╗██╔═══██╗██╔══██╗██║   ██║██╔════╝╚══██╔══╝     ██╔══██╗██╔══██╗████╗ ████║██║████╗  ██║
-██████╔╝██████╔╝██║   ██║██║  ██║██║   ██║██║        ██║        ███████║██║  ██║██╔████╔██║██║██╔██╗ ██║
-██╔═══╝ ██╔══██╗██║   ██║██║  ██║██║   ██║██║        ██║        ██╔══██║██║  ██║██║╚██╔╝██║██║██║╚██╗██║
-██║     ██║  ██║╚██████╔╝██████╔╝╚██████╔╝╚██████╗   ██║███████╗██║  ██║██████╔╝██║ ╚═╝ ██║██║██║ ╚████║
-╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚═════╝  ╚═════╝  ╚═════╝   ╚═╝╚══════╝╚═╝  ╚═╝╚═════╝ ╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝                                                                                                   
+ █████╗ ██████╗ ███╗   ███╗██╗███╗   ██╗        ██████╗ ██████╗  ██████╗ ██████╗ ██╗   ██╗ ██████╗████████╗
+██╔══██╗██╔══██╗████╗ ████║██║████╗  ██║        ██╔══██╗██╔══██╗██╔═══██╗██╔══██╗██║   ██║██╔════╝╚══██╔══╝
+███████║██║  ██║██╔████╔██║██║██╔██╗ ██║        ██████╔╝██████╔╝██║   ██║██║  ██║██║   ██║██║        ██║   
+██╔══██║██║  ██║██║╚██╔╝██║██║██║╚██╗██║        ██╔═══╝ ██╔══██╗██║   ██║██║  ██║██║   ██║██║        ██║   
+██║  ██║██████╔╝██║ ╚═╝ ██║██║██║ ╚████║███████╗██║     ██║  ██║╚██████╔╝██████╔╝╚██████╔╝╚██████╗   ██║   
+╚═╝  ╚═╝╚═════╝ ╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚══════╝╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚═════╝  ╚═════╝  ╚═════╝   ╚═╝                                                                                            
 */
 
+
 /*
-╔═╗╔═╗╔╦╗  ╔═╗╦═╗╔═╗╔╦╗╦ ╦╔═╗╔╦╗   ╔═╗╔╦╗╔╦╗╦╔╗╔
-║ ╦║╣  ║   ╠═╝╠╦╝║ ║ ║║║ ║║   ║    ╠═╣ ║║║║║║║║║
-╚═╝╚═╝ ╩   ╩  ╩╚═╚═╝═╩╝╚═╝╚═╝ ╩────╩ ╩═╩╝╩ ╩╩╝╚╝
+╔═╗╔═╗╔╦╗  ╔═╗╔╦╗╔╦╗╦╔╗╔    ╔═╗╦═╗╔═╗╔╦╗╦ ╦╔═╗╔╦╗   ╦  ╦╔═╗╔╦╗
+║ ╦║╣  ║   ╠═╣ ║║║║║║║║║    ╠═╝╠╦╝║ ║ ║║║ ║║   ║    ║  ║╚═╗ ║ 
+╚═╝╚═╝ ╩   ╩ ╩═╩╝╩ ╩╩╝╚╝────╩  ╩╚═╚═╝═╩╝╚═╝╚═╝ ╩────╩═╝╩╚═╝ ╩ 
+*/
+
+
+router.get('/admin_product_list', (req, res, next) => {
+  Product.find()
+      .then(function (productsFromDB) {
+          console.log('productsFromDB:', productsFromDB);
+          res.render('admin_product_list', { products: productsFromDB });
+      })
+      .catch(err => {
+          console.log(err);
+          next(err);
+      })
+})
+
+
+/*
+╔═╗╔═╗╔╦╗  ╔═╗╔╦╗╔╦╗╦╔╗╔    ╔═╗╦═╗╔═╗╔╦╗╦ ╦╔═╗╔╦╗   ╔╗╔╔═╗╦ ╦
+║ ╦║╣  ║   ╠═╣ ║║║║║║║║║    ╠═╝╠╦╝║ ║ ║║║ ║║   ║    ║║║║╣ ║║║
+╚═╝╚═╝ ╩   ╩ ╩═╩╝╩ ╩╩╝╚╝────╩  ╩╚═╚═╝═╩╝╚═╝╚═╝ ╩────╝╚╝╚═╝╚╩╝
 */
 
 
@@ -266,9 +287,9 @@ router.get("/admin_product_new", (req, res, next) => {
 
 
 /*
-╔═╗╔═╗╔═╗╔╦╗  ╔═╗╦═╗╔═╗╔╦╗╦ ╦╔═╗╔╦╗   ╔═╗╔╦╗╔╦╗╦╔╗╔
-╠═╝║ ║╚═╗ ║   ╠═╝╠╦╝║ ║ ║║║ ║║   ║    ╠═╣ ║║║║║║║║║
-╩  ╚═╝╚═╝ ╩   ╩  ╩╚═╚═╝═╩╝╚═╝╚═╝ ╩────╩ ╩═╩╝╩ ╩╩╝╚╝
+╔═╗╔═╗╔═╗╔╦╗  ╔═╗╔╦╗╔╦╗╦╔╗╔    ╔═╗╦═╗╔═╗╔╦╗╦ ╦╔═╗╔╦╗   ╔╗╔╔═╗╦ ╦
+╠═╝║ ║╚═╗ ║   ╠═╣ ║║║║║║║║║    ╠═╝╠╦╝║ ║ ║║║ ║║   ║    ║║║║╣ ║║║
+╩  ╚═╝╚═╝ ╩   ╩ ╩═╩╝╩ ╩╩╝╚╝────╩  ╩╚═╚═╝═╩╝╚═╝╚═╝ ╩────╝╚╝╚═╝╚╩╝
 */
 
 
@@ -327,6 +348,10 @@ router.post('/admin_product_new/validate/product', function (req, res, next) {
   }
 })
 
+
+/*
+PRODUCT POST
+*/
 
 router.post('/admin_product_new', (req, res, next) => {
   const productName = req.body.productName
@@ -413,10 +438,11 @@ router.post('/admin_product_new', (req, res, next) => {
 
 
 /*
-╔╦╗╔═╗╦  ╔═╗╔╦╗╔═╗  ╔═╗╦═╗╔═╗╔╦╗╦ ╦╔═╗╔╦╗   ╔═╗╔╦╗╔╦╗╦╔╗╔
- ║║║╣ ║  ║╣  ║ ║╣   ╠═╝╠╦╝║ ║ ║║║ ║║   ║    ╠═╣ ║║║║║║║║║
-═╩╝╚═╝╩═╝╚═╝ ╩ ╚═╝  ╩  ╩╚═╚═╝═╩╝╚═╝╚═╝ ╩────╩ ╩═╩╝╩ ╩╩╝╚╝
+╔═╗╔═╗╔╦╗  ╔═╗╔╦╗╔╦╗╦╔╗╔    ╔═╗╦═╗╔═╗╔╦╗╦ ╦╔═╗╔╦╗   ╔╦╗╔═╗╦  ╔═╗╔╦╗╔═╗
+║ ╦║╣  ║   ╠═╣ ║║║║║║║║║    ╠═╝╠╦╝║ ║ ║║║ ║║   ║     ║║║╣ ║  ║╣  ║ ║╣ 
+╚═╝╚═╝ ╩   ╩ ╩═╩╝╩ ╩╩╝╚╝────╩  ╩╚═╚═╝═╩╝╚═╝╚═╝ ╩────═╩╝╚═╝╩═╝╚═╝ ╩ ╚═╝
 */
+
 
 router.get('/admin_product_list/:id', (req, res, next) => {
   Product.findById(req.params._id)
@@ -429,6 +455,14 @@ router.get('/admin_product_list/:id', (req, res, next) => {
     next(err);
   });
 })
+
+
+/*
+╔═╗╔═╗╔═╗╔╦╗  ╔═╗╔╦╗╔╦╗╦╔╗╔    ╔═╗╦═╗╔═╗╔╦╗╦ ╦╔═╗╔╦╗   ╔╦╗╔═╗╦  ╔═╗╔╦╗╔═╗
+╠═╝║ ║╚═╗ ║   ╠═╣ ║║║║║║║║║    ╠═╝╠╦╝║ ║ ║║║ ║║   ║     ║║║╣ ║  ║╣  ║ ║╣ 
+╩  ╚═╝╚═╝ ╩   ╩ ╩═╩╝╩ ╩╩╝╚╝────╩  ╩╚═╚═╝═╩╝╚═╝╚═╝ ╩────═╩╝╚═╝╩═╝╚═╝ ╩ ╚═╝
+*/
+
 
 router.post('/admin_product_list/:id/delete',(req,res,next)=>{
   Product.findByIdAndRemove(req.params._id)
@@ -444,23 +478,31 @@ router.post('/admin_product_list/:id/delete',(req,res,next)=>{
 
 
 /*
-╔═╗╔═╗╔╦╗  ╔═╗╔╦╗╦╔╦╗  ╔═╗╦═╗╔═╗╔╦╗╦ ╦╔═╗╔╦╗   ╔═╗╔╦╗╔╦╗╦╔╗╔
-║ ╦║╣  ║   ║╣  ║║║ ║   ╠═╝╠╦╝║ ║ ║║║ ║║   ║    ╠═╣ ║║║║║║║║║
-╚═╝╚═╝ ╩   ╚═╝═╩╝╩ ╩   ╩  ╩╚═╚═╝═╩╝╚═╝╚═╝ ╩────╩ ╩═╩╝╩ ╩╩╝╚╝
+╔═╗╔═╗╔╦╗  ╔═╗╔╦╗╔╦╗╦╔╗╔    ╔═╗╦═╗╔═╗╔╦╗╦ ╦╔═╗╔╦╗   ╔═╗╔╦╗╦╔╦╗
+║ ╦║╣  ║   ╠═╣ ║║║║║║║║║    ╠═╝╠╦╝║ ║ ║║║ ║║   ║    ║╣  ║║║ ║ 
+╚═╝╚═╝ ╩   ╩ ╩═╩╝╩ ╩╩╝╚╝────╩  ╩╚═╚═╝═╩╝╚═╝╚═╝ ╩────╚═╝═╩╝╩ ╩ 
 */
 
 
 router.get('/admin_product/:id/edit',(req,res,next)=>{
   Product.findById(req.params._id)
   .then((productFromDb)=>{
-      console.log(productToEdit)
-      res.render('admin_product_edit',{product: productFromDb})
+      console.log(productFromDB)
+      res.render('admin_product_edit',{product: productFromDB})
   })
   .catch(err=>{
     console.log('error for product edition', err)
     next(err)
   })
 })
+
+
+/*
+╔═╗╔═╗╔═╗╔╦╗  ╔═╗╔╦╗╔╦╗╦╔╗╔    ╔═╗╦═╗╔═╗╔╦╗╦ ╦╔═╗╔╦╗   ╔═╗╔╦╗╦╔╦╗
+╠═╝║ ║╚═╗ ║   ╠═╣ ║║║║║║║║║    ╠═╝╠╦╝║ ║ ║║║ ║║   ║    ║╣  ║║║ ║ 
+╩  ╚═╝╚═╝ ╩   ╩ ╩═╩╝╩ ╩╩╝╚╝────╩  ╩╚═╚═╝═╩╝╚═╝╚═╝ ╩────╚═╝═╩╝╩ ╩ 
+*/
+
 
 router.post('/admin_product/:id/edit',(req,res,next)=>{
 
@@ -530,20 +572,43 @@ router.post('/admin_product_new', fileUploader.single('otherPhotos'), (req, res)
   
   
 /*
- ██████╗ █████╗ ████████╗███████╗ ██████╗  ██████╗ ██████╗ ██╗███████╗███████╗         █████╗ ██████╗ ███╗   ███╗██╗███╗   ██╗
-██╔════╝██╔══██╗╚══██╔══╝██╔════╝██╔════╝ ██╔═══██╗██╔══██╗██║██╔════╝██╔════╝        ██╔══██╗██╔══██╗████╗ ████║██║████╗  ██║
-██║     ███████║   ██║   █████╗  ██║  ███╗██║   ██║██████╔╝██║█████╗  ███████╗        ███████║██║  ██║██╔████╔██║██║██╔██╗ ██║
-██║     ██╔══██║   ██║   ██╔══╝  ██║   ██║██║   ██║██╔══██╗██║██╔══╝  ╚════██║        ██╔══██║██║  ██║██║╚██╔╝██║██║██║╚██╗██║
-╚██████╗██║  ██║   ██║   ███████╗╚██████╔╝╚██████╔╝██║  ██║██║███████╗███████║███████╗██║  ██║██████╔╝██║ ╚═╝ ██║██║██║ ╚████║
- ╚═════╝╚═╝  ╚═╝   ╚═╝   ╚══════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚══════╝╚═╝  ╚═╝╚═════╝ ╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝                                                                                                                       
+ █████╗ ██████╗ ███╗   ███╗██╗███╗   ██╗         ██████╗ █████╗ ████████╗███████╗ ██████╗  ██████╗ ██████╗ ██╗███████╗███████╗
+██╔══██╗██╔══██╗████╗ ████║██║████╗  ██║        ██╔════╝██╔══██╗╚══██╔══╝██╔════╝██╔════╝ ██╔═══██╗██╔══██╗██║██╔════╝██╔════╝
+███████║██║  ██║██╔████╔██║██║██╔██╗ ██║        ██║     ███████║   ██║   █████╗  ██║  ███╗██║   ██║██████╔╝██║█████╗  ███████╗
+██╔══██║██║  ██║██║╚██╔╝██║██║██║╚██╗██║        ██║     ██╔══██║   ██║   ██╔══╝  ██║   ██║██║   ██║██╔══██╗██║██╔══╝  ╚════██║
+██║  ██║██████╔╝██║ ╚═╝ ██║██║██║ ╚████║███████╗╚██████╗██║  ██║   ██║   ███████╗╚██████╔╝╚██████╔╝██║  ██║██║███████╗███████║
+╚═╝  ╚═╝╚═════╝ ╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚══════╝ ╚═════╝╚═╝  ╚═╝   ╚═╝   ╚══════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚═╝╚══════╝╚══════╝                                                                                                                     
 */
 
 
 /*
-GET CATEGORIES_ADMIN
+╔═╗╔═╗╔╦╗  ╔═╗╔╦╗╔╦╗╦╔╗╔    ╔═╗╔═╗╔╦╗╔═╗╔═╗╔═╗╦═╗╦╔═╗╔═╗    ╦  ╦╔═╗╔╦╗
+║ ╦║╣  ║   ╠═╣ ║║║║║║║║║    ║  ╠═╣ ║ ║╣ ║ ╦║ ║╠╦╝║║╣ ╚═╗    ║  ║╚═╗ ║ 
+╚═╝╚═╝ ╩   ╩ ╩═╩╝╩ ╩╩╝╚╝────╚═╝╩ ╩ ╩ ╚═╝╚═╝╚═╝╩╚═╩╚═╝╚═╝────╩═╝╩╚═╝ ╩ 
 */
 
-router.get("/categories_admin", (req, res, next) => {
+
+router.get('/admin_categories_list', (req, res, next) => {
+  Category.find()
+      .then(function (categoriesFromDB) {
+          console.log('productsFromDB:', categoriesFromDB);
+          res.render('admin_categories_list', { categories: categoriesFromDB });
+      })
+      .catch(err => {
+          console.log(err);
+          next(err);
+      })
+})
+
+
+/*
+╔═╗╔═╗╔╦╗  ╔═╗╔╦╗╔╦╗╦╔╗╔    ╔═╗╔═╗╔╦╗╔═╗╔═╗╔═╗╦═╗╦╔═╗╔═╗    ╔╗╔╔═╗╦ ╦
+║ ╦║╣  ║   ╠═╣ ║║║║║║║║║    ║  ╠═╣ ║ ║╣ ║ ╦║ ║╠╦╝║║╣ ╚═╗    ║║║║╣ ║║║
+╚═╝╚═╝ ╩   ╩ ╩═╩╝╩ ╩╩╝╚╝────╚═╝╩ ╩ ╩ ╚═╝╚═╝╚═╝╩╚═╩╚═╝╚═╝────╝╚╝╚═╝╚╩╝
+*/
+
+
+router.get("/admin_categories_new", (req, res, next) => {
   res.render("categories_admin");
 });
 
@@ -571,7 +636,7 @@ function validateCategory(req) {
 
 
 // Appeler cette route lors de l'enregistrement
-router.post('/categories_admin/validate/category', function (req, res, next) {
+router.post('/admin-categories_new/validate/category', function (req, res, next) {
   const errors = validateCategory(req)
 
   console.log('errors vaut', errors)
@@ -583,8 +648,11 @@ router.post('/categories_admin/validate/category', function (req, res, next) {
   }
 })
 
+/*
+CATEGORIES POST
+*/
 
-router.post('/categories_admin', (req, res, next) => {
+router.post('/admin_categories_new', (req, res, next) => {
   const categoryName = req.body.categoryName
   const categoryDescription = req.body.categoryDescription
 
@@ -594,7 +662,7 @@ router.post('/categories_admin', (req, res, next) => {
     Category.findOne({categortyName : categoryName})
      .then((category) => {
       if (category) {
-        res.render('categories_admin', {
+        res.render('admin_categorie_new', {
           message: `La catégorie ${category.categoryName} existe déjà`
         })
       } else {
@@ -606,7 +674,7 @@ router.post('/categories_admin', (req, res, next) => {
         newCategory.save()
         .then( newCategory => {
           console.log('category saved', newCategory)
-          res.redirect('categories_admin')
+          res.redirect('admin_categories_list')
         })
         .catch(err => {
           console.log('category not saved', err)
@@ -618,13 +686,14 @@ router.post('/categories_admin', (req, res, next) => {
 
 
 /*
-╔╦╗╔═╗╦  ╔═╗╔╦╗╔═╗  ╔═╗╔═╗╔╦╗╔═╗╔═╗╔═╗╦═╗╦╔═╗╔═╗    ╔═╗╔╦╗╔╦╗╦╔╗╔
- ║║║╣ ║  ║╣  ║ ║╣   ║  ╠═╣ ║ ║╣ ║ ╦║ ║╠╦╝║║╣ ╚═╗    ╠═╣ ║║║║║║║║║
-═╩╝╚═╝╩═╝╚═╝ ╩ ╚═╝  ╚═╝╩ ╩ ╩ ╚═╝╚═╝╚═╝╩╚═╩╚═╝╚═╝────╩ ╩═╩╝╩ ╩╩╝╚╝
+╔═╗╔═╗╔╦╗  ╔═╗╔╦╗╔╦╗╦╔╗╔    ╔═╗╔═╗╔╦╗╔═╗╔═╗╔═╗╦═╗╦╔═╗╔═╗    ╔╦╗╔═╗╦  ╔═╗╔╦╗╔═╗
+║ ╦║╣  ║   ╠═╣ ║║║║║║║║║    ║  ╠═╣ ║ ║╣ ║ ╦║ ║╠╦╝║║╣ ╚═╗     ║║║╣ ║  ║╣  ║ ║╣ 
+╚═╝╚═╝ ╩   ╩ ╩═╩╝╩ ╩╩╝╚╝────╚═╝╩ ╩ ╩ ╚═╝╚═╝╚═╝╩╚═╩╚═╝╚═╝────═╩╝╚═╝╩═╝╚═╝ ╩ ╚═╝
 */
 
-router.get('/categories_admin/:id', (req, res, next) => {
-  Category.findByIdName(req.params._id)
+
+router.get('/admin_categories_list/:id', (req, res, next) => {
+  Category.findById(req.params._id)
   .then(function (categoryFromDB) {
     console.log("categoryFromDB=", categoryFromDB);
     res.render("category", { category: categoryFromDB, });
@@ -635,11 +704,19 @@ router.get('/categories_admin/:id', (req, res, next) => {
   });
 })
 
-router.post('/categories_admin/:id/delete',(req,res,next)=>{
+
+/*
+╔═╗╔═╗╔═╗╔╦╗  ╔═╗╔╦╗╔╦╗╦╔╗╔    ╔═╗╔═╗╔╦╗╔═╗╔═╗╔═╗╦═╗╦╔═╗╔═╗    ╔╦╗╔═╗╦  ╔═╗╔╦╗╔═╗
+╠═╝║ ║╚═╗ ║   ╠═╣ ║║║║║║║║║    ║  ╠═╣ ║ ║╣ ║ ╦║ ║╠╦╝║║╣ ╚═╗     ║║║╣ ║  ║╣  ║ ║╣ 
+╩  ╚═╝╚═╝ ╩   ╩ ╩═╩╝╩ ╩╩╝╚╝────╚═╝╩ ╩ ╩ ╚═╝╚═╝╚═╝╩╚═╩╚═╝╚═╝────═╩╝╚═╝╩═╝╚═╝ ╩ ╚═╝
+*/
+
+
+router.post('/admin_categories/:id/delete',(req,res,next)=>{
   Category.findByIdAndRemove(req.params._id)
   .then(()=> {
     console.log('category deleted')
-    res.redirect('/categories_admin')
+    res.redirect('/admin_categories_list')
   })
   .catch(err=>{
     console.log('error deleting category',err)
@@ -649,22 +726,23 @@ router.post('/categories_admin/:id/delete',(req,res,next)=>{
 
 
 /*
-╔═╗╔╦╗╦╔╦╗  ╔═╗╔═╗╔╦╗╔═╗╔═╗╔═╗╦═╗╦╔═╗╔═╗    ╔═╗╔╦╗╔╦╗╦╔╗╔
-║╣  ║║║ ║   ║  ╠═╣ ║ ║╣ ║ ╦║ ║╠╦╝║║╣ ╚═╗    ╠═╣ ║║║║║║║║║
-╚═╝═╩╝╩ ╩   ╚═╝╩ ╩ ╩ ╚═╝╚═╝╚═╝╩╚═╩╚═╝╚═╝────╩ ╩═╩╝╩ ╩╩╝╚╝
+╔═╗╔═╗╔╦╗  ╔═╗╔╦╗╔╦╗╦╔╗╔    ╔═╗╔═╗╔╦╗╔═╗╔═╗╔═╗╦═╗╦╔═╗╔═╗    ╔═╗╔╦╗╦╔╦╗
+║ ╦║╣  ║   ╠═╣ ║║║║║║║║║    ║  ╠═╣ ║ ║╣ ║ ╦║ ║╠╦╝║║╣ ╚═╗    ║╣  ║║║ ║ 
+╚═╝╚═╝ ╩   ╩ ╩═╩╝╩ ╩╩╝╚╝────╚═╝╩ ╩ ╩ ╚═╝╚═╝╚═╝╩╚═╩╚═╝╚═╝────╚═╝═╩╝╩ ╩ 
 */
 
-router.get('/categories_admin/:id/edit',(req,res,next)=>{
+
+router.get('/admin_categories/:id/edit',(req,res,next)=>{
   Category.findById(req.params._id)
   .then((categoryFromDB)=>{
       console.log(categoryFromDB)
-      res.render('categories_admin-edit',{category: categoryFromDB})
+      res.render('admin_categories_edit',{category: categoryFromDB})
       productFromDB.forEach((prod)=>{
         if (categoryFromDB.productGroup.includes(prod._id)){
             prod.selected = true
         }
     });
-    res.render('categories_admin-edit',{
+    res.render('admin_categories_edit',{
         category:categoryFromDB,
         product:productFromDB})
   })
@@ -674,7 +752,15 @@ router.get('/categories_admin/:id/edit',(req,res,next)=>{
   })
 })
 
-router.post('/categories_admin/:id/edit',(req,res,next)=>{
+
+/*
+╔═╗╔═╗╔═╗╔╦╗  ╔═╗╔╦╗╔╦╗╦╔╗╔    ╔═╗╔═╗╔╦╗╔═╗╔═╗╔═╗╦═╗╦╔═╗╔═╗    ╔═╗╔╦╗╦╔╦╗
+╠═╝║ ║╚═╗ ║   ╠═╣ ║║║║║║║║║    ║  ╠═╣ ║ ║╣ ║ ╦║ ║╠╦╝║║╣ ╚═╗    ║╣  ║║║ ║ 
+╩  ╚═╝╚═╝ ╩   ╩ ╩═╩╝╩ ╩╩╝╚╝────╚═╝╩ ╩ ╩ ╚═╝╚═╝╚═╝╩╚═╩╚═╝╚═╝────╚═╝═╩╝╩ ╩ 
+*/
+
+
+router.post('/admin_categories/:id/edit',(req,res,next)=>{
   Category.findByIdAndUpdate(req.params._id,{
     categoryName: categoryName,
     categoryDescription: categoryDescription
@@ -719,27 +805,5 @@ router.get("/cart", (req, res, next) => {
 router.get("/orders", (req, res, next) => {
   res.render("checkout");
 });
-
-/* GET product_admin-edit page (product edition) */
-router.get("/product_admin/edit", (req, res, next) => {
-  res.render("product_admin_edit");
-});
-
-/* GET product_admin-list page (product list for administrator) */
-router.get("/product_admin/list", (req, res, next) => {
-  res.render("product_admin_list");
-});
-
-
-/* GET categories_admin-edit page (product edition) */
-router.get("/categories_admin/edit", (req, res, next) => {
-  res.render("categories_admin_edit");
-});
-
-/* GET categories_admin-list page (product list for administrator) */
-router.get("/categories_admin/list", (req, res, next) => {
-  res.render("categories_admin_list");
-});
-
 
 module.exports = router;

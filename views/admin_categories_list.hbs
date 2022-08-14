@@ -1,18 +1,18 @@
-<form id="categories_admin" method="post">
-    <div>
-        <label for="mainPhoto">Photo de la Catégorie</label>
-        <img src="">
-        <input type="file" name="catégoryPhoto" accept=".jpg, .jpeg, .png"/>  
-      </div>
-    <div id="categoryInfo">
-      <input name="categoryName" type="text" placeholder="Titre Catégorie"/>
-      <input name="categoryDescription" type="text" placeholder="Description de la catégorie"/>
+<h2>Liste des Catégories</h2>
+<div class="grid">
+  {{#each categories}}
+  <div id="productCard">
+    <p>{{name}}</p>
+    <div class="action">
+      <a href="/admin_categories/{{_id}}"><p>Voir les détails des catégories</p></a>
+      <a href="/admin_categories/{{_id}}/edit"><p>Edit</p></a>
+      <form action="admin_categories/{{_id}}/delete" method="post"><button>Delete</button></form>
     </div>
-    <div class="categorySubmission">
-      <button id="createCategory" type="submit">Créer</button>
-      <button id="editCategory" type="submit">Editer</button> <!-- LOT 2-->
-      <button id="deleteCategory" type="submit">Supprimer</button> <!-- LOT 2-->
-    </div>
-</form>
+  </div>
+  {{/each}}
+</div>
 
-<script src="/js/categories_adminScript.js"></script>
+
+<p><a href="admin_categories_new">Ajouter une nouvelle catégorie</a></p>
+<br>
+<p><a href="/admin">Retour au dashboard</a></p>
