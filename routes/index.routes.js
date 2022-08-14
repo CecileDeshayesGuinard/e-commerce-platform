@@ -448,11 +448,12 @@ router.post('/product_admin/:id/delete',(req,res,next)=>{
 ╚═╝╚═╝ ╩   ╚═╝═╩╝╩ ╩   ╩  ╩╚═╚═╝═╩╝╚═╝╚═╝ ╩────╩ ╩═╩╝╩ ╩╩╝╚╝
 */
 
+
 router.get('/product_admin/:id/edit',(req,res,next)=>{
   Product.findById(req.params._id)
-  .then((productFromDB)=>{
-      console.log(productFromDB)
-      res.render('product-admin-edit',{product: productFromDB})
+  .then((productToEdit)=>{
+      console.log(productToEdit)
+      res.render('product_admin_edit',{product: productToEdit})
   })
   .catch(err=>{
     console.log('error for product edition', err)
@@ -498,8 +499,8 @@ router.post('/product_admin/:id/edit',(req,res,next)=>{
       category: category
     },
     {new:true})
-    .then((productFromDB)=>{
-      res.redirect(`/product_admin/${productFromDB._id}`)
+    .then((productUpdated)=>{
+      res.redirect(`/product_admin/${productUpdated.id}`)
     })
     .catch((err)=>{
       console.log('error editing product',err)
@@ -716,6 +717,27 @@ router.get("/cart", (req, res, next) => {
 /* GET orders page (for payments) */
 router.get("/orders", (req, res, next) => {
   res.render("checkout");
+});
+
+/* GET product_admin-edit page (product edition) */
+router.get("/product_admin/edit", (req, res, next) => {
+  res.render("product_admin_edit");
+});
+
+/* GET product_admin-list page (product list for administrator) */
+router.get("/product_admin/list", (req, res, next) => {
+  res.render("product_admin_list");
+});
+
+
+/* GET categories_admin-edit page (product edition) */
+router.get("/categories_admin/edit", (req, res, next) => {
+  res.render("categories_admin_edit");
+});
+
+/* GET categories_admin-list page (product list for administrator) */
+router.get("/categories_admin/list", (req, res, next) => {
+  res.render("categories_admin_list");
 });
 
 
