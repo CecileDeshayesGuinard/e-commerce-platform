@@ -1,0 +1,18 @@
+<h2>Liste des Produits</h2>
+<div class="grid">
+  {{#each products}}
+  <div id="productCard">
+    <p>{{name}}</p>
+    <div class="action">
+      <a href="/admin_product/{{_id}}"><p>Voir les détails du produits</p></a>
+      <a href="/admin_product/{{_id}}/edit"><p>Edit</p></a>
+      <form action="admin_product/{{_id}}/delete" method="post"><button>Delete</button></form>
+    </div>
+  </div>
+  {{/each}}
+</div>
+
+
+<p><a href="admin_product_new">Ajouter un nouveau produit</a></p>
+<br>
+<p><a href="/admin">Retour au dashboard</a></p>

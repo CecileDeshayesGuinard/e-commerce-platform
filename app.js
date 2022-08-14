@@ -55,8 +55,8 @@ app.use("/cart", cart);
 const checkout = require("./routes/index.routes");
 app.use("/checkout", checkout);
 
-const product_admin = require("./routes/index.routes"); // NE MARCHE PAS => LAYOUT 1 TOUJOURS ACTIFS
-app.use("/product_admin", product_admin);
+const admin_product_new = require("./routes/index.routes"); // NE MARCHE PAS => LAYOUT 1 TOUJOURS ACTIFS
+app.use("/admin_product/new", admin_product_new);
 /*app.get('/product_admin', (req, res, next) => {
   let data = {
     layout: 'layout2'
@@ -64,17 +64,17 @@ app.use("/product_admin", product_admin);
   res.render('product_admin', data);
 })*/
 
-const product_admin_list = require("./routes/index.routes");
-app.use("/product_admin/list", product_admin_list);
+const admin_product_list = require("./routes/index.routes");
+app.use("/admin_product/list", admin_product_list);
 
-const product_adminEdit = require("./routes/index.routes");
-app.use("/product_admin/edit", product_adminEdit);
+const admin_product_edit = require("./routes/index.routes");
+app.use("/admin_product/edit", admin_product_edit);
 
-const categories_adminList = require("./routes/index.routes");
-app.use("/categories_admin/list", categories_adminList);
+const admin_categories_list = require("./routes/index.routes");
+app.use("/admin_categories/list", admin_categories_list);
 
-const categories_adminEdit = require("./routes/index.routes");
-app.use("/categories_admin/edit", categories_adminEdit);
+const admin_categories_edit = require("./routes/index.routes");
+app.use("/admin_categories/edit", admin_categories_edit);
 
 // bcrpytjs
 

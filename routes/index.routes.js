@@ -260,8 +260,8 @@ router.post('/signup', (req, res, next) => { // création de variable pour conte
 */
 
 
-router.get("/product_admin", (req, res, next) => {
-  res.render("product_admin");
+router.get("/admin_product_new", (req, res, next) => {
+  res.render("admin_product_new");
 });
 
 
@@ -315,7 +315,7 @@ function validateProduct(req) {
 }
 
 // Appeler cette route à la tentative d'enregistrement
-router.post('/product_admin/validate/product', function (req, res, next) {
+router.post('/admin_product_new/validate/product', function (req, res, next) {
   const errors = validateProduct(req)
 
   console.log('errors vaut', errors)
@@ -328,7 +328,7 @@ router.post('/product_admin/validate/product', function (req, res, next) {
 })
 
 
-router.post('/product_admin', (req, res, next) => {
+router.post('/admin_product_new', (req, res, next) => {
   const productName = req.body.productName
   const productDescription = req.body.productDescription
   const productCost = req.body.productCost
@@ -361,7 +361,7 @@ router.post('/product_admin', (req, res, next) => {
     Product.findOne({productName : productName}) // on recherche le produit pour savoir d'il existe déjà
      .then((product) => {
       if (product) {
-        res.render("product_admin", {
+        res.render("admin_product_new", {
           message: `Le produit ${product.productName} éxiste déjà`
         })
       } else {
@@ -401,7 +401,7 @@ router.post('/product_admin', (req, res, next) => {
         newProduct.save()
         .then( newProduct => {
           console.log('product saved', newProduct)
-          res.redirect("product")
+          res.redirect("admin_product_list")
         })
         .catch(err => {
           console.log('product not saved', err)
@@ -418,11 +418,11 @@ router.post('/product_admin', (req, res, next) => {
 ═╩╝╚═╝╩═╝╚═╝ ╩ ╚═╝  ╩  ╩╚═╚═╝═╩╝╚═╝╚═╝ ╩────╩ ╩═╩╝╩ ╩╩╝╚╝
 */
 
-router.get('/product_admin/:id', (req, res, next) => {
+router.get('/admin_product_list/:id', (req, res, next) => {
   Product.findById(req.params._id)
   .then(function (productFromDB) {
     console.log("productFromDB=", productFromDB);
-    res.render("product", { product: productFromDB, });
+    res.render("admin_product_list", { product: productFromDB, });
   })
   .catch((err) => {
     console.log(err);
@@ -430,11 +430,11 @@ router.get('/product_admin/:id', (req, res, next) => {
   });
 })
 
-router.post('/product_admin/:id/delete',(req,res,next)=>{
+router.post('/admin_product_list/:id/delete',(req,res,next)=>{
   Product.findByIdAndRemove(req.params._id)
   .then(()=> {
     console.log('product deleted')
-    res.redirect('/product_admin')
+    res.redirect('/admin_product_list')
   })
   .catch(err=>{
     console.log('error deleting product',err)
@@ -450,11 +450,11 @@ router.post('/product_admin/:id/delete',(req,res,next)=>{
 */
 
 
-router.get('/product/:id/edit',(req,res,next)=>{
+router.get('/admin_product/:id/edit',(req,res,next)=>{
   Product.findById(req.params._id)
-  .then((productToEdit)=>{
+  .then((productFromDb)=>{
       console.log(productToEdit)
-      res.render('product_admin_edit',{product: productToEdit})
+      res.render('admin_product_edit',{product: productFromDb})
   })
   .catch(err=>{
     console.log('error for product edition', err)
@@ -462,7 +462,7 @@ router.get('/product/:id/edit',(req,res,next)=>{
   })
 })
 
-router.post('/product/:id/edit',(req,res,next)=>{
+router.post('/admin_product/:id/edit',(req,res,next)=>{
 
   const errors = validateProduct(req);
 
@@ -511,19 +511,19 @@ router.post('/product/:id/edit',(req,res,next)=>{
 })
 
 
-router.post('/product_admin', fileUploader.single('mainPhoto'), (req, res) => {
+router.post('/admin_product_new', fileUploader.single('mainPhoto'), (req, res) => {
   const { title, description } = req.body;
  
   Product.create({ title, description, imageUrl: req.file.path })
-    .then(() => res.redirect('/product_admin'))
+    .then(() => res.redirect('/admin_product_list'))
     .catch(error => console.log(`Error while creating a new product: ${error}`));
 });
 
-router.post('/product_admin', fileUploader.single('otherPhotos'), (req, res) => {
+router.post('/admin_product_new', fileUploader.single('otherPhotos'), (req, res) => {
   const { title, description } = req.body;
  
   Product.create({ title, description, imageUrl: req.file.path })
-    .then(() => res.redirect('/product_admin'))
+    .then(() => res.redirect('/admin_product_list'))
     .catch(error => console.log(`Error while creating a new product: ${error}`));
 });
 
