@@ -43,7 +43,7 @@ router.get("/", (req, res, next) => {
 ╚═╝╚═╝ ╩   ╚═╝╩╚═╝╝╚╝╚═╝╩    ╩  ╩ ╩╚═╝╚═╝
 */
 router.get("/signup", (req, res, next) => {
-  res.render("/front/signup");
+  res.render("signup");
 });
 
 
