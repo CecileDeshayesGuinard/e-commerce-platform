@@ -3,8 +3,8 @@
   <div class="grid">
     {{#each categories}}
     <div id="categoryCard">
-      <p>{{category.categoryName}}</p>
-      <img src="{{category.categoryPhoto}}" alt="category image" width="150px" height="auto">
+      <p>{{categoryName}}</p>
+      <img src="{{categoryPhoto}}" alt="category image" width="150px" height="auto">
       <div class="action">
         <a href="/admin_categories/{{_id}}"><p>Détails de la Catégorie</p></a>
         <a href="/admin_categories/{{_id}}/edit"><p>Editer la Catégorie</p></a>

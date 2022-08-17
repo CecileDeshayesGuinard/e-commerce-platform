@@ -8,8 +8,8 @@
 */
 
 
-const nbr = 5;
-const depPoint = 0;
+let nbr = 5;
+let depPoint = 0;
 const container = document.querySelector('#carrousel');
 const leftBtn = document.querySelector('#leftBtn');
 const rightBtn = document.querySelector('#rightBtn');

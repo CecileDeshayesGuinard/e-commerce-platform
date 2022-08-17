@@ -57,18 +57,12 @@ app.use("/checkout", checkout);
 
 const admin_product_new = require("./routes/index.routes"); // NE MARCHE PAS => LAYOUT 1 TOUJOURS ACTIFS
 app.use("/admin_product/new", admin_product_new);
-/*app.get('/product_admin', (req, res, next) => {
-  let data = {
-    layout: 'layout2'
-  }
-  res.render('product_admin', data);
-})*/
 
 const admin_product_list = require("./routes/index.routes");
 app.use("/admin_product/list", admin_product_list);
 
 const admin_product_edit = require("./routes/index.routes");
-app.use("/admin_product/edit", admin_product_edit);
+app.use("/:id/edit", admin_product_edit);
 
 const admin_categories_new = require("./routes/index.routes");
 app.use("/admin_categories/new", admin_categories_new);
@@ -77,7 +71,7 @@ const admin_categories_list = require("./routes/index.routes");
 app.use("/admin_categories/list", admin_categories_list);
 
 const admin_categories_edit = require("./routes/index.routes");
-app.use("/admin_categories/edit", admin_categories_edit);
+app.use("/admin_categories/:id/edit", admin_categories_edit);
 
 // bcrpytjs
 

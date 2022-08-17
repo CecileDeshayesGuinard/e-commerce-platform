@@ -3,42 +3,37 @@
   <div id="filterZone">
     <button id="filter">Filtrez !</button>
   </div>
-  <div id="productZone">
-    <div class="product">
-        <img src="" href="" alt="">
-        <h5>Produit 1</h5>
-    </div>
-    <div class="product">
-        <img src="" href="" alt="">
-        <h5>Produit 2</h5>
-    </div>
-    <div class="product">
-        <img src="" href="" alt="">
-        <h5>Produit 3</h5>
-    </div>
-    <div class="product">
-        <img src="" href="" alt="">
-        <h5>Produit 4</h5>
-    </div>
-    <div class="product">
-      <img src="" href="" alt="">
-      <h5>Produit 5</h5>
-    </div>
-    <div class="product">
-        <img src="" href="" alt="">
-        <h5>Produit 6</h5>
-    </div>
-    <div class="product">
-        <img src="" href="" alt="">
-        <h5>Produit 7</h5>
-    </div>
-    <div class="product">
-        <img src="" href="" alt="">
-        <h5>Produit 8</h5>
+  {{#each products}}
+  <div id="">
+    <div class="">
+      <img src="{{product.mainPhoto}}" href="/product/{{product._id}}" alt="image de {{productName}}">
+      <h5>{{productName}}</h5>
+      <p>Prix : {{exVat}}</p>
     </div>
   </div>
+  {{/each}}
   <div id="buttonProduct">
     <div class="radioButton" id="radioButton1"></div>
     <div class="radioButton" id="radioButton2"></div>
   </div>
 </div>
+
+<!--<div id="product">
+<h2>Nos Produits</h2>
+  <div id="filterZone">
+    <button id="filter">Filtrez !</button>
+  </div>
+  {{#each products}}
+  <div id="productZone">
+    <div class="product">
+      <img src="{{product.mainPhoto}}" href="/product/{{product._id}}" alt="image de {{productName}}">
+      <h5>{{productName}}</h5>
+      <p>Prix : {{exVat}}</p>
+    </div>
+  </div>
+  {{/each}}
+  <div id="buttonProduct">
+    <div class="radioButton" id="radioButton1"></div>
+    <div class="radioButton" id="radioButton2"></div>
+  </div>
+</div>-->
