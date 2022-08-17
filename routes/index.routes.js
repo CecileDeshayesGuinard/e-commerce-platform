@@ -5,7 +5,7 @@ const Category = require("../models/Category.model");
 const Order = require("../models/Order.model");
 const bcryptJs = require("bcryptjs");
 const fileUploader = require('../config/cloudinary.config');
-/*const { listenerCount } = require("../app");*/
+const { listenerCount } = require("../app");
 
 
 /*
@@ -353,7 +353,7 @@ router.post('/admin_product/new/validate/product', function (req, res, next) {
 PRODUCT POST
 */
 
-router.post('/admin_product/new', (req, res, next) => {
+router.post('/admin_product/new', fileUploader.single('mainPhoto'), fileUploader.multiple('otherPhotos'), (req, res, next) => {
   const productName = req.body.productName
   const productDescription = req.body.productDescription
   const productCost = req.body.productCost
@@ -374,8 +374,8 @@ router.post('/admin_product/new', (req, res, next) => {
   const stock = req.body.stock
   const color = req.body.color
   const brand = req.body.brand
-  const mainPhoto = req.body.mainPhoto
-  const otherPhotos = req.body.otherPhotos
+  /*const mainPhoto = req.body.mainPhoto*/
+  /*const otherPhotos = req.body.otherPhotos*/
   const notice = req.body.notice
   const category = req.body.category
 
@@ -416,8 +416,8 @@ router.post('/admin_product/new', (req, res, next) => {
           },
           color: color,
           brand: brand,
-          mainPhoto: mainPhoto,
-          otherPhotos: [{otherPhotos}],
+          mainPhoto: req.file.path,
+          /*otherPhotos: [{req.file.path}],*/
           stock: stock,
           notice: notice,
           category: category
