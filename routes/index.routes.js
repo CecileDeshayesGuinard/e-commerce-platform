@@ -300,6 +300,8 @@ PRODUCT VALIDATION
 function validateProduct(req) {
   const errors = []
 
+  const otherPhotosContent = req.body.otherPhotos.split (' '); // otherPhotosContent est une array de mots
+
   console.log('validateProduct', req.body)
 
   if (!req.body.productName) {
@@ -323,10 +325,8 @@ function validateProduct(req) {
   if (!req.body.packagingSize_weight) {
     errors.push({name: 'packagingSize_weight', message: 'Poids requis'})
   }
-  if (req.body.otherPhotos) { 
-    if(req.body.otherPhotos.length > 3) { 
-      errors.push({name: 'otherPhotos', message: '3 photos secondaires maximum'})
-    }
+  if (req.body.otherPhotosContent > 3) {
+    errors.push({name: 'otherPhotos', message: '3 photos secondaires maximum'})
   }
 
 
@@ -353,7 +353,7 @@ router.post('/admin_product/new/validate/product', function (req, res, next) {
 PRODUCT POST
 */
 
-router.post('/admin_product/new', fileUploader.single('mainPhoto'), fileUploader.multiple('otherPhotos'), (req, res, next) => {
+router.post('/admin_product/new', fileUploader.single('mainPhoto'), (req, res, next) => {
   const productName = req.body.productName
   const productDescription = req.body.productDescription
   const productCost = req.body.productCost
@@ -374,8 +374,8 @@ router.post('/admin_product/new', fileUploader.single('mainPhoto'), fileUploader
   const stock = req.body.stock
   const color = req.body.color
   const brand = req.body.brand
-  /*const mainPhoto = req.body.mainPhoto*/
-  /*const otherPhotos = req.body.otherPhotos*/
+  const mainPhoto = req.body.mainPhoto
+  const otherPhotos = req.body.otherPhotos
   const notice = req.body.notice
   const category = req.body.category
 
@@ -417,7 +417,7 @@ router.post('/admin_product/new', fileUploader.single('mainPhoto'), fileUploader
           color: color,
           brand: brand,
           mainPhoto: req.file.path,
-          /*otherPhotos: [{req.file.path}],*/
+          otherPhotos: [{otherPhotos}],
           stock: stock,
           notice: notice,
           category: category
