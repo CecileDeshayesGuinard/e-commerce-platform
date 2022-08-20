@@ -73,6 +73,7 @@ app.use("/admin_categories/list", admin_categories_list);
 const admin_categories_edit = require("./routes/index.routes");
 app.use("/admin_categories/:id/edit", admin_categories_edit);
 
+
 // bcrpytjs
 
 const bcrypt = require('bcryptjs');
