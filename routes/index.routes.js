@@ -46,13 +46,11 @@ router.get("/signup", (req, res, next) => {
   res.render("signup");
 });
 
-
 /*
 ╔═╗╔═╗╔═╗╔╦╗  ╔═╗╦╔═╗╔╗╔╦ ╦╔═╗  ╔═╗╔═╗╔═╗╔═╗
 ╠═╝║ ║╚═╗ ║   ╚═╗║║ ╦║║║║ ║╠═╝  ╠═╝╠═╣║ ╦║╣ 
 ╩  ╚═╝╚═╝ ╩   ╚═╝╩╚═╝╝╚╝╚═╝╩    ╩  ╩ ╩╚═╝╚═╝
 */
-
 
 /*
 USER VALIDATION
@@ -101,7 +99,6 @@ router.post('/signup/validate/user', function (req, res, next) { // nous testons
   }
 })
 
-
 /*
 ADDRESS VALIDATION
 */
@@ -135,7 +132,6 @@ router.post('/signup/validate/address', function (req, res, next) {
     res.json({}) // aucune erreur détecté mais envois d'une réponse avec le json
   }
 })
-
 
 /*
 PASSWORD VALIDATION
@@ -245,6 +241,39 @@ router.post('/signup', (req, res, next) => { // création de variable pour conte
 
 
 /*
+██╗      ██████╗  ██████╗ ██╗███╗   ██╗    ██████╗  █████╗  ██████╗ ███████╗
+██║     ██╔═══██╗██╔════╝ ██║████╗  ██║    ██╔══██╗██╔══██╗██╔════╝ ██╔════╝
+██║     ██║   ██║██║  ███╗██║██╔██╗ ██║    ██████╔╝███████║██║  ███╗█████╗  
+██║     ██║   ██║██║   ██║██║██║╚██╗██║    ██╔═══╝ ██╔══██║██║   ██║██╔══╝  
+███████╗╚██████╔╝╚██████╔╝██║██║ ╚████║    ██║     ██║  ██║╚██████╔╝███████╗
+╚══════╝ ╚═════╝  ╚═════╝ ╚═╝╚═╝  ╚═══╝    ╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚══════╝                                                                    
+*/
+
+/*
+╔═╗╔═╗╔╦╗  ╦  ╔═╗╔═╗╦╔╗╔  ╔═╗╔═╗╔═╗╔═╗
+║ ╦║╣  ║   ║  ║ ║║ ╦║║║║  ╠═╝╠═╣║ ╦║╣ 
+╚═╝╚═╝ ╩   ╩═╝╚═╝╚═╝╩╝╚╝  ╩  ╩ ╩╚═╝╚═╝
+*/
+
+router.get("/login", (req, res, next) => {
+  res.render("login");
+});
+
+
+/*
+╔═╗╔═╗╔═╗╔╦╗  ╦  ╔═╗╔═╗╦╔╗╔  ╔═╗╔═╗╔═╗╔═╗
+╠═╝║ ║╚═╗ ║   ║  ║ ║║ ╦║║║║  ╠═╝╠═╣║ ╦║╣ 
+╩  ╚═╝╚═╝ ╩   ╩═╝╚═╝╚═╝╩╝╚╝  ╩  ╩ ╩╚═╝╚═╝
+*/
+
+
+
+
+
+
+
+
+/*
  █████╗ ██████╗ ███╗   ███╗██╗███╗   ██╗        ██████╗ ██████╗  ██████╗ ██████╗ ██╗   ██╗ ██████╗████████╗
 ██╔══██╗██╔══██╗████╗ ████║██║████╗  ██║        ██╔══██╗██╔══██╗██╔═══██╗██╔══██╗██║   ██║██╔════╝╚══██╔══╝
 ███████║██║  ██║██╔████╔██║██║██╔██╗ ██║        ██████╔╝██████╔╝██║   ██║██║  ██║██║   ██║██║        ██║   
@@ -253,13 +282,11 @@ router.post('/signup', (req, res, next) => { // création de variable pour conte
 ╚═╝  ╚═╝╚═════╝ ╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚══════╝╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚═════╝  ╚═════╝  ╚═════╝   ╚═╝                                                                                            
 */
 
-
 /*
 ╔═╗╔═╗╔╦╗  ╔═╗╔╦╗╔╦╗╦╔╗╔    ╔═╗╦═╗╔═╗╔╦╗╦ ╦╔═╗╔╦╗   ╦  ╦╔═╗╔╦╗
 ║ ╦║╣  ║   ╠═╣ ║║║║║║║║║    ╠═╝╠╦╝║ ║ ║║║ ║║   ║    ║  ║╚═╗ ║ 
 ╚═╝╚═╝ ╩   ╩ ╩═╩╝╩ ╩╩╝╚╝────╩  ╩╚═╚═╝═╩╝╚═╝╚═╝ ╩────╩═╝╩╚═╝ ╩ 
 */
-
 
 router.get('/admin_product/list', (req, res, next) => {
   Product.find()
@@ -273,13 +300,11 @@ router.get('/admin_product/list', (req, res, next) => {
       })
 })
 
-
 /*
 ╔═╗╔═╗╔╦╗  ╔═╗╔╦╗╔╦╗╦╔╗╔    ╔═╗╦═╗╔═╗╔╦╗╦ ╦╔═╗╔╦╗   ╔╗╔╔═╗╦ ╦
 ║ ╦║╣  ║   ╠═╣ ║║║║║║║║║    ╠═╝╠╦╝║ ║ ║║║ ║║   ║    ║║║║╣ ║║║
 ╚═╝╚═╝ ╩   ╩ ╩═╩╝╩ ╩╩╝╚╝────╩  ╩╚═╚═╝═╩╝╚═╝╚═╝ ╩────╝╚╝╚═╝╚╩╝
 */
-
 
 router.get("/admin_product/new", (req, res, next) => {
   res.render("admin_product_new");
@@ -291,7 +316,6 @@ router.get("/admin_product/new", (req, res, next) => {
 ╠═╝║ ║╚═╗ ║   ╠═╣ ║║║║║║║║║    ╠═╝╠╦╝║ ║ ║║║ ║║   ║    ║║║║╣ ║║║
 ╩  ╚═╝╚═╝ ╩   ╩ ╩═╩╝╩ ╩╩╝╚╝────╩  ╩╚═╚═╝═╩╝╚═╝╚═╝ ╩────╝╚╝╚═╝╚╩╝
 */
-
 
 /*
 PRODUCT VALIDATION
@@ -345,7 +369,6 @@ router.post('/admin_product/new/validate/product', function (req, res, next) {
     res.json({})
   }
 })
-
 
 /*
 PRODUCT POST
@@ -435,13 +458,11 @@ router.post('/admin_product/new', fileUploader.single('mainPhoto'), /*fileUpload
   }
 })
 
-
 /*
 ╔═╗╔═╗╔╦╗  ╔═╗╔╦╗╔╦╗╦╔╗╔    ╔═╗╦═╗╔═╗╔╦╗╦ ╦╔═╗╔╦╗   ╔╦╗╔═╗╦  ╔═╗╔╦╗╔═╗
 ║ ╦║╣  ║   ╠═╣ ║║║║║║║║║    ╠═╝╠╦╝║ ║ ║║║ ║║   ║     ║║║╣ ║  ║╣  ║ ║╣ 
 ╚═╝╚═╝ ╩   ╩ ╩═╩╝╩ ╩╩╝╚╝────╩  ╩╚═╚═╝═╩╝╚═╝╚═╝ ╩────═╩╝╚═╝╩═╝╚═╝ ╩ ╚═╝
 */
-
 
 router.get('/:id', (req, res, next) => {
   Product.findById(req.params._id)
@@ -475,13 +496,11 @@ router.post('/:id/delete',(req,res,next)=>{
   })
 })
 
-
 /*
 ╔═╗╔═╗╔╦╗  ╔═╗╔╦╗╔╦╗╦╔╗╔    ╔═╗╦═╗╔═╗╔╦╗╦ ╦╔═╗╔╦╗   ╔═╗╔╦╗╦╔╦╗
 ║ ╦║╣  ║   ╠═╣ ║║║║║║║║║    ╠═╝╠╦╝║ ║ ║║║ ║║   ║    ║╣  ║║║ ║ 
 ╚═╝╚═╝ ╩   ╩ ╩═╩╝╩ ╩╩╝╚╝────╩  ╩╚═╚═╝═╩╝╚═╝╚═╝ ╩────╚═╝═╩╝╩ ╩ 
 */
-
 
 router.get('/:id/edit',(req,res,next)=>{
   Product.findById(req.params._id)
@@ -495,15 +514,13 @@ router.get('/:id/edit',(req,res,next)=>{
   })
 })
 
-
 /*
 ╔═╗╔═╗╔═╗╔╦╗  ╔═╗╔╦╗╔╦╗╦╔╗╔    ╔═╗╦═╗╔═╗╔╦╗╦ ╦╔═╗╔╦╗   ╔═╗╔╦╗╦╔╦╗
 ╠═╝║ ║╚═╗ ║   ╠═╣ ║║║║║║║║║    ╠═╝╠╦╝║ ║ ║║║ ║║   ║    ║╣  ║║║ ║ 
 ╩  ╚═╝╚═╝ ╩   ╩ ╩═╩╝╩ ╩╩╝╚╝────╩  ╩╚═╚═╝═╩╝╚═╝╚═╝ ╩────╚═╝═╩╝╩ ╩ 
 */
 
-
-router.post('/:id/edit',(req,res,next)=>{
+router.post('/:id/edit', fileUploader.single('mainPhoto'), (req,res,next)=>{
 
   const errors = validateProduct(req);
 
@@ -534,8 +551,8 @@ router.post('/:id/edit',(req,res,next)=>{
       },
       color: color,
       brand: brand,
-      mainPhoto: mainPhoto,
-      otherPhotos: otherPhotos,
+      mainPhoto: req.file.path,
+      otherPhotos: [{otherPhotos}],
       stock: stock,
       notice: notice,
       category: category
@@ -552,7 +569,7 @@ router.post('/:id/edit',(req,res,next)=>{
 })
 
 
-router.post('/admin_product/new', fileUploader.single('mainPhoto'), (req, res) => {
+/*router.post('/admin_product/new', fileUploader.single('mainPhoto'), (req, res) => {
   const { title, description } = req.body;
  
   Product.create({ title, description, imageUrl: req.file.path })
@@ -566,10 +583,8 @@ router.post('/admin_product/new', fileUploader.single('otherPhotos'), (req, res)
   Product.create({ title, description, imageUrl: req.file.path })
     .then(() => res.redirect('/admin_product/list'))
     .catch(error => console.log(`Error while creating a new product: ${error}`));
-});
+});*/
 
-  
-  
 /*
  █████╗ ██████╗ ███╗   ███╗██╗███╗   ██╗         ██████╗ █████╗ ████████╗███████╗ ██████╗  ██████╗ ██████╗ ██╗███████╗███████╗
 ██╔══██╗██╔══██╗████╗ ████║██║████╗  ██║        ██╔════╝██╔══██╗╚══██╔══╝██╔════╝██╔════╝ ██╔═══██╗██╔══██╗██║██╔════╝██╔════╝
@@ -579,13 +594,11 @@ router.post('/admin_product/new', fileUploader.single('otherPhotos'), (req, res)
 ╚═╝  ╚═╝╚═════╝ ╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚══════╝ ╚═════╝╚═╝  ╚═╝   ╚═╝   ╚══════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚═╝╚══════╝╚══════╝                                                                                                                     
 */
 
-
 /*
 ╔═╗╔═╗╔╦╗  ╔═╗╔╦╗╔╦╗╦╔╗╔    ╔═╗╔═╗╔╦╗╔═╗╔═╗╔═╗╦═╗╦╔═╗╔═╗    ╦  ╦╔═╗╔╦╗
 ║ ╦║╣  ║   ╠═╣ ║║║║║║║║║    ║  ╠═╣ ║ ║╣ ║ ╦║ ║╠╦╝║║╣ ╚═╗    ║  ║╚═╗ ║ 
 ╚═╝╚═╝ ╩   ╩ ╩═╩╝╩ ╩╩╝╚╝────╚═╝╩ ╩ ╩ ╚═╝╚═╝╚═╝╩╚═╩╚═╝╚═╝────╩═╝╩╚═╝ ╩ 
 */
-
 
 router.get('/admin_categories/list', (req, res, next) => {
   Category.find()
@@ -599,17 +612,22 @@ router.get('/admin_categories/list', (req, res, next) => {
       })
 })
 
-
 /*
 ╔═╗╔═╗╔╦╗  ╔═╗╔╦╗╔╦╗╦╔╗╔    ╔═╗╔═╗╔╦╗╔═╗╔═╗╔═╗╦═╗╦╔═╗╔═╗    ╔╗╔╔═╗╦ ╦
 ║ ╦║╣  ║   ╠═╣ ║║║║║║║║║    ║  ╠═╣ ║ ║╣ ║ ╦║ ║╠╦╝║║╣ ╚═╗    ║║║║╣ ║║║
 ╚═╝╚═╝ ╩   ╩ ╩═╩╝╩ ╩╩╝╚╝────╚═╝╩ ╩ ╩ ╚═╝╚═╝╚═╝╩╚═╩╚═╝╚═╝────╝╚╝╚═╝╚╩╝
 */
 
-
 router.get("/admin_categories/new", (req, res, next) => {
   res.render("admin_categories_new");
 });
+
+
+/*
+╔═╗╔═╗╔═╗╔╦╗  ╔═╗╔╦╗╔╦╗╦╔╗╔    ╔═╗╔═╗╔╦╗╔═╗╔═╗╔═╗╦═╗╦╔═╗╔═╗    ╔╗╔╔═╗╦ ╦
+╠═╝║ ║╚═╗ ║   ╠═╣ ║║║║║║║║║    ║  ╠═╣ ║ ║╣ ║ ╦║ ║╠╦╝║║╣ ╚═╗    ║║║║╣ ║║║
+╩  ╚═╝╚═╝ ╩   ╩ ╩═╩╝╩ ╩╩╝╚╝────╚═╝╩ ╩ ╩ ╚═╝╚═╝╚═╝╩╚═╩╚═╝╚═╝────╝╚╝╚═╝╚╩╝
+*/
 
 
 /*
@@ -651,10 +669,10 @@ router.post('/admin_categories/new/validate/category', function (req, res, next)
 CATEGORIES POST
 */
 
-router.post('/admin_categories/new', (req, res, next) => {
+router.post('/admin_categories/new', fileUploader.single('categoryPhoto'), (req, res, next) => {
   const categoryName = req.body.categoryName;
   const categoryDescription = req.body.categoryDescription;
-  const categoryPhoto = req.body.categoryPhoto;
+  /*const categoryPhoto = req.body.categoryPhoto;*/
 
   const errors = (validateCategory(req));
 
@@ -669,7 +687,7 @@ router.post('/admin_categories/new', (req, res, next) => {
         const newCategory = new Category ({
           categoryName: categoryName,
           categoryDescription: categoryDescription,
-          categoryPhoto: categoryPhoto
+          categoryPhoto: req.file.path
         })
       
         newCategory.save()
@@ -685,13 +703,11 @@ router.post('/admin_categories/new', (req, res, next) => {
   }
 })
 
-
 /*
 ╔═╗╔═╗╔╦╗  ╔═╗╔╦╗╔╦╗╦╔╗╔    ╔═╗╔═╗╔╦╗╔═╗╔═╗╔═╗╦═╗╦╔═╗╔═╗    ╔╦╗╔═╗╦  ╔═╗╔╦╗╔═╗
 ║ ╦║╣  ║   ╠═╣ ║║║║║║║║║    ║  ╠═╣ ║ ║╣ ║ ╦║ ║╠╦╝║║╣ ╚═╗     ║║║╣ ║  ║╣  ║ ║╣ 
 ╚═╝╚═╝ ╩   ╩ ╩═╩╝╩ ╩╩╝╚╝────╚═╝╩ ╩ ╩ ╚═╝╚═╝╚═╝╩╚═╩╚═╝╚═╝────═╩╝╚═╝╩═╝╚═╝ ╩ ╚═╝
 */
-
 
 router.get('admin_categories/:id', (req, res, next) => {
   Category.findById(req.params._id)
@@ -705,13 +721,11 @@ router.get('admin_categories/:id', (req, res, next) => {
   });
 })
 
-
 /*
 ╔═╗╔═╗╔═╗╔╦╗  ╔═╗╔╦╗╔╦╗╦╔╗╔    ╔═╗╔═╗╔╦╗╔═╗╔═╗╔═╗╦═╗╦╔═╗╔═╗    ╔╦╗╔═╗╦  ╔═╗╔╦╗╔═╗
 ╠═╝║ ║╚═╗ ║   ╠═╣ ║║║║║║║║║    ║  ╠═╣ ║ ║╣ ║ ╦║ ║╠╦╝║║╣ ╚═╗     ║║║╣ ║  ║╣  ║ ║╣ 
 ╩  ╚═╝╚═╝ ╩   ╩ ╩═╩╝╩ ╩╩╝╚╝────╚═╝╩ ╩ ╩ ╚═╝╚═╝╚═╝╩╚═╩╚═╝╚═╝────═╩╝╚═╝╩═╝╚═╝ ╩ ╚═╝
 */
-
 
 router.post('admin_categories/:id/delete',(req,res,next)=>{
   Category.findByIdAndRemove(req.params._id)
@@ -725,13 +739,11 @@ router.post('admin_categories/:id/delete',(req,res,next)=>{
   })
 })
 
-
 /*
 ╔═╗╔═╗╔╦╗  ╔═╗╔╦╗╔╦╗╦╔╗╔    ╔═╗╔═╗╔╦╗╔═╗╔═╗╔═╗╦═╗╦╔═╗╔═╗    ╔═╗╔╦╗╦╔╦╗
 ║ ╦║╣  ║   ╠═╣ ║║║║║║║║║    ║  ╠═╣ ║ ║╣ ║ ╦║ ║╠╦╝║║╣ ╚═╗    ║╣  ║║║ ║ 
 ╚═╝╚═╝ ╩   ╩ ╩═╩╝╩ ╩╩╝╚╝────╚═╝╩ ╩ ╩ ╚═╝╚═╝╚═╝╩╚═╩╚═╝╚═╝────╚═╝═╩╝╩ ╩ 
 */
-
 
 router.get('admin_categories/:id/edit',(req,res,next)=>{
   Category.findById(req.params._id)
@@ -745,18 +757,17 @@ router.get('admin_categories/:id/edit',(req,res,next)=>{
   })
 })
 
-
 /*
 ╔═╗╔═╗╔═╗╔╦╗  ╔═╗╔╦╗╔╦╗╦╔╗╔    ╔═╗╔═╗╔╦╗╔═╗╔═╗╔═╗╦═╗╦╔═╗╔═╗    ╔═╗╔╦╗╦╔╦╗
 ╠═╝║ ║╚═╗ ║   ╠═╣ ║║║║║║║║║    ║  ╠═╣ ║ ║╣ ║ ╦║ ║╠╦╝║║╣ ╚═╗    ║╣  ║║║ ║ 
 ╩  ╚═╝╚═╝ ╩   ╩ ╩═╩╝╩ ╩╩╝╚╝────╚═╝╩ ╩ ╩ ╚═╝╚═╝╚═╝╩╚═╩╚═╝╚═╝────╚═╝═╩╝╩ ╩ 
 */
 
-
-router.post('admin_categories/:id/edit',(req,res,next)=>{
+router.post('admin_categories/:id/edit', fileUploader.single('categoryPhoto'), (req,res,next)=>{
   Category.findByIdAndUpdate(req.params._id,{
     categoryName: categoryName,
-    categoryDescription: categoryDescription
+    categoryDescription: categoryDescription,
+    categoryPhoto: req.file.path
   },
   {new:true})
   .then((categoryFromDB)=>{
@@ -774,10 +785,7 @@ router.get("/account", (req, res, next) => {
   res.render("account");
 });
 
-/* GET login page */
-router.get("/login", (req, res, next) => {
-  res.render("login");
-});
+
 
 /* GET categories page */
 router.get("/categories", (req, res, next) => {

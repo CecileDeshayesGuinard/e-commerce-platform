@@ -9,6 +9,8 @@ Installation (1 fois dans "/") :
 Créer votre projet avec le package :
 + $ ironlauncher "nom du projet"
 
+
+
  
 Ironlauncher contient :
 -------
@@ -28,6 +30,8 @@ Prérequis: installation de packages via le Terminal (si non intégrés dans l'i
 + CLOUDINARY / MULTER: npm install cloudinary multer multer-storage-cloudinary
 
 
+
+
 Dépôt git:
 -------
 
@@ -38,6 +42,8 @@ Créer un dépôt github
 + $ git commit -m "first-commit"
 + $ git remote add origin lien du dépot créé dans github
 + $ git push origin master
+
+
 
 
 Fichier app.js : copier (bcrypt: sécurité password // fileUploader: cloudinary)
@@ -83,6 +89,8 @@ Fichier layout.hbs : copier
 - <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
 
 
+
+
 Fichier .env :
 -------
 
@@ -93,11 +101,35 @@ Fichier .env :
 + CLOUDINARY_SECRET=...
 
 
+
+
 Fichier cloudinary.config.js (le créer dans le dossier config)
 -------
+ 
++ const cloudinary = require('cloudinary').v2;
++ const { CloudinaryStorage } = require('multer-storage-cloudinary');
++ const multer = require('multer');
+ 
++ cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_NAME,
+    api_key: process.env.CLOUDINARY_KEY,
+    api_secret: process.env.CLOUDINARY_SECRET
+  });
+ 
++ const storage = new CloudinaryStorage({
+    // cloudinary: cloudinary,
+    cloudinary,
+    params: { // see: https://cloudinary.com/documentation/image_upload_api_reference#optional_parameters
+      folder: 'e-commerce-platform', // bien donné le nom du dossier créé dans Cloudinary
+      allowedFormats: ['jpg', 'png', 'jpeg'],
+      // resource_type: 'raw', // on donne les formats de fichiers autorisés
+      public_id: (req, file) => file.originalname // nous gardons avec originalname le nom du fichier d'origine (bonne pratique, nommmer l'image comme le titre)
+    }
+  });
 
-
-
+const uploadCloud = multer({ storage });
+ 
+module.exports = uploadCloud;
 
 
 
@@ -105,25 +137,12 @@ Fichier cloudinary.config.js (le créer dans le dossier config)
 TO DO
 -------
 
-+ Push Photos + notice => Cloudinary
-+ Recupération automatique des urls et push au moment du click dans MongoDB
-
-=> onclick => push Photo
-<= Récupération url
-=> push data (urls incluse dans MongoDB)
-
-
-+ Push données produit si titre existant (système de recherche DataBas edans l'input "titre Produit")
-Dans page product_admin
-
-=> put Nom produit
-<= Si existe alors affichage de toute les données depuis la DataBase
-
-Suppose un Edit ou Delete, le Create sera refusé car "Nom déjà pris"
-
 + Push données dans page produit + productList de HomePage et CategoriesPage
 
 + Mode connecté avec authentification (Axios)
+
+
+
 
 TO DO LOT 2
 -------
@@ -143,17 +162,39 @@ Conditions CSS
 
 
 
-Erreurs résolues :
+Erreurs réccurentes résolues :
 -------
 
-+ enctype="multipart/form-data" : avec la méthode de la form, ceci empeche la valeur de l'input, d'être chargée
++ enctype="multipart/form-data" : avec la méthode de la form, ceci empeche la valeur de l'input, d'être chargée si aucun fichiers a charger sur un cloud
++ enctype="multipart/form-data" : obligatoire si chargement de ressources type fichier sur un cloud comme Cloudinary
 
 
-Erreurs pas résolues :
+
+Erreurs réccurentes non résolues :
 -------
 
-+ Info enregistrées depuis le select de product_admin (aucune valeur)
-+ Photos poussées dans Mongo DB // pas url
++ Problème pour le POST de multiple photos :
+- ERROR POST /admin_product/new Error: Unexpected end of form
+    at Multipart._final (/home/cilou/ironhack/projets/e-commerce-platform/node_modules/busboy/lib/types/multipart.js:588:17)
+    at callFinal (node:internal/streams/writable:696:12)
+    at prefinish (node:internal/streams/writable:708:7)
+    at finishMaybe (node:internal/streams/writable:718:5)
+    at Writable.end (node:internal/streams/writable:632:5)
+    at onend (node:internal/streams/readable:705:10)
+    at process.processTicksAndRejections (node:internal/process/task_queues:77:11) {
+    storageErrors: []
+    }
+POST /admin_product/new 500 1703.639 ms - 2887
+
+- fileUploader.array('otherPhotos', 3)   <= cause de l'erreur
+
+
++ Problème d'éxécution du script des pages "non concernées" qui oblige à la séparation du script sur plusieurs pages :
+- erreur console quand un script front-end est appliqué alors qu'il est inutile sur la page utilisée
+
+
++ Problème de blocage page en cas de non respect du remplissage des champs dans signup
+
 
 
 
