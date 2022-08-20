@@ -502,8 +502,8 @@ router.post('/:id/delete',(req,res,next)=>{
 ╚═╝╚═╝ ╩   ╩ ╩═╩╝╩ ╩╩╝╚╝────╩  ╩╚═╚═╝═╩╝╚═╝╚═╝ ╩────╚═╝═╩╝╩ ╩ 
 */
 
-router.get('/:id/edit',(req,res,next)=>{
-  Product.findById(req.params._id)
+router.get('/admin_product/:id/edit',(req,res,next)=>{
+  Product.findById(req.params.id)
   .then((productFromDB)=>{
       console.log(productFromDB)
       res.render('admin_product_edit',{product: productFromDB})
@@ -520,7 +520,7 @@ router.get('/:id/edit',(req,res,next)=>{
 ╩  ╚═╝╚═╝ ╩   ╩ ╩═╩╝╩ ╩╩╝╚╝────╩  ╩╚═╚═╝═╩╝╚═╝╚═╝ ╩────╚═╝═╩╝╩ ╩ 
 */
 
-router.post('/:id/edit', fileUploader.single('mainPhoto'), (req,res,next)=>{
+router.post('/admin_product/:id/edit', fileUploader.single('mainPhoto'), (req,res,next)=>{
 
   const errors = validateProduct(req);
 
@@ -536,18 +536,18 @@ router.post('/:id/edit', fileUploader.single('mainPhoto'), (req,res,next)=>{
       },
       materials: [{materials}],
       productSize: {
-        length: productLength,
-        width: productWidth,
-        height: productHeight,
-        thickness: productThickness,
-        surface: productSurface,
-        weight: productWeight
+        productSize_length: productSize_length,
+        productSize_width: productSize_width,
+        productSize_height: productSize_height,
+        productSize_thickness: productSize_thickness,
+        productSize_surface: productSize_surface,
+        productSize_weight: productSize_weight
       },
       packagingSize: {
-        length: packagingLength,
-        width: packagingWidth,
-        height: packagingHeight,
-        weight: packagingWeight
+        packagingSize_length: packagingSize_length,
+        packagingSize_width: packagingSize_width,
+        packagingSize_height: packagingSize_height,
+        packagingSize_weight: packagingSize_weight
       },
       color: color,
       brand: brand,

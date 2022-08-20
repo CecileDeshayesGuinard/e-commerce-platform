@@ -45,7 +45,7 @@ createProduct.onclick = function () {
 */
 
 
-const otherPhotosInput = document.querySelector('#otherPhotos');
+/*const otherPhotosInput = document.querySelector('#otherPhotos');
 
 otherPhotosInput.addEventListener('change', (e) => {
     const files = otherPhotosInput.files;
@@ -54,4 +54,4 @@ otherPhotosInput.addEventListener('change', (e) => {
         alert(`Vous ne pouvez importer que 3 photos secondaires !`);
         return;
     }
-});
+});*/

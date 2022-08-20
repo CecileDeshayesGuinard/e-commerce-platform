@@ -1,73 +1,73 @@
 <h2>Editer le Produit: {{productName}}</h2>
  
-<form action="/admin_product/{{product.id}}/edit" method="post">
+<form action="/admin_product/{{id}}/edit" method="post">
   <div id="product_adminLeft" class="product_adminColumn">
     <div id="productInfo" class="elementBlock">
-      <input name="productName" type="text" value="{{product.productName}}"/>
-      <input name="productDescription" type="text" value="{{product.productDescription}}"/>
+      <input name="productName" type="text" value="{{productName}}"/>
+      <input name="productDescription" type="text" value="{{productDescription}}"/>
     </div>
     <div id="amountManagement" class="elementBlock">
       <div id="exVatZone">
-        <input name="productCost" type="number" value="{{product.productCost}}"/>
-        <input name="exVat" type="number" value="{{product.exVat}}"/> <!-- fonction de l'attribut marge ci-dessous -->
-        <input name="margin" type="number" value="{{product.margin}}"/> <!-- condition js si présence de % -->
+        <input name="productCost" type="number" value="{{productCost}}"/>
+        <input name="exVat" type="number" value="{{exVat}}"/> <!-- fonction de l'attribut marge ci-dessous -->
+        <input name="margin" type="number" value="{{margin}}"/> <!-- condition js si présence de % -->
       </div>
       <div id="vatZone" class="elementBlock">
         <p>Prix TTC<span id="taxedPrice">0</span></p>
-        <input name="vat" type="number" value="{{product.vat}}"/>
+        <input name="vat" type="number" value="{{vat}}"/>
       </div>
       <div id="discountZone">
-        <input name="discount" type="number" value="{{product.discount}}"/> <!-- condition js si présence de % -->
+        <input name="discount" type="number" value="{{discount}}"/> <!-- condition js si présence de % -->
       </div>
     </div>
     <div id"materialZone" class="elementBlock">
-      <input name="materials" type="text" value="{{product.materials[0]}}"/>
-      <input name="materials" type="text" value="{{product.materials[1]}}"/>
-      <input name="materials" type="text" value="{{product.materials[2]}}"/>
-      <input name="materials" type="text" value="{{product.materials[3]}}"/>
+      <input name="materials" type="text" value="{{materials.[0]}}"/>
+      <input name="materials" type="text" value="{{materials.[1]}}"/>
+      <input name="materials" type="text" value="{{materials.[2]}}"/>
+      <input name="materials" type="text" value="{{materials.[3]}}"/>
     </div>
     <div id="sizeZone" class="elementBlock">
       <div id="productSize">
-        <input name="productSize_length" type="number" value="{{product.productSize_length}}"/>
-        <input name="productSize_width" type="number" value="{{product.productSize_width}}"/>
-        <input name="productSize_height" type="number" value="{{product.productSize_height}}"/>
-        <input name="productSize_thickness" type="number" value="{{product.productSize_thickness}}"/>
-        <input name="productSize_surface" type="number" value="{{product.productSize_surface}}"/>
-        <input name="productSize_weight" type="number" value="{{product.productSize_weight}}"/>
+        <input name="productSize_length" type="number" value="{{productSize_length}}"/>
+        <input name="productSize_width" type="number" value="{{productSize_width}}"/>
+        <input name="productSize_height" type="number" value="{{productSize_height}}"/>
+        <input name="productSize_thickness" type="number" value="{{productSize_thickness}}"/>
+        <input name="productSize_surface" type="number" value="{{productSize_surface}}"/>
+        <input name="productSize_weight" type="number" value="{{productSize_weight}}"/>
       </div>
       <div id="logisticZone" class="elementBlock">
         <div id="packagingSize">
-          <input name="packagingSize_length" type="number" value="{{product.packagingSize_length}}"/>
-          <input name="packagingSize_width" type="number" value="{{product.packagingSize_width}}"/>
-          <input name="packagingSize_height" type="number" value="{{product.packagingSize_height}}"/>
-          <input name="packagingSize_weight" type="number" value="{{product.packagingSize_weight}}"/>
+          <input name="packagingSize_length" type="number" value="{{packagingSize_length}}"/>
+          <input name="packagingSize_width" type="number" value="{{packagingSize_width}}"/>
+          <input name="packagingSize_height" type="number" value="{{packagingSize_height}}"/>
+          <input name="packagingSize_weight" type="number" value="{{packagingSize_weight}}"/>
         </div>
         <div id="stockLevel" class="elementBlock">
-          <input name="stock" type="number" value="{{product.stock}}"/>
+          <input name="stock" type="number" value="{{stock}}"/>
         </div>
       </div>
     </div>
   </div>
   <div id="product_adminRight" class="product_adminColumn">
     <div id="qualification" class="elementBlock">
-      <input name="color" type="text" value="{{product.color}}"/>
-      <input name="brand" type="text" value="{{product.brand}}"/>
+      <input name="color" type="text" value="{{color}}"/>
+      <input name="brand" type="text" value="{{brand}}"/>
     </div>
     <div id="graphicElem" class="elementBlock"> 
       <div>
         <p>Photo Principale</p>
         <label for="mainPhoto">Photo Principale</label>
-        <img src="{{product.mainPhoto}}">
+        <img src="{{mainPhoto}}">
         <input type="file" name="mainPhoto" accept=".jpg, .jpeg, .png"/>  
       </div>
       <div>
         <label for="otherPhotos">Autres Photos</label>
-        <img src="{{product.otherPhotos[0]}}"><img src="{{product.otherPhotos[1]}}"><img src="{{product.otherPhotos[2]}}">
+        <img src="{{otherPhotos.[0]}}"><img src="{{otherPhotos.[1]}}"><img src="{{otherPhotos.[2]}}">
         <input type="file" name="otherPhotos" accept=".jpg, .jpeg, .png" multiple/>
       </div>
       <div>
         <label for="notice">Notice</label>
-        <input name="notice" type="file" accept=".pdf" value="{{product.notice}}"/>
+        <input name="notice" type="file" accept=".pdf" value="{{notice}}"/>
       </div>
     </div>  
     <div class="elementBlock">

@@ -4,9 +4,10 @@
   <div id="productCard">
     <p>{{productName}}</p>
     <div class="action">
-      <a href="/admin_product/{{id}}"><p>Voir les détails du produits</p></a>
-      <a href="/admin_product/{{id}}/edit"><p>Edit</p></a>
-      <form action="admin_product/{{id}}/delete" method="post"><button>Delete</button></form>
+      <img src="{{mainPhoto}}" alt="image de {{productName}}">
+      <a href="/admin_product/{{_id}}"><p>Voir les détails du produits</p></a>
+      <a href="/admin_product/{{_id}}/edit"><p>Edit</p></a>
+      <form action="admin_product/{{_id}}/delete" method="post"><button>Delete</button></form>
     </div>
   </div>
   {{/each}}
