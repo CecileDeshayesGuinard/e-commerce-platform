@@ -300,8 +300,6 @@ PRODUCT VALIDATION
 function validateProduct(req) {
   const errors = []
 
-  const otherPhotosContent = req.body.otherPhotos.split (' '); // otherPhotosContent est une array de mots
-
   console.log('validateProduct', req.body)
 
   if (!req.body.productName) {
@@ -353,7 +351,7 @@ router.post('/admin_product/new/validate/product', function (req, res, next) {
 PRODUCT POST
 */
 
-router.post('/admin_product/new', fileUploader.single('mainPhoto'), (req, res, next) => {
+router.post('/admin_product/new', fileUploader.single('mainPhoto'), fileUploader.array('otherPhotos', 3), (req, res, next) => {
   const productName = req.body.productName
   const productDescription = req.body.productDescription
   const productCost = req.body.productCost
@@ -374,13 +372,14 @@ router.post('/admin_product/new', fileUploader.single('mainPhoto'), (req, res, n
   const stock = req.body.stock
   const color = req.body.color
   const brand = req.body.brand
-  const mainPhoto = req.body.mainPhoto
-  const otherPhotos = req.body.otherPhotos
+  /*const mainPhoto = req.body.mainPhoto
+  const otherPhotos = req.body.otherPhotos*/
   const notice = req.body.notice
   const category = req.body.category
 
 
   const errors = validateProduct(req);
+
 
   if (errors.length === 0) {
     Product.findOne({productName : productName}) // on recherche le produit pour savoir d'il existe déjà

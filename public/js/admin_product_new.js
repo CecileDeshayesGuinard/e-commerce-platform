@@ -38,33 +38,6 @@ createProduct.onclick = function () {
   });
 }
 
-
-/*
-╔═╗╔╦╗╦╔╦╗
-║╣  ║║║ ║ 
-╚═╝═╩╝╩ ╩ 
-*/
-
-
-editProduct.onclick = function () {
-  axios.post('/admin_product/new/validate/product', {
-    productName: 'productName',
-    exVat: 'exVat',
-    vat: 'vat',
-    packagingSize_length: 'packagingSize_length',
-    packagingSize_width: 'packagingSize_width',
-    packagingSize_height: 'packagingSize_height',
-    packagingSize_weight: 'packagingSize_weight'
-  })
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-}
-
-
 /*
 ╔╦╗╦ ╦╦ ╔╦╗╦╔═╗╦  ╔═╗  ╔═╗╦ ╦╔═╗╔╦╗╔═╗╔═╗  ╔╦╗╔═╗╔╗╔╔═╗╔═╗╔═╗╔╦╗╔═╗╔╗╔╔╦╗
 ║║║║ ║║  ║ ║╠═╝║  ║╣   ╠═╝╠═╣║ ║ ║ ║ ║╚═╗  ║║║╠═╣║║║╠═╣║ ╦║╣ ║║║║╣ ║║║ ║ 
@@ -82,18 +55,3 @@ otherPhotosInput.addEventListener('change', (e) => {
         return;
     }
 });*/
-
-
-/*
-╔╦╗╔═╗╦═╗╔═╗╦╔╗╔  ╔╦╗╔═╗╔╗╔╔═╗╔═╗╔═╗╔╦╗╔═╗╔╗╔╔╦╗
-║║║╠═╣╠╦╝║ ╦║║║║  ║║║╠═╣║║║╠═╣║ ╦║╣ ║║║║╣ ║║║ ║ 
-╩ ╩╩ ╩╩╚═╚═╝╩╝╚╝  ╩ ╩╩ ╩╝╚╝╩ ╩╚═╝╚═╝╩ ╩╚═╝╝╚╝ ╩ 
-*/
-
-
-/*const productMargin = document.querySelector ('#margin');
-const costOfProduct = document.querySelector ('#costOfProduct');
-const exVatPrice = document.querySelector ('#exVatPrice');
-const ValueAddedTaxe = document.querySelector ('#ValueAddedPrice');
-const taxedPrice = document.querySelector ('#taxedPrice');
-const priceManagementModule = "";*/

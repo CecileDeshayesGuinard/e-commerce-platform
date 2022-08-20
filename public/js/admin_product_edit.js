@@ -14,32 +14,6 @@ const deleteProduct = document.querySelector ('#deleteProduct');
 
 
 /*
-╔═╗╦═╗╔═╗╔═╗╔╦╗╔═╗
-║  ╠╦╝║╣ ╠═╣ ║ ║╣ 
-╚═╝╩╚═╚═╝╩ ╩ ╩ ╚═╝
-*/
-
-
-createProduct.onclick = function () {
-  axios.post('/admin_product/new/validate/product', {
-    productName: 'productName',
-    exVat: 'exVat',
-    vat: 'vat',
-    packagingSize_length: 'packagingSize_length',
-    packagingSize_width: 'packagingSize_width',
-    packagingSize_height: 'packagingSize_height',
-    packagingSize_weight: 'packagingSize_weight'
-  })
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-}
-
-
-/*
 ╔═╗╔╦╗╦╔╦╗
 ║╣  ║║║ ║ 
 ╚═╝═╩╝╩ ╩ 
@@ -47,24 +21,24 @@ createProduct.onclick = function () {
 
 
 editProduct.onclick = function () {
-  axios.post('/admin_product/new/validate/product', {
-    productName: 'productName',
-    exVat: 'exVat',
-    vat: 'vat',
-    packagingSize_length: 'packagingSize_length',
-    packagingSize_width: 'packagingSize_width',
-    packagingSize_height: 'packagingSize_height',
-    packagingSize_weight: 'packagingSize_weight'
-  })
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
+    axios.post('/admin_product/new/validate/product', {
+      productName: 'productName',
+      exVat: 'exVat',
+      vat: 'vat',
+      packagingSize_length: 'packagingSize_length',
+      packagingSize_width: 'packagingSize_width',
+      packagingSize_height: 'packagingSize_height',
+      packagingSize_weight: 'packagingSize_weight'
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 }
-
-
+  
+  
 /*
 ╔╦╗╦ ╦╦ ╔╦╗╦╔═╗╦  ╔═╗  ╔═╗╦ ╦╔═╗╔╦╗╔═╗╔═╗  ╔╦╗╔═╗╔╗╔╔═╗╔═╗╔═╗╔╦╗╔═╗╔╗╔╔╦╗
 ║║║║ ║║  ║ ║╠═╝║  ║╣   ╠═╝╠═╣║ ║ ║ ║ ║╚═╗  ║║║╠═╣║║║╠═╣║ ╦║╣ ║║║║╣ ║║║ ║ 
@@ -72,7 +46,7 @@ editProduct.onclick = function () {
 */
 
 
-/*const otherPhotosInput = document.querySelector('#otherPhotos');
+const otherPhotosInput = document.querySelector('#otherPhotos');
 
 otherPhotosInput.addEventListener('change', (e) => {
     const files = otherPhotosInput.files;
@@ -81,19 +55,4 @@ otherPhotosInput.addEventListener('change', (e) => {
         alert(`Vous ne pouvez importer que 3 photos secondaires !`);
         return;
     }
-});*/
-
-
-/*
-╔╦╗╔═╗╦═╗╔═╗╦╔╗╔  ╔╦╗╔═╗╔╗╔╔═╗╔═╗╔═╗╔╦╗╔═╗╔╗╔╔╦╗
-║║║╠═╣╠╦╝║ ╦║║║║  ║║║╠═╣║║║╠═╣║ ╦║╣ ║║║║╣ ║║║ ║ 
-╩ ╩╩ ╩╩╚═╚═╝╩╝╚╝  ╩ ╩╩ ╩╝╚╝╩ ╩╚═╝╚═╝╩ ╩╚═╝╝╚╝ ╩ 
-*/
-
-
-/*const productMargin = document.querySelector ('#margin');
-const costOfProduct = document.querySelector ('#costOfProduct');
-const exVatPrice = document.querySelector ('#exVatPrice');
-const ValueAddedTaxe = document.querySelector ('#ValueAddedPrice');
-const taxedPrice = document.querySelector ('#taxedPrice');
-const priceManagementModule = "";*/
+});
