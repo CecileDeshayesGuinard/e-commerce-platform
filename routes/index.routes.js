@@ -465,10 +465,10 @@ router.post('/product_new', fileUploader.single('mainPhoto'), /*fileUploader.arr
 */
 
 router.get('/:id/product_delete', (req, res, next) => {
-  Product.findById(req.params._id)
+  Product.findById(req.params.id)
   .then(function (productFromDB) {
     console.log("productFromDB=", productFromDB);
-    res.render("admin_product_list", { product: productFromDB, });
+    res.render("/product_delete", { product: productFromDB, });
   })
   .catch((err) => {
     console.log(err);
@@ -485,7 +485,7 @@ router.get('/:id/product_delete', (req, res, next) => {
 
 
 router.post('/:id/product_delete',(req,res,next)=>{
-  Product.findByIdAndRemove(req.params._id)
+  Product.findByIdAndRemove(req.params.id)
   .then(()=> {
     console.log('product deleted')
     res.redirect('/product_list')
@@ -698,7 +698,7 @@ CATEGORIES POST
 
 router.post('/categories_new', fileUploader.single('categoryPhoto'), (req, res, next) => {
 
-  
+
   const categoryName = req.body.categoryName;
   const categoryDescription = req.body.categoryDescription;
   /*const categoryPhoto = req.body.categoryPhoto;*/
@@ -739,10 +739,10 @@ router.post('/categories_new', fileUploader.single('categoryPhoto'), (req, res, 
 */
 
 router.get('/:id/categories_delete', (req, res, next) => {
-  Category.findById(req.params._id)
+  Category.findById(req.params.id)
   .then(function (categoryFromDB) {
     console.log("categoryFromDB=", categoryFromDB);
-    res.render("category", { category: categoryFromDB, });
+    res.render("/category_delete", { category: categoryFromDB, });
   })
   .catch((err) => {
     console.log(err);
@@ -757,7 +757,7 @@ router.get('/:id/categories_delete', (req, res, next) => {
 */
 
 router.post('/:id/categories_delete',(req,res,next)=>{
-  Category.findByIdAndRemove(req.params._id)
+  Category.findByIdAndRemove(req.params.id)
   .then(()=> {
     console.log('category deleted')
     res.redirect('/categories_list')
