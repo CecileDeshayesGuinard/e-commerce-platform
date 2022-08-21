@@ -4,11 +4,11 @@
     <button id="filter">Filtrez !</button>
   </div>
   {{#each products}}
-  <div id="">
-    <div class="">
-      <img src="{{mainPhoto}}" href="/product/{{id}}" alt="image de {{productName}}">
-      <h5>{{productName}}</h5>
-      <p>Prix : {{exVat}}</p>
+  <div id="productZone">
+    <div class="product">
+      <a href="/product/{{this.id}}"><img src="{{this.mainPhoto}}" alt="image de {{this.productName}}"></a>
+      <h5>{{this.productName}}</h5>
+      <p>Prix : {{thisexVat}}</p>
     </div>
   </div>
   {{/each}}
@@ -17,8 +17,8 @@
     <div class="radioButton" id="radioButton2"></div>
   </div>
 </div>
-
-<!--<div id="product">
+<!--
+<div id="product">
 <h2>Nos Produits</h2>
   <div id="filterZone">
     <button id="filter">Filtrez !</button>
