@@ -1,14 +1,30 @@
+{{#if userInSession}}
+
+ <h2>Welcome, {{userInSession.firstName}}!</h2>
+
 <div id="updateSection">
   <div id="updateButton">
-      <button id="userUpdates"><a href="/signup">Modifiez vos informations !</a></button> <!-- renvoie sur le signup préremplis -->
+    <button id="userUpdates"><a href="/account">Vos informations !</a></button>
+    <button id="userUpdates"><a href="/signup_edit">Modifiez vos informations !</a></button> <!-- renvoie sur le signup préremplis -->
+    <button id="userUpdates"><a href="/signup_delete">Effacez votre compte !</a></button>
+    <button id="userUpdates"><a href="/signup_disconnect">Déconnexion !</a></button>
   </div>
 </div>  
+
+<div class="returnZone">
+    <button id="returnButton"><a href="/">Retour</a></button> <!-- renvoie vers la HomePage -->
+</div>
+
+{{else}}
+  <p>Still no logged in user, sorry!</p>
+{{/if}}
+
 <!-- idée : afficher toutes les commandes toujours avec 8 commandes + bouton fonction % de 8 -->
-<div id="orders">
+<!--<div id="orders">
 <h2>Vos Commandes</h2>
   <div id="ordersList">
     <div class="order">
-        <img src="" href="" alt=""> <!-- changer par éléments de commande -->
+        <img src="" href="" alt="">
         <h5>Commande 1</h5>
     </div>
     <div class="order">
@@ -44,7 +60,4 @@
     <div class="radioButton" id="radioButton1"></div>
     <div class="radioButton" id="radioButton2"></div>
   </div>
-</div>
-<div class="returnZone">
-    <button id="returnButton"><a href="/">Retour</a></button> <!-- renvoie vers la HomePage -->
-</div>
+</div> -->

@@ -25,6 +25,7 @@ Prérequis: installation de packages via le Terminal (si non intégrés dans l'i
 
 + BCRYPT : npm install bcryptjs
 + CONNECT-MONGO : npm install connect-mongo
++ EXPRESS SESSION : npm i express-session
 + CHART.JS : npm i chart.js
 + AXIOS: npm install axios
 + CLOUDINARY / MULTER: npm install cloudinary multer multer-storage-cloudinary
@@ -81,6 +82,12 @@ gestion des partial pas automatique danq Ironlauncher (recopier code ci-dessous)
 + app.set('view engine', 'hbs');
 + hbs.registerPartials(__dirname + "/views/partials");
 
+rajouter en dessous de ./config qui correspond au fichier index de ce dossier
+- require('./config/session.config')(app)
+
+
+
+
 
 Fichier layout.hbs : copier
 -------
@@ -95,10 +102,13 @@ Fichier .env :
 -------
 
 + PORT=3000
+
 + CLOUDINARY_URL=...
 + CLOUDINARY_NAME=...
 + CLOUDINARY_KEY=...
 + CLOUDINARY_SECRET=...
+
++ SESS_SECRET='...'
 
 
 
@@ -130,6 +140,44 @@ Fichier cloudinary.config.js (le créer dans le dossier config)
 const uploadCloud = multer({ storage });
  
 module.exports = uploadCloud;
+
+
+
+
+Fichier seesion.config.js (le créer dans le dosseir config)
+-------
+
+// config/session.config.js
+
+// require session
+const session = require('express-session');
+
+// since we are going to USE this middleware in the app.js,
+// let's export it and have it receive a parameter
+module.exports = app => {
+  // <== app is just a placeholder here
+  // but will become a real "app" in the app.js
+  // when this file gets imported/required there
+
+  // required for the app when deployed to Heroku (in production)
+  app.set('trust proxy', 1);
+
+  // use session
+  app.use(
+    session({
+      secret: process.env.SESS_SECRET,
+      resave: true,
+      saveUninitialized: false,
+      cookie: {
+        sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+        secure: process.env.NODE_ENV === 'production',
+        httpOnly: true,
+        maxAge: 60000 // 60 * 1000 ms === 1 min
+      }
+    })
+  );
+};
+
 
 
 

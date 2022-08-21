@@ -259,14 +259,59 @@ router.get("/login", (req, res, next) => {
   res.render("login");
 });
 
-
 /*
 ╔═╗╔═╗╔═╗╔╦╗  ╦  ╔═╗╔═╗╦╔╗╔  ╔═╗╔═╗╔═╗╔═╗
 ╠═╝║ ║╚═╗ ║   ║  ║ ║║ ╦║║║║  ╠═╝╠═╣║ ╦║╣ 
 ╩  ╚═╝╚═╝ ╩   ╩═╝╚═╝╚═╝╩╝╚╝  ╩  ╩ ╩╚═╝╚═╝
 */
 
+router.post('/login', (req, res, next) => {
+  console.log('SESSION =====> ', req.session);
+  const { email, password } = req.body;
+ 
+  if (email === '' || password === '') {
+    res.render('login', {
+      errorMessage: 'identifiant et/ou mot de passe manquants !'
+    });
+    return;
+  }
+ 
+  User.findOne({email: req.body.email})
+    .then(userFromDB => {
+      if (!userFromDB) {
+        res.render('login', {errorMessage: 'Cet email n\'existe pas, veuillez le rentrer à nouveau ou créer un compte !'});
+        return;
+      } else if (bcryptJs.compareSync(req.body.password, userFromDB.password)) {
+        res.render('account', {userFromDB});
+        console.log("req.session = ",req.session)
+        req.session.userLogged = userFromDB;
+      } else {
+        res.render('login', {errorMessage: 'mot de passe incorrect !'});
+      }
+    })
+    .catch(error => next(error));
+});
 
+
+/*
+ █████╗  ██████╗ ██████╗ ██████╗ ██╗   ██╗███╗   ██╗████████╗    ██████╗  █████╗  ██████╗ ███████╗
+██╔══██╗██╔════╝██╔════╝██╔═══██╗██║   ██║████╗  ██║╚══██╔══╝    ██╔══██╗██╔══██╗██╔════╝ ██╔════╝
+███████║██║     ██║     ██║   ██║██║   ██║██╔██╗ ██║   ██║       ██████╔╝███████║██║  ███╗█████╗  
+██╔══██║██║     ██║     ██║   ██║██║   ██║██║╚██╗██║   ██║       ██╔═══╝ ██╔══██║██║   ██║██╔══╝  
+██║  ██║╚██████╗╚██████╗╚██████╔╝╚██████╔╝██║ ╚████║   ██║       ██║     ██║  ██║╚██████╔╝███████╗
+╚═╝  ╚═╝ ╚═════╝ ╚═════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝   ╚═╝       ╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚══════╝                                                                                            
+*/
+
+
+/*
+╔═╗╔═╗╔╦╗  ╔═╗╔═╗╔═╗╔═╗╦ ╦╔╗╔╔╦╗  ╔═╗╔═╗╔═╗╔═╗
+║ ╦║╣  ║   ╠═╣║  ║  ║ ║║ ║║║║ ║   ╠═╝╠═╣║ ╦║╣ 
+╚═╝╚═╝ ╩   ╩ ╩╚═╝╚═╝╚═╝╚═╝╝╚╝ ╩   ╩  ╩ ╩╚═╝╚═╝
+*/
+
+router.get("/account", (req, res, next) => {
+  res.render("account", {userInSession: req.session.currentUser});
+});
 
 
 
@@ -818,10 +863,6 @@ router.post('/:id/categories_edit', fileUploader.single('categoryPhoto'), (req,r
 })
 
 
-/* GET account page */
-router.get("/account", (req, res, next) => {
-  res.render("account");
-});
 
 
 
