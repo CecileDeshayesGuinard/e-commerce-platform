@@ -21,7 +21,7 @@ const deleteProduct = document.querySelector ('#deleteProduct');
 
 
 createProduct.onclick = function () {
-  axios.post('/admin_product/new/validate/product', {
+  axios.post('/product_new/validate/product', {
     productName: 'productName',
     exVat: 'exVat',
     vat: 'vat',

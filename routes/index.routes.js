@@ -448,7 +448,7 @@ router.post('/product_new', fileUploader.single('mainPhoto'), /*fileUploader.arr
         newProduct.save()
         .then( newProduct => {
           console.log('product saved', newProduct)
-          res.redirect("list")
+          res.redirect("/product_list")
         })
         .catch(err => {
           console.log('product not saved', err)
@@ -522,10 +522,37 @@ router.get('/:id/product_edit',(req,res,next)=>{
 
 router.post('/:id/product_edit', fileUploader.single('mainPhoto'), (req,res,next)=>{
 
+  const productName = req.body.productName
+  const productDescription = req.body.productDescription
+  const productCost = req.body.productCost
+  const exVat = req.body.exVat
+  const vat = req.body.vat
+  const discount = req.body.discount
+  const materials = req.body.materials
+  const productSize_length = req.body.productSize_length
+  const productSize_width = req.body.productSize_width
+  const productSize_height = req.body.productSize_height
+  const productSize_thickness = req.body.productSize_thickness
+  const productSize_surface = req.body.productSize_surface
+  const productSize_weight = req.body.productSize_weight
+  const packagingSize_length = req.body.packagingSize_length
+  const packagingSize_width = req.body.packagingSize_width
+  const packagingSize_height = req.body.packagingSize_height
+  const packagingSize_weight = req.body.packagingSize_weight
+  const stock = req.body.stock
+  const color = req.body.color
+  const brand = req.body.brand
+  /*const mainPhoto = req.body.mainPhoto*/
+  const otherPhotos = req.body.otherPhotos
+  const notice = req.body.notice
+  const category = req.body.category
+
+
   const errors = validateProduct(req);
 
+
   if (errors.length === 0) {
-    Product.findByIdAndUpdate(req.params._id,{
+    Product.findByIdAndUpdate(req.params.id, {
       productName: productName,
       productDescription: productDescription,
       productCost: productCost,
@@ -559,13 +586,13 @@ router.post('/:id/product_edit', fileUploader.single('mainPhoto'), (req,res,next
     },
     {new:true})
     .then((productUpdated)=>{
-      res.redirect(`/product/${productUpdated.id}`)
+      res.redirect(`/product/${productUpdated._id}`)
     })
     .catch((err)=>{
       console.log('error editing product',err)
       next(err)
-    })
-  } 
+    }) 
+  }
 })
 
 
@@ -670,6 +697,8 @@ CATEGORIES POST
 */
 
 router.post('/categories_new', fileUploader.single('categoryPhoto'), (req, res, next) => {
+
+  
   const categoryName = req.body.categoryName;
   const categoryDescription = req.body.categoryDescription;
   /*const categoryPhoto = req.body.categoryPhoto;*/
@@ -764,19 +793,28 @@ router.get('/:id/categories_edit',(req,res,next)=>{
 */
 
 router.post('/:id/categories_edit', fileUploader.single('categoryPhoto'), (req,res,next)=>{
-  Category.findByIdAndUpdate(req.params._id,{
-    categoryName: categoryName,
-    categoryDescription: categoryDescription,
-    categoryPhoto: req.file.path
-  },
-  {new:true})
-  .then((categoryFromDB)=>{
-    res.redirect(`/categories/${categoryFromDB._id}`)
-  })
-  .catch((err)=>{
-    console.log('error editing category',err)
-    next(err)
-  })
+
+  const categoryName = req.body.categoryName;
+  const categoryDescription = req.body.categoryDescription;
+  /*const categoryPhoto = req.body.categoryPhoto;*/
+
+  const errors = (validateCategory(req));
+
+  if (errors.length === 0) {
+    Category.findByIdAndUpdate(req.params._id,{
+      categoryName: categoryName,
+      categoryDescription: categoryDescription,
+      categoryPhoto: req.file.path
+    },
+    {new:true})
+    .then((categoryFromDB)=>{
+      res.redirect(`/categories/${categoryFromDB._id}`)
+    })
+    .catch((err)=>{
+      console.log('error editing category',err)
+      next(err)
+    })
+  }
 })
 
 

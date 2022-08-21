@@ -9,7 +9,7 @@
 
 
 const createProduct = document.querySelector ('#createProduct');
-const editProduct  = document.querySelector ('#editProduct');
+const editProduct = document.querySelector ('#editProduct');
 const deleteProduct = document.querySelector ('#deleteProduct');
 
 
@@ -20,8 +20,8 @@ const deleteProduct = document.querySelector ('#deleteProduct');
 */
 
 
-editProduct.onclick = function () {
-    axios.post('/admin_product/new/validate/product', {
+/*editProduct.onclick = function () {
+    axios.post('/product_edit/validate/product', {
       productName: 'productName',
       exVat: 'exVat',
       vat: 'vat',
@@ -36,7 +36,7 @@ editProduct.onclick = function () {
     .catch(function (error) {
       console.log(error);
     });
-}
+}*/
   
   
 /*

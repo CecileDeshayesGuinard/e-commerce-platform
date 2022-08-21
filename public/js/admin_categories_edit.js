@@ -21,7 +21,7 @@ const deleteCategory = document.querySelector ('#deleteCategory');
 
 
 editCategory.onclick = function () {
-    axios.post('/admin_categories/edit/validate/category', {
+    axios.post('/categories_edit/validate/category', {
       categoryName: 'categoryName',
       categoryDescription: 'categoryDescription',
     })

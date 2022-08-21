@@ -196,6 +196,10 @@ POST /admin_product/new 500 1703.639 ms - 2887
 + Problème de blocage page en cas de non respect du remplissage des champs dans signup
 
 
++ Problème d'enregistrment des matériaux dans la BDD dues au fait qu'il s'agisse d'une array
++ Problème d'affichage des champs préremplis pour l'édition des données
+
+
 
 
 
