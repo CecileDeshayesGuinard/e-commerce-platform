@@ -242,8 +242,10 @@ Erreurs réccurentes non résolues :
     storageErrors: []
     }
 POST /admin_product/new 500 1703.639 ms - 2887
-
 - fileUploader.array('otherPhotos', 3)   <= cause de l'erreur
+
+
++ Problème de non effacement du fichier dans Cloudinary si le produit est delete
 
 
 + Problème d'éxécution du script des pages "non concernées" qui oblige à la séparation du script sur plusieurs pages :
@@ -253,8 +255,8 @@ POST /admin_product/new 500 1703.639 ms - 2887
 + Problème de blocage page en cas de non respect du remplissage des champs dans signup
 
 
-+ Problème d'enregistrment des matériaux dans la BDD dues au fait qu'il s'agisse d'une array
-+ Problème d'affichage des champs préremplis pour l'édition des données
++ Problème d'enregistrement des matériaux dans la BDD dues au fait qu'il s'agisse d'une array
+- Problème d'affichage des champs préremplis pour l'édition des données issus d'une array
 
 
 

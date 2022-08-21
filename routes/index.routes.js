@@ -95,7 +95,7 @@ router.post('/signup/validate/user', function (req, res, next) { // nous testons
   if (errors.length >= 1) {
     res.status(400).json(errors) // ici, on va retourner un code d'erreur 400
   } else {
-    res.json({}) // si aucune erreur, renvoyer le json comme réponse au client
+    res.json({}) // si aucune erreur, renvoyer le json comme réponse
   }
 })
 
@@ -239,7 +239,6 @@ router.post('/signup', (req, res, next) => { // création de variable pour conte
   }
 })
 
-
 /*
 ██╗      ██████╗  ██████╗ ██╗███╗   ██╗    ██████╗  █████╗  ██████╗ ███████╗
 ██║     ██╔═══██╗██╔════╝ ██║████╗  ██║    ██╔══██╗██╔══██╗██╔════╝ ██╔════╝
@@ -267,20 +266,18 @@ router.get("/login", (req, res, next) => {
 
 router.post('/login', (req, res, next) => {
   console.log('SESSION =====> ', req.session);
-  const { email, password } = req.body;
+  const {email, password} = req.body;
  
   if (email === '' || password === '') {
     res.render('login', {
       errorMessage: 'identifiant et/ou mot de passe manquants !'
     });
     return;
-  }
- 
+  } else {
   User.findOne({email: req.body.email})
     .then(userFromDB => {
       if (!userFromDB) {
         res.render('login', {errorMessage: 'Cet email n\'existe pas, veuillez le rentrer à nouveau ou créer un compte !'});
-        return;
       } else if (bcryptJs.compareSync(req.body.password, userFromDB.password)) {
         res.render('account', {userFromDB});
         console.log("req.session = ",req.session)
@@ -290,8 +287,8 @@ router.post('/login', (req, res, next) => {
       }
     })
     .catch(error => next(error));
+  }
 });
-
 
 /*
  █████╗  ██████╗ ██████╗ ██████╗ ██╗   ██╗███╗   ██╗████████╗    ██████╗  █████╗  ██████╗ ███████╗
@@ -302,7 +299,6 @@ router.post('/login', (req, res, next) => {
 ╚═╝  ╚═╝ ╚═════╝ ╚═════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝   ╚═╝       ╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚══════╝                                                                                            
 */
 
-
 /*
 ╔═╗╔═╗╔╦╗  ╔═╗╔═╗╔═╗╔═╗╦ ╦╔╗╔╔╦╗  ╔═╗╔═╗╔═╗╔═╗
 ║ ╦║╣  ║   ╠═╣║  ║  ║ ║║ ║║║║ ║   ╠═╝╠═╣║ ╦║╣ 
@@ -312,11 +308,6 @@ router.post('/login', (req, res, next) => {
 router.get("/account", (req, res, next) => {
   res.render("account", {userInSession: req.session.currentUser});
 });
-
-
-
-
-
 
 /*
  █████╗ ██████╗ ███╗   ███╗██╗███╗   ██╗        ██████╗ ██████╗  ██████╗ ██████╗ ██╗   ██╗ ██████╗████████╗
@@ -352,9 +343,8 @@ router.get('/product_list', (req, res, next) => {
 */
 
 router.get("/product_new", (req, res, next) => {
-  res.render("admin_product_new");
+  res.render("admin_product_new")
 });
-
 
 /*
 ╔═╗╔═╗╔═╗╔╦╗  ╔═╗╔╦╗╔╦╗╦╔╗╔    ╔═╗╦═╗╔═╗╔╦╗╦ ╦╔═╗╔╦╗   ╔╗╔╔═╗╦ ╦
