@@ -1,14 +1,14 @@
 <h2>Editer la catégorie: {{categoryName}}</h2>
    
-<form action="/admin_product/{{category.id}}/edit" id="categories_admin" method="post">
+<form action="/{{id}}/categories_edit" id="categories_admin" method="post">
   <div>
       <label for="mainPhoto">Photo de la Catégorie</label>
       <img src="">
       <input type="file" name="categoryPhoto" accept=".jpg, .jpeg, .png"/>  
     </div>
   <div id="categoryInfo">
-    <input name="categoryName" type="text" value="{{category.categoryName}}"/>
-    <input name="categoryDescription" type="text" value="{{category.categoryDescription}}"/>
+    <input name="categoryName" type="text" value="{{categoryName}}"/>
+    <input name="categoryDescription" type="text" value="{{categoryDescription}}"/>
   </div>
   <div class="categorySubmission">
     <button id="editCategory" type="submit">Editer</button>

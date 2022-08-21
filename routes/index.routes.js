@@ -288,7 +288,7 @@ router.get("/login", (req, res, next) => {
 ╚═╝╚═╝ ╩   ╩ ╩═╩╝╩ ╩╩╝╚╝────╩  ╩╚═╚═╝═╩╝╚═╝╚═╝ ╩────╩═╝╩╚═╝ ╩ 
 */
 
-router.get('/admin_product/list', (req, res, next) => {
+router.get('/product_list', (req, res, next) => {
   Product.find()
       .then(function (productsFromDB) {
           console.log('productsFromDB:', productsFromDB);
@@ -306,7 +306,7 @@ router.get('/admin_product/list', (req, res, next) => {
 ╚═╝╚═╝ ╩   ╩ ╩═╩╝╩ ╩╩╝╚╝────╩  ╩╚═╚═╝═╩╝╚═╝╚═╝ ╩────╝╚╝╚═╝╚╩╝
 */
 
-router.get("/admin_product/new", (req, res, next) => {
+router.get("/product_new", (req, res, next) => {
   res.render("admin_product_new");
 });
 
@@ -358,7 +358,7 @@ function validateProduct(req) {
 }
 
 // Appeler cette route à la tentative d'enregistrement
-router.post('/admin_product/new/validate/product', function (req, res, next) {
+router.post('/product_new/validate/product', function (req, res, next) {
   const errors = validateProduct(req)
 
   console.log('errors vaut', errors)
@@ -374,7 +374,7 @@ router.post('/admin_product/new/validate/product', function (req, res, next) {
 PRODUCT POST
 */
 
-router.post('/admin_product/new', fileUploader.single('mainPhoto'), /*fileUploader.array('otherPhotos', 3), fileUploader.single('notice'),*/ (req, res, next) => {
+router.post('/product_new', fileUploader.single('mainPhoto'), /*fileUploader.array('otherPhotos', 3), fileUploader.single('notice'),*/ (req, res, next) => {
   const productName = req.body.productName
   const productDescription = req.body.productDescription
   const productCost = req.body.productCost
@@ -464,7 +464,7 @@ router.post('/admin_product/new', fileUploader.single('mainPhoto'), /*fileUpload
 ╚═╝╚═╝ ╩   ╩ ╩═╩╝╩ ╩╩╝╚╝────╩  ╩╚═╚═╝═╩╝╚═╝╚═╝ ╩────═╩╝╚═╝╩═╝╚═╝ ╩ ╚═╝
 */
 
-router.get('/:id', (req, res, next) => {
+router.get('/:id/product_delete', (req, res, next) => {
   Product.findById(req.params._id)
   .then(function (productFromDB) {
     console.log("productFromDB=", productFromDB);
@@ -484,11 +484,11 @@ router.get('/:id', (req, res, next) => {
 */
 
 
-router.post('/:id/delete',(req,res,next)=>{
+router.post('/:id/product_delete',(req,res,next)=>{
   Product.findByIdAndRemove(req.params._id)
   .then(()=> {
     console.log('product deleted')
-    res.redirect('list')
+    res.redirect('/product_list')
   })
   .catch(err=>{
     console.log('error deleting product',err)
@@ -502,7 +502,7 @@ router.post('/:id/delete',(req,res,next)=>{
 ╚═╝╚═╝ ╩   ╩ ╩═╩╝╩ ╩╩╝╚╝────╩  ╩╚═╚═╝═╩╝╚═╝╚═╝ ╩────╚═╝═╩╝╩ ╩ 
 */
 
-router.get('/admin_product/:id/edit',(req,res,next)=>{
+router.get('/:id/product_edit',(req,res,next)=>{
   Product.findById(req.params.id)
   .then((productFromDB)=>{
       console.log(productFromDB)
@@ -520,7 +520,7 @@ router.get('/admin_product/:id/edit',(req,res,next)=>{
 ╩  ╚═╝╚═╝ ╩   ╩ ╩═╩╝╩ ╩╩╝╚╝────╩  ╩╚═╚═╝═╩╝╚═╝╚═╝ ╩────╚═╝═╩╝╩ ╩ 
 */
 
-router.post('/admin_product/:id/edit', fileUploader.single('mainPhoto'), (req,res,next)=>{
+router.post('/:id/product_edit', fileUploader.single('mainPhoto'), (req,res,next)=>{
 
   const errors = validateProduct(req);
 
@@ -600,7 +600,7 @@ router.post('/admin_product/new', fileUploader.single('otherPhotos'), (req, res)
 ╚═╝╚═╝ ╩   ╩ ╩═╩╝╩ ╩╩╝╚╝────╚═╝╩ ╩ ╩ ╚═╝╚═╝╚═╝╩╚═╩╚═╝╚═╝────╩═╝╩╚═╝ ╩ 
 */
 
-router.get('/admin_categories/list', (req, res, next) => {
+router.get('/categories_list', (req, res, next) => {
   Category.find()
       .then(function (categoriesFromDB) {
           console.log('categoriesFromDB:', categoriesFromDB);
@@ -618,7 +618,7 @@ router.get('/admin_categories/list', (req, res, next) => {
 ╚═╝╚═╝ ╩   ╩ ╩═╩╝╩ ╩╩╝╚╝────╚═╝╩ ╩ ╩ ╚═╝╚═╝╚═╝╩╚═╩╚═╝╚═╝────╝╚╝╚═╝╚╩╝
 */
 
-router.get("/admin_categories/new", (req, res, next) => {
+router.get("/categories_new", (req, res, next) => {
   res.render("admin_categories_new");
 });
 
@@ -653,7 +653,7 @@ function validateCategory(req) {
 
 
 // Appeler cette route lors de l'enregistrement
-router.post('/admin_categories/new/validate/category', function (req, res, next) {
+router.post('/categories_new/validate/category', function (req, res, next) {
   const errors = validateCategory(req)
 
   console.log('errors vaut', errors)
@@ -669,7 +669,7 @@ router.post('/admin_categories/new/validate/category', function (req, res, next)
 CATEGORIES POST
 */
 
-router.post('/admin_categories/new', fileUploader.single('categoryPhoto'), (req, res, next) => {
+router.post('/categories_new', fileUploader.single('categoryPhoto'), (req, res, next) => {
   const categoryName = req.body.categoryName;
   const categoryDescription = req.body.categoryDescription;
   /*const categoryPhoto = req.body.categoryPhoto;*/
@@ -693,7 +693,7 @@ router.post('/admin_categories/new', fileUploader.single('categoryPhoto'), (req,
         newCategory.save()
         .then( newCategory => {
           console.log('category saved', newCategory)
-          res.redirect('list')
+          res.redirect('/categories_list')
         })
         .catch(err => {
           console.log('category not saved', err)
@@ -709,7 +709,7 @@ router.post('/admin_categories/new', fileUploader.single('categoryPhoto'), (req,
 ╚═╝╚═╝ ╩   ╩ ╩═╩╝╩ ╩╩╝╚╝────╚═╝╩ ╩ ╩ ╚═╝╚═╝╚═╝╩╚═╩╚═╝╚═╝────═╩╝╚═╝╩═╝╚═╝ ╩ ╚═╝
 */
 
-router.get('admin_categories/:id', (req, res, next) => {
+router.get('/:id/categories_delete', (req, res, next) => {
   Category.findById(req.params._id)
   .then(function (categoryFromDB) {
     console.log("categoryFromDB=", categoryFromDB);
@@ -727,11 +727,11 @@ router.get('admin_categories/:id', (req, res, next) => {
 ╩  ╚═╝╚═╝ ╩   ╩ ╩═╩╝╩ ╩╩╝╚╝────╚═╝╩ ╩ ╩ ╚═╝╚═╝╚═╝╩╚═╩╚═╝╚═╝────═╩╝╚═╝╩═╝╚═╝ ╩ ╚═╝
 */
 
-router.post('admin_categories/:id/delete',(req,res,next)=>{
+router.post('/:id/categories_delete',(req,res,next)=>{
   Category.findByIdAndRemove(req.params._id)
   .then(()=> {
     console.log('category deleted')
-    res.redirect('list')
+    res.redirect('/categories_list')
   })
   .catch(err=>{
     console.log('error deleting category',err)
@@ -745,7 +745,7 @@ router.post('admin_categories/:id/delete',(req,res,next)=>{
 ╚═╝╚═╝ ╩   ╩ ╩═╩╝╩ ╩╩╝╚╝────╚═╝╩ ╩ ╩ ╚═╝╚═╝╚═╝╩╚═╩╚═╝╚═╝────╚═╝═╩╝╩ ╩ 
 */
 
-router.get('admin_categories/:id/edit',(req,res,next)=>{
+router.get('/:id/categories_edit',(req,res,next)=>{
   Category.findById(req.params._id)
   .then((categoryFromDB)=>{
     console.log(categoryFromDB)
@@ -763,7 +763,7 @@ router.get('admin_categories/:id/edit',(req,res,next)=>{
 ╩  ╚═╝╚═╝ ╩   ╩ ╩═╩╝╩ ╩╩╝╚╝────╚═╝╩ ╩ ╩ ╚═╝╚═╝╚═╝╩╚═╩╚═╝╚═╝────╚═╝═╩╝╩ ╩ 
 */
 
-router.post('admin_categories/:id/edit', fileUploader.single('categoryPhoto'), (req,res,next)=>{
+router.post('/:id/categories_edit', fileUploader.single('categoryPhoto'), (req,res,next)=>{
   Category.findByIdAndUpdate(req.params._id,{
     categoryName: categoryName,
     categoryDescription: categoryDescription,
@@ -771,7 +771,7 @@ router.post('admin_categories/:id/edit', fileUploader.single('categoryPhoto'), (
   },
   {new:true})
   .then((categoryFromDB)=>{
-    res.redirect(`/categories_admin/${categoryFromDB._id}`)
+    res.redirect(`/categories/${categoryFromDB._id}`)
   })
   .catch((err)=>{
     console.log('error editing category',err)

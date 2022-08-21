@@ -5,15 +5,15 @@
     <p>{{productName}}</p>
     <div class="action">
       <img src="{{mainPhoto}}" alt="image de {{productName}}">
-      <a href="/admin_product/{{_id}}"><p>Voir les détails du produits</p></a>
-      <a href="/admin_product/{{_id}}/edit"><p>Edit</p></a>
-      <form action="admin_product/{{_id}}/delete" method="post"><button>Delete</button></form>
+      <a href="/{{_id}}"><p>Voir les détails du produits</p></a>
+      <a href="/{{_id}}/product_edit"><p>Edit</p></a>
+      <form action="/{{_id}}/product_delete" method="post"><button>Delete</button></form>
     </div>
   </div>
   {{/each}}
 </div>
 
 
-<p><a href="/admin_product/new">Ajouter un nouveau produit</a></p>
+<p><a href="/product_new">Ajouter un nouveau produit</a></p>
 <br>
 <p><a href="/admin">Retour au dashboard</a></p>

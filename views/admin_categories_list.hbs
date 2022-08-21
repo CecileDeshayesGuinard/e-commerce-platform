@@ -6,16 +6,16 @@
       <p>{{categoryName}}</p>
       <img src="{{categoryPhoto}}" alt="category image" width="150px" height="auto">
       <div class="action">
-        <a href="/admin_categories/{{id}}"><p>Détails de la Catégorie</p></a>
-        <a href="/admin_categories/{{id}}/edit"><p>Editer la Catégorie</p></a>
-        <form action="admin_categories/{{id}}/delete" method="post"><button>Delete</button></form>
+        <a href="/{{_id}}"><p>Détails de la Catégorie</p></a>
+        <a href="/{{_id}}/categories_edit"><p>Editer la Catégorie</p></a>
+        <form action="/{{_id}}/categories_delete" method="post"><button>Delete</button></form>
       </div>
     </div>
     {{/each}}
   </div>
 
   <div class="categoriesCrud">
-    <p><a href="/admin_categories/new">Ajouter une nouvelle catégorie</a></p>
+    <p><a href="/categories_new">Ajouter une nouvelle catégorie</a></p>
     <p><a href="/admin">Retour au dashboard</a></p>
   </div>
 </div>
