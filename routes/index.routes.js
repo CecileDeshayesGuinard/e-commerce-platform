@@ -23,10 +23,17 @@ const fileUploader = require('../config/cloudinary.config');
 ╚═╝╚═╝ ╩   ╩ ╩╚═╝╩ ╩╚═╝╩  ╩ ╩╚═╝╚═╝
 */
 
-router.get("/", (req, res, next) => {
-  res.render("index");
+router.get('/', (req, res, next) => {
+  Product.find()
+    .then(function (productsFromDB) {
+        console.log('productsFromDB:', productsFromDB);
+        res.render('index', { products: productsFromDB });
+    })
+    .catch(err => {
+        console.log(err);
+        next(err);
+    })
 });
-
 
 /*
 ███████╗██╗ ██████╗ ███╗   ██╗██╗   ██╗██████╗     ██████╗  █████╗  ██████╗ ███████╗
@@ -42,8 +49,8 @@ router.get("/", (req, res, next) => {
 ║ ╦║╣  ║   ╚═╗║║ ╦║║║║ ║╠═╝  ╠═╝╠═╣║ ╦║╣ 
 ╚═╝╚═╝ ╩   ╚═╝╩╚═╝╝╚╝╚═╝╩    ╩  ╩ ╩╚═╝╚═╝
 */
-router.get("/signup", (req, res, next) => {
-  res.render("signup");
+router.get('/signup', (req, res, next) => {
+  res.render('signup');
 });
 
 /*
@@ -199,7 +206,7 @@ router.post('/signup', (req, res, next) => { // création de variable pour conte
     User.findOne({email : email})
      .then((user) => {
       if (user) {
-        res.render("signup", {
+        res.render('signup', {
           message: `L'\email ${user.email} est deja pris`
         })
       } else {
@@ -254,8 +261,8 @@ router.post('/signup', (req, res, next) => { // création de variable pour conte
 ╚═╝╚═╝ ╩   ╩═╝╚═╝╚═╝╩╝╚╝  ╩  ╩ ╩╚═╝╚═╝
 */
 
-router.get("/login", (req, res, next) => {
-  res.render("login");
+router.get('/login', (req, res, next) => {
+  res.render('login');
 });
 
 /*
@@ -279,9 +286,9 @@ router.post('/login', (req, res, next) => {
       if (!userFromDB) {
         res.render('login', {errorMessage: 'Cet email n\'existe pas, veuillez le rentrer à nouveau ou créer un compte !'});
       } else if (bcryptJs.compareSync(req.body.password, userFromDB.password)) {
-        res.render('account', {userFromDB});
-        console.log("req.session = ",req.session)
-        req.session.userLogged = userFromDB;
+        console.log('req.session = ',req.session)
+        req.session.currentUser = userFromDB;
+        res.redirect('/account')
       } else {
         res.render('login', {errorMessage: 'mot de passe incorrect !'});
       }
@@ -305,8 +312,8 @@ router.post('/login', (req, res, next) => {
 ╚═╝╚═╝ ╩   ╩ ╩╚═╝╚═╝╚═╝╚═╝╝╚╝ ╩   ╩  ╩ ╩╚═╝╚═╝
 */
 
-router.get("/account", (req, res, next) => {
-  res.render("account", {userInSession: req.session.currentUser});
+router.get('/account', (req, res, next) => {
+  res.render('account', {userInSession: req.session.currentUser});
 });
 
 /*
@@ -342,8 +349,8 @@ router.get('/product_list', (req, res, next) => {
 ╚═╝╚═╝ ╩   ╩ ╩═╩╝╩ ╩╩╝╚╝────╩  ╩╚═╚═╝═╩╝╚═╝╚═╝ ╩────╝╚╝╚═╝╚╩╝
 */
 
-router.get("/product_new", (req, res, next) => {
-  res.render("admin_product_new")
+router.get('/product_new', (req, res, next) => {
+  res.render('admin_product_new')
 });
 
 /*
@@ -443,7 +450,7 @@ router.post('/product_new', fileUploader.single('mainPhoto'), /*fileUploader.arr
     Product.findOne({productName : productName}) // on recherche le produit pour savoir d'il existe déjà
      .then((product) => {
       if (product) {
-        res.render("admin_product_new", {
+        res.render('admin_product_new', {
           message: `Le produit ${product.productName} éxiste déjà`
         })
       } else {
@@ -483,7 +490,7 @@ router.post('/product_new', fileUploader.single('mainPhoto'), /*fileUploader.arr
         newProduct.save()
         .then( newProduct => {
           console.log('product saved', newProduct)
-          res.redirect("/product_list")
+          res.redirect('/product_list')
         })
         .catch(err => {
           console.log('product not saved', err)
@@ -502,8 +509,8 @@ router.post('/product_new', fileUploader.single('mainPhoto'), /*fileUploader.arr
 router.get('/:id/product_delete', (req, res, next) => {
   Product.findById(req.params.id)
   .then(function (productFromDB) {
-    console.log("productFromDB=", productFromDB);
-    res.render("/product_delete", { product: productFromDB, });
+    console.log('productFromDB=', productFromDB);
+    res.render('/product_delete', { product: productFromDB, });
   })
   .catch((err) => {
     console.log(err);
@@ -680,8 +687,8 @@ router.get('/categories_list', (req, res, next) => {
 ╚═╝╚═╝ ╩   ╩ ╩═╩╝╩ ╩╩╝╚╝────╚═╝╩ ╩ ╩ ╚═╝╚═╝╚═╝╩╚═╩╚═╝╚═╝────╝╚╝╚═╝╚╩╝
 */
 
-router.get("/categories_new", (req, res, next) => {
-  res.render("admin_categories_new");
+router.get('/categories_new', (req, res, next) => {
+  res.render('admin_categories_new');
 });
 
 
@@ -776,8 +783,8 @@ router.post('/categories_new', fileUploader.single('categoryPhoto'), (req, res, 
 router.get('/:id/categories_delete', (req, res, next) => {
   Category.findById(req.params.id)
   .then(function (categoryFromDB) {
-    console.log("categoryFromDB=", categoryFromDB);
-    res.render("/category_delete", { category: categoryFromDB, });
+    console.log('categoryFromDB=', categoryFromDB);
+    res.render('/category_delete', { category: categoryFromDB, });
   })
   .catch((err) => {
     console.log(err);
@@ -857,23 +864,23 @@ router.post('/:id/categories_edit', fileUploader.single('categoryPhoto'), (req,r
 
 
 /* GET categories page */
-router.get("/categories", (req, res, next) => {
-  res.render("categories");
+router.get('/categories', (req, res, next) => {
+  res.render('categories');
 });
 
 /* GET product page */
-router.get("/product", (req, res, next) => {
-  res.render("product");
+router.get('/product', (req, res, next) => {
+  res.render('product');
 });
 
 /* GET cart page */
-router.get("/cart", (req, res, next) => {
-  res.render("cart");
+router.get('/cart', (req, res, next) => {
+  res.render('cart');
 });
 
 /* GET orders page (for payments) */
-router.get("/orders", (req, res, next) => {
-  res.render("checkout");
+router.get('/orders', (req, res, next) => {
+  res.render('checkout');
 });
 
 module.exports = router;
