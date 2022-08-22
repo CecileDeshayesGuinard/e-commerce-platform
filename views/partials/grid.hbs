@@ -6,9 +6,9 @@
   {{#each products}}
   <div id="productZone">
     <div class="product">
-      <a href="/product/{{this.id}}"><img src="{{this.mainPhoto}}" alt="image de {{this.productName}}"></a>
+      <a href="/product/{{this.id}}"><img src="{{this.product.mainPhoto}}" alt="image de {{this.productName}}"></a>
       <h5>{{this.productName}}</h5>
-      <p>Prix : {{thisexVat}}</p>
+      <p>Prix : {{this.exVat}}</p>
     </div>
   </div>
   {{/each}}
