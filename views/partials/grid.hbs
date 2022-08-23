@@ -3,10 +3,17 @@
   <div id="filterZone">
     <button id="filter">Filtrez !</button>
   </div>
-  {{#each products}}
-    {{> product_grid products }}
-  {{/each}}
-</div>
+  <div id="productZone">
+    {{#each products}}
+    <div class="product">
+      <a href="/product/{{_id}}"><img src="{{mainPhoto}}" alt="image de {{productName}}"></a>
+      <div class="product_grid_content">
+        <h5>{{productName}}</h5>
+        <p>Prix: {{productPrice.exVat}}</p>
+      </div>
+    </div>
+    {{/each}}
+  </div>
   <div id="buttonProduct">
     <div class="radioButton" id="radioButton1"></div>
     <div class="radioButton" id="radioButton2"></div>

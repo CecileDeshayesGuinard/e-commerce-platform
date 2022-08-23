@@ -1,4 +1,4 @@
-E-Commerce (module 2)
+E-Commerce-Platform (module 2)
 -------
 
 Pour commencer il est possible de créer son dossier avec "ironlauncher"
@@ -21,7 +21,7 @@ Ironlauncher contient :
 + NODEMON : npm i -D nodemon
 
 
-Prérequis: installation de packages via le Terminal (si non intégrés dans l'ironlauncher)
+Prérequis: installation de packages via le Terminal
 
 + BCRYPT : npm install bcryptjs
 + CONNECT-MONGO : npm install connect-mongo
@@ -88,11 +88,10 @@ rajouter en dessous de ./config qui correspond au fichier index de ce dossier
 
 
 
-
 Fichier layout.hbs : copier
 -------
 
-- <script src="/js/script.js"></script>
+- <script src="/js/layoutScript.js"></script>
 - <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
 
 
@@ -109,6 +108,8 @@ Fichier .env :
 + CLOUDINARY_SECRET=...
 
 + SESS_SECRET='...'
+
++ MONGODB_URI=...
 
 
 
@@ -190,25 +191,45 @@ module.exports = app => {
 
 
 
-
-TO DO
+TO DO LOT 2 (FRONT)
 -------
 
-+ Push données dans page produit + productList de HomePage et CategoriesPage
-
-+ Mode connecté avec authentification (Axios)
-
-
-
-
-TO DO LOT 2
--------
-
++ Product Page
++ Categorie Page
++ Cart Page
 + Checkout_Page
+
++ Account Erase Option
+
+
+
+TO DO LOT 2 (BACK)
+-------
+
++ User List Page
 + KPI_Page (données issues de la DataBase)
 + Order_Admin_Page
 + API paiement
 + API Google Analytics
++ Transport
+
+
+
+
+TO DO BDD
+-------
+
++ Order Collection
+
+
+
+
+TO DO CLOUDINARY (js code)
+-------
+
++ Détrourage image ou redimmensionnement
++ Effacement des images si produit/categorie effacés
+
 
 
 
@@ -216,6 +237,7 @@ Conditions CSS
 -------
 
 + Carrousel : image en 1024px ou inférieur avec hauteur deux fois moindre (height = width / 2)
+
 
 
 
@@ -252,11 +274,19 @@ POST /admin_product/new 500 1703.639 ms - 2887
 - erreur console quand un script front-end est appliqué alors qu'il est inutile sur la page utilisée
 
 
-+ Problème de blocage page en cas de non respect du remplissage des champs dans signup
++ Problème de blocage page en cas de non respect du remplissage des champs dans signup (probablement géré via la route post/validation)
 
 
 + Problème d'enregistrement des matériaux dans la BDD dues au fait qu'il s'agisse d'une array
 - Problème d'affichage des champs préremplis pour l'édition des données issus d'une array
+
+
+
+Erreurs repérées en vue de résolution Lot 2 :
+-------
+
++ Limitation nb caractères titre produit (pb UX front page)
++ messages avertissement utilisateur si erreur
 
 
 
