@@ -287,6 +287,7 @@ Erreurs repérées en vue de résolution Lot 2 :
 
 + Limitation nb caractères titre produit (pb UX front page)
 + messages avertissement utilisateur si erreur
++ Filtre Produits sur HomePage et CategoryPage
 
 
 

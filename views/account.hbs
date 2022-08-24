@@ -5,9 +5,9 @@
 <div id="updateSection">
   <div id="updateButton">
     <button id="userUpdates"><a href="/account">Vos informations !</a></button>
-    <button id="userUpdates"><a href="/signup_edit">Modifiez vos informations !</a></button> <!-- renvoie sur le signup préremplis -->
-    <button id="userUpdates"><a href="/signup_delete">Effacez votre compte !</a></button>
-    <button id="userUpdates"><a href="/signup_disconnect">Déconnexion !</a></button>
+    <button id="userUpdates"><a href="/{{userInSession._id}}/account_edit">Modifiez vos informations !</a></button> <!-- renvoie sur le signup préremplis -->
+    <form type="submit" action="/{{userInSession_id}}/account_delete"><button id="userUpdates">Effacez votre compte !</button></form>
+    <form type="submit" action="/logout" method="POST"><button id="userUpdates">Déconnexion !</button></form>
   </div>
 </div>  
 
@@ -16,7 +16,7 @@
 </div>
 
 {{else}}
-  <p>Still no logged in user, sorry!</p>
+  <p>Vous n'êtes plus connecté !</p>
 {{/if}}
 
 <!-- idée : afficher toutes les commandes toujours avec 8 commandes + bouton fonction % de 8 -->

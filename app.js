@@ -44,6 +44,12 @@ app.use("/login", login);
 const account = require("./routes/index.routes");
 app.use("/account", account);
 
+const account_edit = require("./routes/index.routes");
+app.use("/:id/account_edit", account_edit);
+
+const account_delete = require("./routes/index.routes");
+app.use("/:id/account_delete", account_delete);
+
 const categories = require("./routes/index.routes");
 app.use("/categories", categories);
 

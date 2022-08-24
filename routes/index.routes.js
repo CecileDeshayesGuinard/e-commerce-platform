@@ -247,6 +247,122 @@ router.post('/signup', (req, res, next) => { // création de variable pour conte
 })
 
 /*
+╔═╗╔═╗╔╦╗  ╔═╗╦╔═╗╔╗╔╦ ╦╔═╗  ╔╦╗╔═╗╦  ╔═╗╔╦╗╔═╗
+║ ╦║╣  ║   ╚═╗║║ ╦║║║║ ║╠═╝   ║║║╣ ║  ║╣  ║ ║╣ 
+╚═╝╚═╝ ╩   ╚═╝╩╚═╝╝╚╝╚═╝╩────═╩╝╚═╝╩═╝╚═╝ ╩ ╚═╝
+*/
+
+router.get('/:id/account_delete', (req, res, next) => {
+  User.findById(req.params.id)
+  .then(function (userFromDB) {
+    console.log('userFromDB=', userFromDB);
+    res.render('signup_delete', { user: userFromDB, });
+  })
+  .catch((err) => {
+    console.log(err);
+    next(err);
+  });
+})
+
+/*
+╔═╗╔═╗╔═╗╔╦╗  ╔═╗╦╔═╗╔╗╔╦ ╦╔═╗  ╔╦╗╔═╗╦  ╔═╗╔╦╗╔═╗
+╠═╝║ ║╚═╗ ║   ╚═╗║║ ╦║║║║ ║╠═╝   ║║║╣ ║  ║╣  ║ ║╣ 
+╩  ╚═╝╚═╝ ╩   ╚═╝╩╚═╝╝╚╝╚═╝╩────═╩╝╚═╝╩═╝╚═╝ ╩ ╚═╝
+*/
+
+router.post('/:id/account_delete',(req,res,next)=>{
+  User.findByIdAndRemove(req.params.id)
+  .then(()=> {
+    console.log('user deleted')
+    res.redirect('/signup')
+  })
+  .catch(err=>{
+    console.log('error deleting user',err)
+    next(err)
+  })
+})
+
+/*
+╔═╗╔═╗╔╦╗  ╔═╗╦╔═╗╔╗╔╦ ╦╔═╗  ╔═╗╔╦╗╦╔╦╗
+║ ╦║╣  ║   ╚═╗║║ ╦║║║║ ║╠═╝  ║╣  ║║║ ║ 
+╚═╝╚═╝ ╩   ╚═╝╩╚═╝╝╚╝╚═╝╩────╚═╝═╩╝╩ ╩ 
+*/
+
+router.get('/:id/account_edit',(req,res,next)=>{
+  User.findById(req.params.id)
+  .then((userFromDB)=>{
+      console.log(userFromDB)
+      res.render('account_edit',{user: userFromDB})
+  })
+  .catch(err=>{
+    console.log('error for user edition', err)
+    next(err)
+  })
+})
+
+/*
+╔═╗╔═╗╔═╗╔╦╗  ╔═╗╦╔═╗╔╗╔╦ ╦╔═╗  ╔═╗╔╦╗╦╔╦╗
+╠═╝║ ║╚═╗ ║   ╚═╗║║ ╦║║║║ ║╠═╝  ║╣  ║║║ ║ 
+╩  ╚═╝╚═╝ ╩   ╚═╝╩╚═╝╝╚╝╚═╝╩────╚═╝═╩╝╩ ╩ 
+*/
+
+router.post('/:id/account_edit', (req, res, next) => { // création de variable pour contenir les éléments récupérés grace à "name=" dans le fichier .hbs
+  const companyName = req.body.companyName
+  const vatNumber = req.body.vatNumber
+  const regNumber = req.body.regNumber
+  const nafCode = req.body.nafCode
+
+  const firstName = req.body.firstName
+  const lastName = req.body.lastName
+  const email = req.body.email
+  const phoneNumber = req.body.phoneNumber
+  const dateOfBirth = req.body.dateOfBirth
+
+  const countryName = req.body.countryName
+  const streetName = req.body.streetName
+  const streetNumber = req.body.streetNumber
+  const zipCode = req.body.zipCode
+  const cityName = req.body.cityName
+
+  const password = req.body.password
+
+  // nous additionnons les erreurs obtenues dans chaque étape de validation s'il y en a...
+  const errors = (validateUser(req) + validateAddress(req) + validatePassword(req))
+
+  if (errors.length === 0) { // si pas d'erreur alors vérification de l'unicité de l'email pour éviter les doublons (méthode: findOne)
+    User.findByIdAndUpdate(req.params.id, {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      phoneNumber: phoneNumber,
+      dateOfBirth: dateOfBirth,
+      company: {
+        companyName: companyName,
+        vatNumber: vatNumber,
+        regNumber: regNumber,
+        nafCode: nafCode
+      },
+      billingAdress: {
+        countryName: countryName,
+        streetName: streetName,
+        streetNumber: streetNumber,
+        zipCode: zipCode,
+        cityName: cityName
+      },
+      password: cryptedPassword,
+    },
+    {new:true})
+    .then((userUpdated)=>{
+      res.redirect(`/account/${userUpdated._id}`)
+    })
+    .catch((err)=>{
+      console.log('error editing product',err)
+      next(err)
+    }) 
+  }
+})
+
+/*
 ██╗      ██████╗  ██████╗ ██╗███╗   ██╗    ██████╗  █████╗  ██████╗ ███████╗
 ██║     ██╔═══██╗██╔════╝ ██║████╗  ██║    ██╔══██╗██╔══██╗██╔════╝ ██╔════╝
 ██║     ██║   ██║██║  ███╗██║██╔██╗ ██║    ██████╔╝███████║██║  ███╗█████╗  
@@ -295,6 +411,19 @@ router.post('/login', (req, res, next) => {
     })
     .catch(error => next(error));
   }
+});
+
+/*
+╔═╗╔═╗╔═╗╔╦╗  ╦  ╔═╗╔═╗╔═╗╦ ╦╔╦╗
+╠═╝║ ║╚═╗ ║   ║  ║ ║║ ╦║ ║║ ║ ║ 
+╩  ╚═╝╚═╝ ╩   ╩═╝╚═╝╚═╝╚═╝╚═╝ ╩ 
+*/
+
+router.post('/logout', (req, res, next) => {
+  req.session.destroy(err => {
+    if (err) next(err);
+    res.redirect('/');
+  });
 });
 
 /*
@@ -510,7 +639,7 @@ router.get('/:id/product_delete', (req, res, next) => {
   Product.findById(req.params.id)
   .then(function (productFromDB) {
     console.log('productFromDB=', productFromDB);
-    res.render('/product_delete', { product: productFromDB, });
+    res.render('product_delete', { product: productFromDB, });
   })
   .catch((err) => {
     console.log(err);
@@ -636,23 +765,6 @@ router.post('/:id/product_edit', fileUploader.single('mainPhoto'), (req,res,next
     }) 
   }
 })
-
-
-/*router.post('/admin_product/new', fileUploader.single('mainPhoto'), (req, res) => {
-  const { title, description } = req.body;
- 
-  Product.create({ title, description, imageUrl: req.file.path })
-    .then(() => res.redirect('/admin_product/list'))
-    .catch(error => console.log(`Error while creating a new product: ${error}`));
-});
-
-router.post('/admin_product/new', fileUploader.single('otherPhotos'), (req, res) => {
-  const { title, description } = req.body;
- 
-  Product.create({ title, description, imageUrl: req.file.path })
-    .then(() => res.redirect('/admin_product/list'))
-    .catch(error => console.log(`Error while creating a new product: ${error}`));
-});*/
 
 /*
  █████╗ ██████╗ ███╗   ███╗██╗███╗   ██╗         ██████╗ █████╗ ████████╗███████╗ ██████╗  ██████╗ ██████╗ ██╗███████╗███████╗
@@ -784,7 +896,7 @@ router.get('/:id/categories_delete', (req, res, next) => {
   Category.findById(req.params.id)
   .then(function (categoryFromDB) {
     console.log('categoryFromDB=', categoryFromDB);
-    res.render('/category_delete', { category: categoryFromDB, });
+    res.render('category_delete', { category: categoryFromDB, });
   })
   .catch((err) => {
     console.log(err);
