@@ -1,60 +1,60 @@
-<form action="/{{userInSession.user._id}}/account_edit" method="POST">
+<form id="edit_form" action="/{{userInSession._id}}/account_edit" method="POST">
   <div class="signupBlock" id="typeOfCustomer">
     <div class="signupSection">
-      <button><a id="individual">Particulier</a></button>
-      <button><a id="company">Entreprise</a></button>
+      <button><a id="edit_individual">Particulier</a></button>
+      <button><a id="edit_company">Entreprise</a></button>
     </div>
   </div>
   <div class="signupBlock hidden-block" id="companyProfile">
     <div class="signupSection">
-      <input name="companyName" type="text" value="{{companyName}}"/>
-      <input name="vatNumber" type="text" value="{{vatNumber}}"/>
-      <input name="regNumber" type="text" value="{{redNumber}}"/>
-      <input name="nafCode" type="text" value="{{nafCode}}"/>
+      <input name="companyName" type="text" value="{{user.company.companyName}}"/>
+      <input name="vatNumber" type="text" value="{{user.company.vatNumber}}"/>
+      <input name="regNumber" type="text" value="{{user.company.regNumber}}"/>
+      <input name="nafCode" type="text" value="{{user.company.nafCode}}"/>
     </div> 
     <div class="actionButton">
-      <button><a id="previousCompany">Précédent</a></button>
-      <button><a id="continueCompany">Suivant</a></button>
+      <button><a id="edit_previousCompany">Précédent</a></button>
+      <button><a id="edit_continueCompany">Suivant</a></button>
     </div>
   </div>
   <div class="signupBlock hidden-block" id="userProfile">
     <div class="signupSection">
-      <input name="firstName" type="text" value="{{firstName}}"/>
-      <input name="lastName" type="text" value="{{lastName}}"/>
-      <input name="email" type="email" value="{{email}}"/>
-      <input name="phoneNumber" type="tel" value="{{phoneNumber}}"/>
-      <input name="dateOfBirth" type="date" value="{{dateOfBirth}}"/>
+      <input name="firstName" type="text" value="{{user.firstName}}"/>
+      <input name="lastName" type="text" value="{{user.lastName}}"/>
+      <input name="email" type="email" value="{{user.email}}"/>
+      <input name="phoneNumber" type="tel" value="{{user.phoneNumber}}"/>
+      <input name="dateOfBirth" type="date" value="{{user.dateOfBirth}}"/>
     </div>
     <div class="actionButton">
-      <button><a id="previousUser">Précédent</a></button>
-      <button><a id="continueUser">Suivant</a></button>
+      <button><a id="edit_previousUser">Précédent</a></button>
+      <button><a id="edit_continueUser">Suivant</a></button>
     </div>
   </div>
   <div class="signupBlock hidden-block" id="billingAdress">
     <div class="signupSection">
-      <input name="countryName" type="text" value="{{countryName}}"/>
-      <input name="streetName" type="text" value="{{streetName}}"/>
-      <input name="streetNumber" type="text" value="{{streetNumber}}"/>
-      <input name="zipCode" type="text" value="{{zipCode}}"/>
-      <input name="cityName" type="text" value="{{cityName}}"/>
+      <input name="countryName" type="text" value="{{user.billingAdress.countryName}}"/>
+      <input name="streetName" type="text" value="{{user.billingAdress.streetName}}"/>
+      <input name="streetNumber" type="text" value="{{user.billingAdress.streetNumber}}"/>
+      <input name="zipCode" type="text" value="{{user.billingAdress.zipCode}}"/>
+      <input name="cityName" type="text" value="{{user.billingAdress.cityName}}"/>
     </div>  
     <div class="actionButton">
-      <button><a id="previousAdress">Précédent</a></button>
-      <button><a id="continueAdress">Suivant</a></button>
+      <button><a id="edit_previousAdress">Précédent</a></button>
+      <button><a id="edit_continueAdress">Suivant</a></button>
     </div>
   </div>
   <div class="signupBlock hidden-block" id="security">
     <div class="signupSection">
-      <input name="password" type="password" value="{{password}}"/>
+      <input name="password" type="password" value="{{user.password}}"/>
     </div>  
     <div class="actionButton">
-      <button><a id="previousPassword">Précédent</a></button>
-      <button><a id="registration" type="submit">Envoyer !</a></button>
+      <button><a id="edit_previousPassword">Précédent</a></button>
+      <button><a id="edit_registration" type="submit">Envoyer !</a></button>
     </div>
   </div>
 </form>
 
-<script src="/js/signupScript.js"></script>
+<script src="/js/edit_accountScript.js"></script>
 
 {{#if message}}
   <p>{{message}}</p>

@@ -994,6 +994,11 @@ a {
   font-size: 1em;
 }
 
+::-ms-value {
+  color: rgba(255, 255, 255, .4);
+  font-size: 1em;
+}
+
 .actionButton {
   display: flex;
   flex-direction: row;

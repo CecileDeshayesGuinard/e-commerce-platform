@@ -93,7 +93,6 @@ function validateUser(req) { // utiliser cette fonction pour tous les paramètre
   return errors
 }
 
-
 router.post('/signup/validate/user', function (req, res, next) { // nous testons les infos avec la route ../validate/user
   const errors = validateUser(req)
 
@@ -256,7 +255,7 @@ router.get('/:id/account_delete', (req, res, next) => {
   User.findById(req.params.id)
   .then(function (userFromDB) {
     console.log('userFromDB=', userFromDB);
-    res.render('signup_delete', { user: userFromDB, });
+    res.render('account_delete', { user: userFromDB, });
   })
   .catch((err) => {
     console.log(err);
@@ -305,6 +304,43 @@ router.get('/:id/account_edit',(req,res,next)=>{
 ╠═╝║ ║╚═╗ ║   ╚═╗║║ ╦║║║║ ║╠═╝  ║╣  ║║║ ║ 
 ╩  ╚═╝╚═╝ ╩   ╚═╝╩╚═╝╝╚╝╚═╝╩────╚═╝═╩╝╩ ╩ 
 */
+
+router.post('/:id/account_edit/validate/user', function (req, res, next) { // nous testons les infos avec la route ../validate/user
+  const errors = validateUser(req)
+
+  console.log('errors vaut', errors)
+
+  if (errors.length >= 1) {
+    res.status(400).json(errors) // ici, on va retourner un code d'erreur 400
+  } else {
+    res.json({}) // si aucune erreur, renvoyer le json comme réponse
+  }
+})
+
+router.post('/:id/account_edit/validate/address', function (req, res, next) {
+  const errors = validateAddress(req)
+
+  console.log('errors vaut', errors)
+
+  if (errors.length >= 1) {
+    res.status(400).json(errors) // code erreur 400
+  } else {
+    res.json({}) // aucune erreur détecté mais envois d'une réponse avec le json
+  }
+})
+
+router.post('/:id/account_edit/validate/password', function (req, res, next) {
+  const errors = validatePassword(req)
+
+  console.log('errors vaut', errors)
+
+  if (errors.length >= 1) {
+    res.status(400).json(errors)
+  } else {
+    res.json({})
+  }
+})
+
 
 router.post('/:id/account_edit', (req, res, next) => { // création de variable pour contenir les éléments récupérés grace à "name=" dans le fichier .hbs
   const companyName = req.body.companyName
@@ -414,19 +450,6 @@ router.post('/login', (req, res, next) => {
 });
 
 /*
-╔═╗╔═╗╔═╗╔╦╗  ╦  ╔═╗╔═╗╔═╗╦ ╦╔╦╗
-╠═╝║ ║╚═╗ ║   ║  ║ ║║ ╦║ ║║ ║ ║ 
-╩  ╚═╝╚═╝ ╩   ╩═╝╚═╝╚═╝╚═╝╚═╝ ╩ 
-*/
-
-router.post('/logout', (req, res, next) => {
-  req.session.destroy(err => {
-    if (err) next(err);
-    res.redirect('/');
-  });
-});
-
-/*
  █████╗  ██████╗ ██████╗ ██████╗ ██╗   ██╗███╗   ██╗████████╗    ██████╗  █████╗  ██████╗ ███████╗
 ██╔══██╗██╔════╝██╔════╝██╔═══██╗██║   ██║████╗  ██║╚══██╔══╝    ██╔══██╗██╔══██╗██╔════╝ ██╔════╝
 ███████║██║     ██║     ██║   ██║██║   ██║██╔██╗ ██║   ██║       ██████╔╝███████║██║  ███╗█████╗  
@@ -446,6 +469,19 @@ router.get('/account', (req, res, next) => {
 });
 
 /*
+╔═╗╔═╗╔═╗╔╦╗  ╦  ╔═╗╔═╗╔═╗╦ ╦╔╦╗
+╠═╝║ ║╚═╗ ║   ║  ║ ║║ ╦║ ║║ ║ ║ 
+╩  ╚═╝╚═╝ ╩   ╩═╝╚═╝╚═╝╚═╝╚═╝ ╩ 
+*/
+
+router.post('/logout', (req, res, next) => {
+  req.session.destroy(err => {
+    if (err) next(err);
+    res.redirect('/');
+  });
+});
+
+/*
  █████╗ ██████╗ ███╗   ███╗██╗███╗   ██╗        ██████╗ ██████╗  ██████╗ ██████╗ ██╗   ██╗ ██████╗████████╗
 ██╔══██╗██╔══██╗████╗ ████║██║████╗  ██║        ██╔══██╗██╔══██╗██╔═══██╗██╔══██╗██║   ██║██╔════╝╚══██╔══╝
 ███████║██║  ██║██╔████╔██║██║██╔██╗ ██║        ██████╔╝██████╔╝██║   ██║██║  ██║██║   ██║██║        ██║   
@@ -462,14 +498,14 @@ router.get('/account', (req, res, next) => {
 
 router.get('/product_list', (req, res, next) => {
   Product.find()
-      .then(function (productsFromDB) {
-          console.log('productsFromDB:', productsFromDB);
-          res.render('admin_product_list', { products: productsFromDB });
-      })
-      .catch(err => {
-          console.log(err);
-          next(err);
-      })
+  .then(function (productsFromDB) {
+    console.log('productsFromDB:', productsFromDB);
+    res.render('admin_product_list', { products: productsFromDB });
+  })
+  .catch(err => {
+    console.log(err);
+    next(err);
+  })
 })
 
 /*

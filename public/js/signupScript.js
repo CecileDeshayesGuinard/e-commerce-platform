@@ -17,6 +17,14 @@ const security = document.querySelector('#security');
 const individualButton = document.querySelector('#individual');
 const companyButton = document.querySelector('#company');
 
+const continueCompany = document.querySelector('#continueCompany');
+const previousCompany = document.querySelector('#previousCompany');
+const continueUser = document.querySelector('#continueUser');
+const previousUser = document.querySelector('#previousUser');d
+const continueAdress = document.querySelector('#continueAdress');
+const previousAdress = document.querySelector('#previousAdress');
+const registration = document.querySelector('#registration');
+const previousPassword = document.querySelector('#previousPassword');
 
 /*
 ╔╦╗╦ ╦╔═╗╔═╗  ╔═╗╔═╗  ╔═╗╦ ╦╔═╗╔╦╗╔═╗╔╦╗╔═╗╦═╗
