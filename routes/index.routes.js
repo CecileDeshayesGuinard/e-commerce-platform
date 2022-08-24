@@ -341,7 +341,6 @@ router.post('/:id/account_edit/validate/password', function (req, res, next) {
   }
 })
 
-
 router.post('/:id/account_edit', (req, res, next) => { // création de variable pour contenir les éléments récupérés grace à "name=" dans le fichier .hbs
   const companyName = req.body.companyName
   const vatNumber = req.body.vatNumber

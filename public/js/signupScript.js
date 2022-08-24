@@ -20,7 +20,7 @@ const companyButton = document.querySelector('#company');
 const continueCompany = document.querySelector('#continueCompany');
 const previousCompany = document.querySelector('#previousCompany');
 const continueUser = document.querySelector('#continueUser');
-const previousUser = document.querySelector('#previousUser');d
+const previousUser = document.querySelector('#previousUser');
 const continueAdress = document.querySelector('#continueAdress');
 const previousAdress = document.querySelector('#previousAdress');
 const registration = document.querySelector('#registration');
@@ -134,7 +134,7 @@ previousAdress.onclick = function () {
 registration.onclick = function () {
   security.classList.add('hidden-block');
   axios.post('/signup/validate/password', {
-    password: password,
+    password: 'password',
   })
   .then(function (response) {
     console.log(response);

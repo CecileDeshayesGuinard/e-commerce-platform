@@ -7,7 +7,7 @@
 ╚══════╝╚═════╝ ╚═╝   ╚═╝       ╚═╝  ╚═╝ ╚═════╝ ╚═════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝   ╚═╝                                                                                      
 */
 
- const editForm = document.querySelector('#edit_form')
+const editForm = document.querySelector('#edit_form')
 
 const typeOfCustomer = document.querySelector('#typeOfCustomer');
 const companyProfile = document.querySelector('#companyProfile');
@@ -78,7 +78,7 @@ edit_previousCompany.onclick = function () {
 edit_continueUser.onclick = function () {
   userProfile.classList.add('hidden-block');
   billingAdress.classList.remove('hidden-block');
-  axios.post('/:id/account/validate/user', {
+  axios.post('/:id/account_edit/validate/user', {
     firstName: 'firstName',
     lastName: 'lastName',
     email: 'email',
@@ -108,7 +108,7 @@ edit_previousUser.onclick = function () {
 edit_continueAdress.onclick = function () {
   billingAdress.classList.add('hidden-block');
   security.classList.remove('hidden-block');
-  axios.post('/:id/account/validate/address', {
+  axios.post('/:id/account_edit/validate/address', {
     countryName: 'countryName',
     streetName: 'streetName',
     streetNumber: 'streetNumber',
@@ -137,8 +137,8 @@ edit_previousAdress.onclick = function () {
 
 edit_registration.onclick = function () {
   security.classList.add('hidden-block');
-  axios.post('/:id/account/validate/password', {
-    password: password,
+  axios.post('/:id/account_edit/validate/password', {
+    password: 'password',
   })
   .then(function (response) {
     console.log(response);
